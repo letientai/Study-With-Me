@@ -1,0 +1,215 @@
+.header-top {
+  margin-top: 60px;
+}
+.top-header {
+  -webkit-box-shadow: 5px 0px 5px 0px rgb(0 0 0 / 30%);
+  box-shadow: 5px 0px 5px 0px rgb(0 0 0 / 30%);
+  background-color: white;
+  height: 60px;
+  position: fixed;
+  width: 100%;
+  z-index: 5;
+  top: 0px;
+}
+
+.row {
+  margin: 0 !important;
+}
+.logo {
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-image: url(https://hocmai.vn/assets/front/images/bg-log.png);
+  /* background-image: url(assets/front/images/snow.gif), url(assets/front/images/bg-noel.jpg); */
+  background-size: cover, 100% 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-line-pack: center;
+  align-content: center;
+  width: 100px;
+  height: 97px;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-transition: 0.5s ease;
+  transition: 0.5s ease;
+}
+
+.logo img {
+  -webkit-filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.15));
+  filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.15));
+  -webkit-transition: 0.3s ease-in;
+  transition: 0.3s ease-in;
+  background-repeat: no-repeat;
+}
+
+.box-img img {
+  margin: auto;
+  width: 70%;
+  height: auto;
+}
+
+.top-header .left-top-header {
+  position: relative;
+  padding-left: 130px;
+  -webkit-transition: 0.5s ease;
+  transition: 0.5s ease;
+}
+.text_search {
+  background-color: #f2f3f5;
+  padding: 9px 14px;
+  width: 80%;
+  border: unset;
+  border-radius: 5px;
+  font-size: 13px;
+  color: #444;
+  outline: none;
+  font-weight: 400;
+}
+
+@media (min-width: 1300px) {
+  .container {
+    max-width: 1300px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1140px;
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .top-header .hotline {
+    font-size: 13px;
+  }
+}
+.top-header .hotline {
+  font-size: 12px;
+  color: #999;
+  border-left: 1px solid #eeeeee;
+  border-right: 1px solid #eeeeee;
+  padding: 5px 35px;
+}
+
+.hotline span {
+  color: #ff9800;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-weight: 700;
+}
+
+.fw-600 {
+  font-weight: 600;
+}
+
+.top-header .info-member {
+  padding: 10px 0;
+  padding-left: 30px;
+}
+
+@media (min-width: 1200px) {
+  .top-header .info-member .btn-login,
+  .top-header .info-member .btn-register {
+    font-size: 13px;
+  }
+}
+
+.top-header .info-member .btn-login,
+.top-header .info-member .btn-register {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  min-width: 110px;
+  height: 40px;
+  padding: 7px 10px;
+  border-radius: 5px;
+  text-align: center;
+  font-weight: 500;
+  font-size: 12px;
+  text-decoration: none;
+}
+
+.top-header .info-member .btn-login {
+  margin-right: 20px;
+  color: #666;
+  border: 1px solid #bdbdbd;
+}
+
+.top-header .info-member .btn-register {
+  position: relative;
+  border: 1px solid #fb930c;
+}
+
+@media (min-width: 1200px) {
+  .top-header .info-member .btn-login,
+  .top-header .info-member .btn-register {
+    font-size: 13px;
+  }
+}
+
+.bg-orange {
+  background-color: #ff9800;
+}
+
+.cl-white {
+  color: #ffffff;
+}
+
+
+
+.bottom-header {
+  background-color: #f7f8fa;
+  border-bottom: solid 1px #d7d7d7;
+}
+
+
+.bottom-header .box-menu-top {
+  padding-left: 130px;
+  z-index: 4;
+  display: flex;
+  justify-content: space-between;
+}
+
+.bottom-header .top-menu {
+  margin-bottom: 0;
+  color: rgb(153, 153, 153);
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.clear-list {
+  padding-left: 0;
+  list-style: none;
+}
+
+
+.bottom-header .top-menu li:hover {
+  color: rgb(97, 97, 97);
+}
+.bottom-header .top-menu li {
+  position: relative;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 36px;
+  margin-right: 20px;
+  cursor: pointer;
+}
+
