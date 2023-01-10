@@ -3,6 +3,7 @@ import HomeMenu from "./homeMenu";
 import { RightContent } from "./rightContent";
 import "./Slide.scss";
 import { SlideBanner } from "./slideBanner";
+import { memo } from "react";
 
 function Slide() {
   const [color, setColor] = useState("#7fb5ff");
@@ -79,4 +80,4 @@ function Slide() {
   );
 }
 
-export default Slide;
+export default memo(Slide);

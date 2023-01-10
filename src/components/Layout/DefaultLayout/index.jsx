@@ -1,5 +1,5 @@
 import Header from "../components/Header";
-
+import { memo } from "react";
 function DefaultLayout({ children }) {
   return (
     <div>
@@ -11,4 +11,4 @@ function DefaultLayout({ children }) {
   );
 }
 
-export default DefaultLayout;
+export default memo(DefaultLayout);

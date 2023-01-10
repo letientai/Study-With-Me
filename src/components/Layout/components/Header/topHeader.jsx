@@ -10,6 +10,7 @@ function TopHeader() {
           <div className="left-top-header w-40 d-flex justify-items-between align-items-center col-5">
             <div className="logo box-img">
               <img
+                className="logo-imgage"
                 src="https://hocmai.vn/assets/front/images/logo.png"
                 alt="Học trực tuyến - Hệ thống giáo dục HOCMAI"
               />
@@ -24,7 +25,7 @@ function TopHeader() {
               />
             </div>
           </div>
-          <div className="right-top-header w-60 d-flex justify-content-end col-7">
+          <div className="right-top-header w-60 d-flex justify-content-end col-7 px-0">
             <div className="hotline d-flex align-items-center ">
               <span className="fw-600">
                 <img src={ic_phone} alt="" /> 1900 6933
