@@ -1,4 +1,4 @@
-import { ContentHome } from "../../components/ContentHome";
+import { ContentCourse } from "../../components/ContentCourse";
 import Slide from "../../components/Slide";
 
 function Home() {
@@ -8,9 +8,9 @@ function Home() {
                 <Slide/>
             </div>
             <div className="content" style={{marginTop: "100px"}}>
-                <ContentHome/>
-                <ContentHome/>
-                <ContentHome/>
+                <ContentCourse/>
+                <ContentCourse/>
+                <ContentCourse/>
             </div>
         </div>
      );

@@ -1,8 +1,8 @@
 import React from "react";
 import SliderCustom from "../Slider";
 import Card from "./card";
-import "./ContentHome.scss";
-export const ContentHome = () => {
+import "./ContentCourse.scss";
+export const ContentCourse = () => {
   const customSetting = {
     slidesToShow: 5,
     autoplay: false
