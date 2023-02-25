@@ -1,9 +1,9 @@
-import Following from "../pages/following";
+import DetailCourse from "../pages/detail";
 import Home from "../pages/Home";
 
 const publicRoutes = [
     {path: "/", component: Home},
-    {path: "/following", component: Following}
+    {path: "/khoa-hoc-truc-tuyen/:id", component: DetailCourse}
 ];
 
 

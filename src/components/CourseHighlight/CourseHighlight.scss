@@ -1,0 +1,75 @@
+.td-cl {
+  color: #2a70b8;
+  text-decoration: none;
+  //   font-weight: 500;
+}
+.detail-header {
+  color: #434343;
+  font-size: 14px;
+  line-height: 40px;
+  font-weight: 400;
+}
+.content-wr {
+  .content {
+    &-title {
+      color: #6b6b6b;
+      font-size: 22px;
+      font-weight: normal;
+      margin: 20px 0 15px;
+      text-transform: uppercase;
+    }
+    &-description {
+      font-size: 16px;
+      font-weight: 300;
+      margin: 10px 0;
+    }
+  }
+  // .sidebar-second {
+  justify-content: flex-end;
+  // }
+  .block-course-info {
+    width: 90%;
+    margin: 0 auto;
+    &-title {
+      color: #2a70b8;
+      font-size: 20px;
+      font-weight: 500;
+      margin: 0 0 15px;
+      text-align: center;
+    }
+    &-price {
+      color: #ff7e00;
+      font-family: "Roboto Condensed", "Roboto", Tahoma, sans-serif;
+      font-size: 28px;
+    }
+    .reg-decrease {
+      border-radius: 10px;
+      color: #fff;
+      font-size: 16px;
+      font-weight: 500;
+      height: 35px;
+      line-height: 35px;
+      margin: 0 auto 12px;
+      text-transform: uppercase;
+      width: 200px;
+      background: #ff6c00 none repeat scroll 0 0;
+    }
+    .course-register-now {
+      background-color: white;
+      color: #2a70b8;
+      border: 1px solid #2a70b8;
+    }
+    .course-info-description {
+      font-size: 15px;
+      .course-info-stitle {
+        color: #2a70b8;
+        margin: 10px 0 -10px !important;
+      }
+      .course-info-list {
+        list-style: outside none square;
+        margin: 10px 0;
+        padding-left: 1.5em;
+      }
+    }
+  }
+}
