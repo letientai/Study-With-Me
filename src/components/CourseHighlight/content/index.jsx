@@ -1,9 +1,7 @@
-import Header from "./Header";
 import SidebarInf from "./sidebarInf";
+
+
 function Content() {
-
-
-
   return (
     <div>
       <div className="content-wr w-100">
