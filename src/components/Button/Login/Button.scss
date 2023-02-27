@@ -1,0 +1,31 @@
+.facebook ,.google, .yahoo, .apple{
+    display: flex;
+    padding: 0 10px;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 270px;
+    height: 38px;
+    color: white;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+.facebook {
+    background-color: #4267b2;
+}
+.google {
+    background-color: #dc4e41;
+}
+.yahoo {
+    background-color: #8921b4;
+}
+.apple {
+    background-color: #131212;
+}
+
+
+
+.icon {
+    font-size: 1.2rem;
+    margin-left: -30px;
+}

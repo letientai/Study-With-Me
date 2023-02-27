@@ -1,14 +1,15 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import ic_phone from "../../../../assets/Icon/telephone.png";
 function TopHeader() {
   const [valueSearch, setValueSearch] = useState("");
-
+  const navigate = useNavigate();
   return (
     <div className="top-header">
       <div className="container h-100 ">
         <div className="row w-100 no-mg d-flex justify-content-between h-100">
           <div className="left-top-header w-40 d-flex justify-items-between align-items-center col-5">
-            <div className="logo box-img">
+            <div className="logo box-img" onClick={() => navigate('/') }>
               <img
                 className="logo-imgage"
                 src="https://hocmai.vn/assets/front/images/logo.png"
@@ -37,7 +38,7 @@ function TopHeader() {
               </a>
               <a
                 className="btn-acc btn-register bg-orange cl-white"
-                href="/loginv2/signup.php"
+                href="/signupv2"
               >
                 Đăng Ký
               </a>
