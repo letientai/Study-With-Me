@@ -1,8 +1,10 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 function Card() {
+  const navigate = useNavigate()
   return (
-    <div className="wrap-card w-100 px-1">
+    <div className="wrap-card w-100 px-1" onClick={() => navigate('/khoa-hoc-truc-tuyen/:id') }>
       <div className="item-course course">
         <div className="box-img course-image-wr">
           <div className="icon-hot">Hot</div>

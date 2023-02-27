@@ -1,6 +1,6 @@
 function BottomHeader() {
   return (
-    <div className="bottom-header">
+    <div className="bottom-header d-none d-md-block">
       <div className="container">
         <div className="row no-mg">
           <nav className="w-100 box-menu-top">

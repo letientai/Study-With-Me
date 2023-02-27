@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ic_phone from "../../../../assets/Icon/telephone.png";
+import { Sidebar } from "./sidebar";
 function TopHeader() {
   const [valueSearch, setValueSearch] = useState("");
   const navigate = useNavigate();
@@ -8,7 +9,7 @@ function TopHeader() {
     <div className="top-header">
       <div className="container h-100 ">
         <div className="row w-100 no-mg d-flex justify-content-between h-100">
-          <div className="left-top-header w-40 d-flex justify-items-between align-items-center col-5">
+          <div className="left-top-header d-flex justify-items-between align-items-center col-10 col-md-5">
             <div className="logo box-img" onClick={() => navigate('/') }>
               <img
                 className="logo-imgage"
@@ -16,18 +17,22 @@ function TopHeader() {
                 alt="Học trực tuyến - Hệ thống giáo dục HOCMAI"
               />
             </div>
-            <div className="box-search d-flex align-items-center w-100">
+            <div className="box-search d-flex align-items-center w-100 ">
               <input
                 type="text"
-                className="text_search"
+                className="text_search w-100"
                 placeholder="Tìm kiếm khóa học"
                 value={valueSearch}
                 onChange={(e) => setValueSearch(e.target.value)}
               />
             </div>
           </div>
-          <div className="right-top-header w-60 d-flex justify-content-end col-7 px-0">
-            <div className="hotline d-flex align-items-center ">
+          <div className="sidebar d-block d-md-none col-2">
+            <Sidebar name="ahi" placement="end" />
+          </div>
+
+          <div className="right-top-header w-60 d-flex justify-content-end d-none d-md-flex col-md-7 px-0">
+            <div className="hotline d-none d-md-flex align-items-center ">
               <span className="fw-600">
                 <img src={ic_phone} alt="" /> 1900 6933
               </span>

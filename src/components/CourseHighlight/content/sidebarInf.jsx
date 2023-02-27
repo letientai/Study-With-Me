@@ -9,7 +9,7 @@ function SidebarInf() {
         </div>
         <div className="course-register-wr mt-2 text-center">
           <div className="reg-decrease d-block">Học thử miễn phí</div>
-          <div className="reg-decrease course-register-now d-block">
+          <div className="reg-decrease course-register-now d-block ">
             Đăng ký ngay
           </div>
         </div>
