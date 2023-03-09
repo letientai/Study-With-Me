@@ -18,7 +18,7 @@ function Content() {
           </div>
           <div className="content-teacher">
             Giáo viên:{" "}
-            <a className="td-cl" href="">
+            <a className="td-cl" href="#">
               AHC
             </a>{" "}
           </div>

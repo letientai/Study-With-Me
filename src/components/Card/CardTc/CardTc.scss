@@ -1,0 +1,28 @@
+.gv-item {
+  display: flex;
+  flex-direction: column;
+  word-wrap: break-word;
+  .gv-item-wr {
+    cursor: pointer;
+    border-bottom: 2px solid var(--blue);
+    .gv-name {
+      margin-top: 16px;
+      margin-bottom: 1px;
+      a {
+        color: #2a70b8;
+        font-weight: bold;
+        text-transform: capitalize;
+      }
+    }
+    .gv-school {
+      font-weight: bold;
+      min-height: 34px;
+    }
+    .gv-desc {
+      font-size: 13px;
+      color: #000;
+      margin-top: 16px;
+      min-height: 32px;
+    }
+  }
+}
