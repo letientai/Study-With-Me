@@ -1,4 +1,7 @@
+import { useNavigate } from "react-router-dom";
+
 function BottomHeader() {
+  const navigate = useNavigate()
   return (
     <div className="bottom-header d-none d-md-block">
       <div className="container">
@@ -6,7 +9,7 @@ function BottomHeader() {
           <nav className="w-100 box-menu-top">
             <ul className="top-menu clear-list">
                 <li>Giới thiệu</li>
-                <li>Giáo viên</li>
+                <li onClick={() => navigate("/giao-vien")}>Giáo viên</li>
                 <li>Phòng thi</li>
                 <li>Hướng nghiệp</li>
                 <li>Thư viện</li>

@@ -1,10 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ic_phone from "../../../../assets/Icon/telephone.png";
+import useDebounce from "../../../../Hooks/useDebounce";
 import { Sidebar } from "./sidebar";
 function TopHeader() {
   const [valueSearch, setValueSearch] = useState("");
   const navigate = useNavigate();
+
+  const debounce = useDebounce(valueSearch, 500)
+
+  useEffect(() =>{
+    //handle search suggestion
+  },[debounce])
+
   return (
     <div className="top-header">
       <div className="container h-100 ">
