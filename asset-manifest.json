@@ -1,27 +1,27 @@
 {
   "files": {
-    "main.css": "/Study-With-Me/giao-vien/static/css/main.e0a8bd70.css",
-    "main.js": "/Study-With-Me/giao-vien/static/js/main.43bf7ff2.js",
-    "static/js/787.28ceb4c2.chunk.js": "/Study-With-Me/giao-vien/static/js/787.28ceb4c2.chunk.js",
-    "static/media/banner.png": "/Study-With-Me/giao-vien/static/media/banner.1e73dca4c10866cc0328.png",
-    "static/media/banner5.jpg": "/Study-With-Me/giao-vien/static/media/banner5.f3a59cbf294a1e37cf2e.jpg",
-    "static/media/banner4.jpg": "/Study-With-Me/giao-vien/static/media/banner4.a48aecb708838a6545ad.jpg",
-    "static/media/banner1.jpg": "/Study-With-Me/giao-vien/static/media/banner1.3b79acc01cd37b886888.jpg",
-    "static/media/banner3.png": "/Study-With-Me/giao-vien/static/media/banner3.98ecb9798df8fe744a3e.png",
-    "static/media/banner2.png": "/Study-With-Me/giao-vien/static/media/banner2.0052de039995f98b216e.png",
-    "static/media/chungnhan-04.png": "/Study-With-Me/giao-vien/static/media/chungnhan-04.720f48397ce5b2240387.png",
-    "static/media/sbg.png": "/Study-With-Me/giao-vien/static/media/sbg.b28c4917e9330db525dc.png",
-    "static/media/slick.svg": "/Study-With-Me/giao-vien/static/media/slick.2630a3e3eab21c607e21.svg",
-    "static/media/slick.eot": "/Study-With-Me/giao-vien/static/media/slick.a4e97f5a2a64f0ab1323.eot",
-    "static/media/slick.ttf": "/Study-With-Me/giao-vien/static/media/slick.c94f7671dcc99dce43e2.ttf",
-    "static/media/slick.woff": "/Study-With-Me/giao-vien/static/media/slick.295183786cd8a1389865.woff",
-    "index.html": "/Study-With-Me/giao-vien/index.html",
-    "main.e0a8bd70.css.map": "/Study-With-Me/giao-vien/static/css/main.e0a8bd70.css.map",
-    "main.43bf7ff2.js.map": "/Study-With-Me/giao-vien/static/js/main.43bf7ff2.js.map",
-    "787.28ceb4c2.chunk.js.map": "/Study-With-Me/giao-vien/static/js/787.28ceb4c2.chunk.js.map"
+    "main.css": "/Study-With-Me/static/css/main.bd2c0cb6.css",
+    "main.js": "/Study-With-Me/static/js/main.1667c12e.js",
+    "static/js/787.28ceb4c2.chunk.js": "/Study-With-Me/static/js/787.28ceb4c2.chunk.js",
+    "static/media/banner.png": "/Study-With-Me/static/media/banner.1e73dca4c10866cc0328.png",
+    "static/media/banner5.jpg": "/Study-With-Me/static/media/banner5.f3a59cbf294a1e37cf2e.jpg",
+    "static/media/banner4.jpg": "/Study-With-Me/static/media/banner4.a48aecb708838a6545ad.jpg",
+    "static/media/banner1.jpg": "/Study-With-Me/static/media/banner1.3b79acc01cd37b886888.jpg",
+    "static/media/banner3.png": "/Study-With-Me/static/media/banner3.98ecb9798df8fe744a3e.png",
+    "static/media/banner2.png": "/Study-With-Me/static/media/banner2.0052de039995f98b216e.png",
+    "static/media/chungnhan-04.png": "/Study-With-Me/static/media/chungnhan-04.720f48397ce5b2240387.png",
+    "static/media/sbg.png": "/Study-With-Me/static/media/sbg.b28c4917e9330db525dc.png",
+    "static/media/slick.svg": "/Study-With-Me/static/media/slick.2630a3e3eab21c607e21.svg",
+    "static/media/slick.eot": "/Study-With-Me/static/media/slick.a4e97f5a2a64f0ab1323.eot",
+    "static/media/slick.ttf": "/Study-With-Me/static/media/slick.c94f7671dcc99dce43e2.ttf",
+    "static/media/slick.woff": "/Study-With-Me/static/media/slick.295183786cd8a1389865.woff",
+    "index.html": "/Study-With-Me/index.html",
+    "main.bd2c0cb6.css.map": "/Study-With-Me/static/css/main.bd2c0cb6.css.map",
+    "main.1667c12e.js.map": "/Study-With-Me/static/js/main.1667c12e.js.map",
+    "787.28ceb4c2.chunk.js.map": "/Study-With-Me/static/js/787.28ceb4c2.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.e0a8bd70.css",
-    "static/js/main.43bf7ff2.js"
+    "static/css/main.bd2c0cb6.css",
+    "static/js/main.1667c12e.js"
   ]
 }
