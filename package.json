@@ -1,5 +1,5 @@
 {
-  "homepage": "https://letientai.github.io/Study-With-Me/",
+  "homepage": "https://letientai.github.io/Study-With-Me",
   "name": "hocmai",
   "version": "0.1.0",
   "private": true,
@@ -17,7 +17,6 @@
     "axios": "^1.2.2",
     "bootstrap": "^5.2.3",
     "classnames": "^2.3.2",
-    "firebase": "^9.17.1",
     "font-awesome": "^4.7.0",
     "gh-pages": "^5.0.0",
     "normalize.css": "^8.0.1",
