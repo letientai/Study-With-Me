@@ -1,0 +1,47 @@
+.wrapperName {
+    display: flex;
+    flex-direction: column;
+    margin:0 -10px;
+    padding-right: 34px;
+    font-size: 14px;
+    font-weight: 400;
+    color: #5c5c5c;
+    span {
+        background-color: #e0e0e0;
+        padding:4px 0 4px 30px;
+    }
+    .link-btn {
+        padding:3px 0 3px 30px;
+        background-color: #ffffff;
+        color: #6b6a6a;
+        font-weight: 500;
+        &:hover {
+            background-color: #2a70b8;
+            color: #fefefe;
+        }
+    }
+}
+
+.poper-box{
+    width: 266px;
+}
+
+.wrapper-box {
+    padding: 2px 10px;
+    &:hover {
+        background-color: #599de4;
+    }
+}
+.link-name-course{
+    color: #fff;
+    display: block;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.icon {
+    font-size: 14px;
+    color: #fff;
+    position: relative;
+    top: 3px;
+}

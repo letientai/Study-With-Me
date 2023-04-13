@@ -1,0 +1,40 @@
+.wraperCard{
+    margin-top: 16px;
+    min-height: 320px;
+    width: 290px;
+    border: 1px solid #ececec;
+}
+.img-card{
+    img {
+        width: 240px;
+        height: 148px;
+    }
+}
+
+.content-card {
+    padding: 20px 12px;
+    h3 {
+        font-size: 13px;
+        font-weight: bold;
+        margin: 4px 0;
+    }
+    span {
+        display: block;
+        color: #8d8989;
+        font-size: 12px;
+        .link-gv {
+            color: #8d8989;
+            &:hover {
+                color: #23527c;
+            }
+        }
+    }
+    .btn-detail {
+        background: #2a70b8 none repeat scroll 0 0;
+        color: #fefefe;
+        font-size: 12px;
+        padding: 5px 20px;
+        margin-top: 10px;
+        float: right;
+    }
+}
