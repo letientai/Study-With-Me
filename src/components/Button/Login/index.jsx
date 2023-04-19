@@ -1,9 +1,9 @@
 import "./Button.scss";
 
-function Button( {data} ) {
-    return ( <a href="https://backenddoan-production.up.railway.app/api/auth/google" className={data.role}>
-        {data.icon}
-        {data.title}
+function Button( {dataBtn} ) {
+    return ( <a href="https://backenddoan-production.up.railway.app/api/auth/google" className={dataBtn.role}>
+        {dataBtn.icon}
+        {dataBtn.title}
      </a> 
     );
 }

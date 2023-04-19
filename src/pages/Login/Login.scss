@@ -33,6 +33,12 @@
             color: #5c5c5c;
         }
     }
+    .error-mess {
+        text-align: start;
+        margin-top: -10px;
+        margin-bottom: 4px;
+        color: #a94442;
+    }
 }
 
 .title-signup {
@@ -58,6 +64,7 @@
     align-items: center;
     justify-content: space-between;
     margin-bottom: 18px;
+  
 }
 
 .line {
