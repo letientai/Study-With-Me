@@ -35,9 +35,12 @@
     }
     .wrap-input{
         display: flex;
-        justify-content: space-between;
         .input-password {
             margin-right: 20px;
+        }
+        .error-mess-pass {
+            margin-right: 10px;
+            min-width: 50%;
         }
     }
 
