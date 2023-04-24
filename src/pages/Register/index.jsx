@@ -11,6 +11,7 @@ import { useForm } from "react-hook-form";
 import { useMutation } from "react-query";
 import { registerAccount } from "../../apis/Auth.api";
 import { isAxiosUnprocessableEntityError } from "../../utils/utils";
+import { toast } from "react-toastify";
 
 function Register() {
 
@@ -26,12 +27,13 @@ function Register() {
         const body = omit(data,['confirm_password'])
         registerAccountMutation.mutate(body, {
             onSuccess: data => {
+                toast.success(data.thongBao ?? "Đăng kí thành công !")
                 console.log(data)
             },
             onError: (error) => {
                 if(isAxiosUnprocessableEntityError(error)){
                     const formError = error.response.data.error
-                    if(formError.email){
+                    if(formError){
                        Object.keys(formError).forEach(key => {
                         setError(key,{
                             message: formError[key][0],
