@@ -7,16 +7,40 @@ import "./Login.scss";
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { loginSchema } from "../../utils/rules";
+import { useMutation } from "react-query";
+import { loginAccount } from "../../apis/Auth.api";
+import { isAxiosUnprocessableEntityError } from "../../utils/utils";
+import { toast } from "react-toastify";
+import {  useNavigate } from "react-router-dom";
 
 function Login() {
+    const navigate = useNavigate();
 
-    const { register, handleSubmit, formState: { errors } } = useForm({
+    const { register,handleSubmit, formState: { errors } } = useForm({
         resolver: yupResolver(loginSchema)
     });
-    const onSubmit = handleSubmit((data) => {
-        console.log(data)
+    const loginAccountMutation = useMutation({
+        mutationFn: (body) => loginAccount(body)
     })
-   
+
+    const onSubmit = handleSubmit((data) => {
+        loginAccountMutation.mutate(data, {
+            onSuccess: data => {
+                if(data.data.user.phanQuyen === 2){
+                    navigate('/actor-courses')
+                }else {
+                    navigate('/')
+                }
+            },
+            onError: (error) => {
+                if(isAxiosUnprocessableEntityError(error)){
+                    const dataError = error.response.data.error
+                    toast.error(dataError)
+                }        
+            }
+        })
+    })
+
     return (<div className="wrapper">
         <form className="form-wrap" noValidate onSubmit={onSubmit} >
         <h2 className="title-signup">Đăng nhập vào tài khoản của bạn</h2>
