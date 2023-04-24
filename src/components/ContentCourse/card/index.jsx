@@ -2,9 +2,12 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 function Card() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   return (
-    <div className="wrap-card w-100 px-1" onClick={() => navigate('/khoa-hoc-truc-tuyen/:id') }>
+    <div
+      className="wrap-card w-100 px-1"
+      onClick={() => navigate("/khoa-hoc-truc-tuyen/:id")}
+    >
       <div className="item-course course">
         <div className="box-img course-image-wr">
           <div className="icon-hot">Hot</div>
@@ -18,20 +21,18 @@ function Card() {
         </div>
         <div className="course-info">
           <div className="course-name">
-            <a href="">PEN-I Toán</a>
+            <span>PEN-I Toán</span>
           </div>
           <p className="course-teachers">
             Giáo viên:
-            <a href="">Thầy Hồng Trí Quang</a>
+            <span>Thầy Hồng Trí Quang</span>
           </p>
           <div className="course-scorms">
             <p className="course-fee">
-              <span >16</span>
-               {" "}Bài giảng
+              <span>16</span> Bài giảng
             </p>
             <p className="course-fee">
-              <span >50</span>
-               {" "}Câu hỏi
+              <span>50</span> Câu hỏi
             </p>
           </div>
         </div>

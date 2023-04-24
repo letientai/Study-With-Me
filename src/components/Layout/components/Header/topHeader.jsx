@@ -18,7 +18,7 @@ function TopHeader() {
       <div className="container h-100 ">
         <div className="row w-100 no-mg d-flex justify-content-between h-100">
           <div className="left-top-header d-flex justify-items-between align-items-center col-10 col-md-5">
-            <div className="logo box-img" onClick={() => navigate('/') }>
+            <div className="logo box-img" onClick={() => navigate('/Study-With-Me') }>
               <img
                 className="logo-imgage"
                 src="https://hocmai.vn/assets/front/images/logo.png"

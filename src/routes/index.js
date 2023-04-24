@@ -7,7 +7,7 @@ import Courses from "../pages/Courses";
 import ActorCourses from "../pages/ActorCourses";
 
 const publicRoutes = [
-    {path: "/", component: Home},
+    {path: "/Study-With-Me", component: Home},
     {path: "/khoa-hoc-truc-tuyen/:id", component: DetailCourse},
     {path: "/giao-vien", component: Teacher},
     {path: "/loginv2", component: Login},

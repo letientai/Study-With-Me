@@ -1,23 +1,20 @@
 import React from "react";
-import chungnhan from "../../assets/Images/Banner/chungnhan-04.png"
+import chungnhan from "../../assets/Images/Banner/chungnhan-04.png";
 export const RightContent = () => {
   return (
     <div className="header-right-content">
       <div className="box-img">
-        <img
-          src={chungnhan}
-          alt=""
-        />
+        <img src={chungnhan} alt="" />
       </div>
       <div className="btn-dowload bg-btn">
-        <a
+        <span
           className="gg-analytic"
           data-event="download-app"
-          target="_blank"
-          href="#"
+          target="blank"
+          // href="#"
         >
           TẢI ỨNG DỤNG HOCMAI
-        </a>
+        </span>
       </div>
     </div>
   );
