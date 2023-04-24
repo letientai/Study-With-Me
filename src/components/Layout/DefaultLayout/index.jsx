@@ -6,7 +6,7 @@ function DefaultLayout({ children }) {
       <div className="header">
         <Header />
       </div>
-      <div className="content">{children}</div>
+      <div className="content" style={{ background : "#f9f9f9"}} >{children}</div>
     </div>
   );
 }

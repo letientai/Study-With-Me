@@ -6,11 +6,29 @@ import GlobalStyles from "./components/Globalstyles"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+
+import {
+  QueryClient,
+  QueryClientProvider
+} from 'react-query'
+
+import { ReactQueryDevtools } from 'react-query/devtools'
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries : {
+      refetchOnWindowFocus : false
+    }
+  }
+})
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <GlobalStyles>
+    <QueryClientProvider client={queryClient}>
       <App />
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
     </GlobalStyles>
   </React.StrictMode>
 );
