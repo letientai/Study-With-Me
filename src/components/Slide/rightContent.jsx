@@ -7,14 +7,14 @@ export const RightContent = () => {
         <img src={chungnhan} alt="" />
       </div>
       <div className="btn-dowload bg-btn">
-        <a
+        <span
           className="gg-analytic"
           data-event="download-app"
           target="blank"
-          href="#"
+          // href="#"
         >
           TẢI ỨNG DỤNG HOCMAI
-        </a>
+        </span>
       </div>
     </div>
   );
