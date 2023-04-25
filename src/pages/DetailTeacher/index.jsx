@@ -16,9 +16,9 @@ function DetailTeacher() {
         <div className="container d-flex">
           <FormInfoTeacher />
         </div>
-        <div className="container mt-3">
-          <div className="list-course">
-            <div className="title text-center">
+        <div className="container mt-5">
+          <div className="list-course pb-5">
+            <div className="title text-center mb-4" >
               <h3>KHÓA HỌC CỦA TÔI</h3>
             </div>
             <div className="content">
