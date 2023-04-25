@@ -11,17 +11,17 @@ export const CardTc = () => {
             alt="Cô: Văn Trịnh Quỳnh An"
           />
         </div>
-        <div class="gv-caption">
-          <p class="gv-name">
-            <a
+        <div className="gv-caption">
+          <p className="gv-name">
+            <span
               href="https://hocmai.vn/giao-vien/286/co-van-trinh-quynh-an.html"
               target="_blank"
             >
               Cô: Văn Trịnh Quỳnh An
-            </a>
+            </span>
           </p>
-          <p class="gv-school">Trường THPT Gia Định, TP.HCM</p>
-          <div class="gv-desc">
+          <p className="gv-school">Trường THPT Gia Định, TP.HCM</p>
+          <div className="gv-desc">
             <p>
               Ankipedia không phải lúc nào cũng đúng, nhưng sẵn sàng cập nhật,
               không phải là nguồn tài liệu cuối cùng mà sẽ là nguồn tài liệu đầu

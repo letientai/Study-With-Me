@@ -106,5 +106,5 @@ export const schema = yup.object({
 })
 
 
-export const loginSchema = schema.omit(['nameAll','phone','confirm_password'])
+export const loginSchema = schema.omit(['nameAll','soDienThoai','confirm_password'])
 
