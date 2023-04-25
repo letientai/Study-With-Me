@@ -10,6 +10,7 @@ import { useForm } from "react-hook-form";
 import { useMutation } from "react-query";
 import { registerAccount } from "../../apis/Auth.api";
 import { isAxiosUnprocessableEntityError } from "../../utils/utils";
+import { toast } from "react-toastify";
 
 function Register() {
   const {

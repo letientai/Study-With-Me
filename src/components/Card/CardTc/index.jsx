@@ -13,12 +13,12 @@ export const CardTc = () => {
         </div>
         <div className="gv-caption">
           <p className="gv-name">
-            <span
+            <a
               href="https://hocmai.vn/giao-vien/286/co-van-trinh-quynh-an.html"
-              target="_blank"
+              target="blank"
             >
               Cô: Văn Trịnh Quỳnh An
-            </span>
+            </a>
           </p>
           <p className="gv-school">Trường THPT Gia Định, TP.HCM</p>
           <div className="gv-desc">

@@ -1,0 +1,48 @@
+.info {
+  //   border-right: 1px solid rgb(224, 224, 224);
+  height: 100%;
+}
+.title {
+  width: 100%;
+  &-content {
+    background-color: rgb(66, 145, 248);
+    color: white;
+    font-size: 30px;
+    width: 350px;
+    padding: 10px;
+    text-align: center;
+    margin-left: -30px;
+  }
+}
+.details {
+  .bt {
+    border-bottom: 1px solid rgb(107, 107, 107);
+  }
+  .field {
+    align-items: center;
+    padding-bottom: 20px;
+    margin-top: 10px;
+    justify-content: space-between;
+    .icoleft {
+      width: 40px;
+      text-align: center;
+    }
+    .text {
+      width: calc(100% - 70px);
+      span {
+        font-weight: bold;
+      }
+    }
+  }
+}
+.card-course {
+  background-color: rgb(96, 181, 230);
+  .title {
+    color: white;
+    font-size: 25px;
+    text-align: center;
+  }
+  .content {
+    color: white;
+  }
+}
