@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { publicRoutes } from "./routes";
 import { DefaultLayout } from "./components/Layout";
-import { Fragment, useEffect, useMemo, useState } from "react";
+import { Fragment, useMemo } from "react";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Loader } from "./components/until/loader";
@@ -11,7 +11,6 @@ function App() {
 
   useMemo(() => {
     queryClient.setQueryData('loader', () => false);
-    
   }, [])
   const loader = useQuery("loader");
 

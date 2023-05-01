@@ -11,10 +11,8 @@ import { useMutation } from "react-query";
 import { registerAccount } from "../../apis/Auth.api";
 import { isAxiosUnprocessableEntityError } from "../../utils/utils";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
 
 function Register() {
-  const navigate = useNavigate();
   
   const {
     register,
