@@ -7,4 +7,7 @@ export const clearLS = () => {
 }
 
 export const getAccessTokenFromLS = () => localStorage.getItem('access_token') || ''
-  
+
+export const setLocalStorage = (key, value) => {
+    localStorage.setItem(key, JSON.stringify(value))
+}

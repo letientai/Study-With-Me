@@ -5,14 +5,16 @@ import "./Login.scss";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { loginSchema } from "../../utils/rules";
-import { useMutation } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 import { loginAccount } from "../../apis/Auth.api";
 import { isAxiosUnprocessableEntityError } from "../../utils/utils";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { setLocalStorage } from "../../utils/auth";
 
 function Login() {
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
   const {
     register,
@@ -26,8 +28,12 @@ function Login() {
   });
 
   const onSubmit = handleSubmit((data) => {
+    queryClient.setQueryData("loader", true);
     loginAccountMutation.mutate(data, {
       onSuccess: (data) => {
+        queryClient.setQueryData("loader", false);
+        toast.success("Đăng nhập thành công");
+        setLocalStorage("user", data?.data?.user);
         if (data.data.user.phanQuyen === 2) {
           navigate("/actor-courses");
         } else {
@@ -35,6 +41,7 @@ function Login() {
         }
       },
       onError: (error) => {
+        queryClient.setQueryData("loader", false);
         if (isAxiosUnprocessableEntityError(error)) {
           const dataError = error.response.data.error;
           toast.error(dataError);
