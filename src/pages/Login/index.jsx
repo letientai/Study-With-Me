@@ -13,6 +13,8 @@ import { isAxiosUnprocessableEntityError } from "../../utils/utils";
 import { toast } from "react-toastify";
 import {  useNavigate } from "react-router-dom";
 
+import { setProfileToLS } from "../../utils/auth";
+
 function Login() {
     const navigate = useNavigate();
 
@@ -26,11 +28,8 @@ function Login() {
     const onSubmit = handleSubmit((data) => {
         loginAccountMutation.mutate(data, {
             onSuccess: data => {
-                if(data.data.user.phanQuyen === 2){
-                    navigate('/actor-courses')
-                }else {
-                    navigate('/')
-                }
+                setProfileToLS(data.data.user)
+                navigate('/')
             },
             onError: (error) => {
                 if(isAxiosUnprocessableEntityError(error)){
@@ -56,7 +55,7 @@ function Login() {
             <div className="error-mess">{errors.email?.message}</div>
             <input placeholder="Mật Khẩu" autoComplete="on" type="password" {...register('password')}  />
             <div className="error-mess">{errors.password?.message}</div>
-            <button type="submit" className="btn-login">Đăng Nhập</button>
+            <button type="submit" disabled={loginAccountMutation.isLoading} className="btn-login">Đăng Nhập</button>
             <a href="/forgot"className="link-forgot">Quên mật khẩu ?</a>
         </form>
     </div>);

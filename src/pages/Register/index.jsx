@@ -79,7 +79,7 @@ function Register() {
                 <a href="https://hocmai.vn/privacy2.php">Chính sách bảo mật, Điều khoản dịch vụ và chính sách tư vấn</a>
                 của HOCMAI.
             </div>
-            <button type="submit" className="btn-login">Đăng Ký</button>
+            <button disabled={registerAccountMutation.isLoading} type="submit" className="btn-login">Đăng Ký</button>
             
         </form>
     </div>);

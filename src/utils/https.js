@@ -7,7 +7,7 @@ class Http {
   constructor() {
     this.accessToken = getAccessTokenFromLS()
     this.instance = axios.create({
-      baseURL: 'https://backenddoan-production.up.railway.app/api/',
+      baseURL: 'https://deploy-production-fe48.up.railway.app/api/',
       timeout: 10000,
       headers: {
         'Content-Type': 'application/json'
