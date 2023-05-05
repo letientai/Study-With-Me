@@ -1,20 +1,33 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ic_phone from "../../../../assets/Icon/telephone.png";
 import useDebounce from "../../../../Hooks/useDebounce";
 import { Sidebar } from "./sidebar";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { useMutation } from "react-query";
+import { clearLS, clearUser } from "../../../../utils/auth";
+import { toast } from "react-toastify";
+import { logout } from "../../../../apis/Auth.api";
 function TopHeader() {
   const [valueSearch, setValueSearch] = useState("");
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem("user"));
   const debounce = useDebounce(valueSearch, 500);
 
-  useEffect(() => {
-    //handle search suggestion
-  }, [debounce]);
-  const logout = () => {
-    localStorage.clear();
-    navigate("/Study-With-Me");
+  // useEffect(() => {
+  //   searchCourse(debounce)
+  // }, [debounce]);
+  const logoutMutation = useMutation({
+    mutationFn: logout,
+    onSuccess: () => {
+      toast.success("Đăng xuất thành công");
+      clearLS();
+      clearUser();
+    },
+  });
+  const handleLogout = () => {
+    logoutMutation.mutate();
   };
   return (
     <div className="top-header">
@@ -39,6 +52,9 @@ function TopHeader() {
                 value={valueSearch}
                 onChange={(e) => setValueSearch(e.target.value)}
               />
+              <a href={`/search/${debounce}`} className="search-btn">
+                <FontAwesomeIcon icon={faMagnifyingGlass} />
+              </a>
             </div>
           </div>
           <div className="sidebar d-block d-md-none col-2">
@@ -108,7 +124,7 @@ function TopHeader() {
                         </li>
                         <li
                           className="d-flex align-items-center"
-                          onClick={logout}
+                          onClick={handleLogout}
                         >
                           <div className="icon"></div>
                           <div className="text">Đăng xuất</div>

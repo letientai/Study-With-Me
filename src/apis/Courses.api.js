@@ -26,4 +26,8 @@ export const addLesson = (body) => http.post(`post/lesson`, body)
 
 export const deleteCourse = (id) => http.get(`delete/${id}/course`)
 
-
+export const searchCourse = (inputSearch) => http.get(`search/course`,{
+    params : {
+        search:inputSearch
+    }
+}) 

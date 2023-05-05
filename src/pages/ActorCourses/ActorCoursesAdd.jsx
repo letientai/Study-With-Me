@@ -26,7 +26,7 @@ function ActorCoursesAdd() {
             linkVideo: "",
             giaCa: 0,
             category_id: 1,
-            trangThai: 0,
+            trangThai: 1,
         },
         resolver: yupResolver(schemaCourseGV)
     });
@@ -37,6 +37,8 @@ function ActorCoursesAdd() {
     
 
     // gọi data để edit
+    if(!isAddMode){
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     useQuery({
         queryKey: ['course',id],
         queryFn: () => getCourse(id),
@@ -50,6 +52,7 @@ function ActorCoursesAdd() {
             setValue('trangThai',data.data.data?.trangThai)
         }
     })
+    }
 
    // setFile video
     const [file, setFile] = useState('');
@@ -72,10 +75,10 @@ function ActorCoursesAdd() {
                 dataVideo.append("api_key", "793869286496228");
                 dataVideo.append("folder", "courses");
             axios.post(
-                `https://api.cloudinary.com/v1_1/dxphlzgvx/video/upload`,
+                `https://api.cloudinary.com/v1_1/dxphlzgvx/image/upload`,
                 dataVideo
             ).then((data) => {
-                setValue("linkVideo",data.data.secure_url)
+                setValue("linkVideo",data.data.url)
             })
         }
     }
@@ -116,7 +119,7 @@ function ActorCoursesAdd() {
               <form noValidate onSubmit={onSubmit} >
                 <nav className="nav nav-borders">
                 <h3 className="text-start fs-4 align-items-center">
-                        <a href="/"> <FontAwesomeIcon icon={faHouse} className="icon"/></a>
+                        <a href="/Study-With-Me"> <FontAwesomeIcon icon={faHouse} className="icon"/></a>
                         Trang Chủ &gt; {isAddMode ? 'Thêm ' : 'Sửa'} Khoá Học
                         </h3>
                 </nav>
@@ -127,14 +130,16 @@ function ActorCoursesAdd() {
                             <div className="card mb-4 mb-xl-0">
                             <div className="card-header">Video Khoá Học</div>
                             <div className="card-body text-center">
-                            <video controls autoPlay src={linkVideo} className="w-100" />
-                                <div className="small font-italic text-muted mb-2">video no larger than 5 MB</div>
+                            <div className="img-card d-flex mx-auto">
+                                <img src={linkVideo ? linkVideo : "https://png.pngtree.com/png-vector/20210827/ourlarge/pngtree-error-404-page-not-found-png-image_3832696.jpg"} alt="Chưa có Ảnh" ></img>
+                            </div> 
+                                <div className="small font-italic text-muted mb-2">image no larger than 5 MB</div>
                                 <div className="small font-italic text-muted">Upload Tại Đây</div>
                                 <div className="file-upload">
                                     <input type="file" onChange={handleFileChange} />
                                     <FontAwesomeIcon icon={faFileArrowDown} fontSize={30}/>
                                 </div>
-                                <button onClick={handleVideo} type="button" className="btn btn-primary mt-3">Thêm Video</button>
+                                <button onClick={handleVideo} type="button" className="btn btn-primary mt-3">Thêm Ảnh</button>
                             </div>
                             </div>
                         </div>

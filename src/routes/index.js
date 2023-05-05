@@ -24,6 +24,7 @@ const publicRoutes = [
     { path: "/course", component: Courses },
     { path: "/bai-hoc/:id", component: Lesson },
     { path: "/add-chapter", component: ChapterAdd },
+    { path: "/search/:type", component: Courses },
     { path: "/actor-courses", component: ActorCourses },
     { path: "/actor-courses/:id", component: ActorCoursesAdd},
 ];
