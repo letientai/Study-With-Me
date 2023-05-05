@@ -3,6 +3,10 @@ import { useNavigate } from "react-router-dom";
 import ic_phone from "../../../../assets/Icon/telephone.png";
 import useDebounce from "../../../../Hooks/useDebounce";
 import { Sidebar } from "./sidebar";
+import {  useMutation, useQueryClient } from "react-query";
+import { logout } from "../../../../apis/Auth.api";
+import { toast } from "react-toastify";
+import { clearLS, clearUser } from "../../../../utils/auth";
 function TopHeader() {
   const [valueSearch, setValueSearch] = useState("");
   const navigate = useNavigate();
@@ -12,7 +16,17 @@ function TopHeader() {
   useEffect(() => {
     //handle search suggestion
   }, [debounce]);
-
+  const logoutMutation = useMutation({
+    mutationFn : logout,
+    onSuccess: () => {
+      toast.success("Đăng xuất thành công");
+      clearLS()
+      clearUser()
+    }
+  })
+  const handleLogout = () => {
+    logoutMutation.mutate()
+  } 
   return (
     <div className="top-header">
       <div className="container h-100 ">
@@ -102,7 +116,7 @@ function TopHeader() {
                         </li>
                         <li className="d-flex align-items-center">
                           <div className="icon"></div>
-                          <div className="text">Đăng xuất</div>
+                          <div onClick={handleLogout}  className="text">Đăng xuất</div>
                         </li>
                       </ul>
                     </div>
