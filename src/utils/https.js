@@ -1,8 +1,6 @@
 import axios from 'axios'
 import { clearLS, getAccessTokenFromLS, setAccessTokenToLS } from './auth'
-// import { useQueryClient } from 'react-query';
 
-// const queryClient = useQueryClient();
 class Http {
   instance
   accessToken

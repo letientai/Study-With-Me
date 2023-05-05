@@ -66,7 +66,7 @@ function TopHeader() {
                 </div>
               ) : (
                 <div className="d-flex justify-content-end align-items-center position-relative">
-                  <div className="align-items-center my-courses mx-4">
+                  <div onClick={() => navigate("/actor-courses")} className="align-items-center my-courses mx-4">
                     Khóa học của tôi
                   </div>
                   <div className="menuInfo">

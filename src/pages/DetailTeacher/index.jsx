@@ -3,7 +3,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import FormInfoTeacher from "../../components/form/formInfoTeacher";
 import SliderCustom from "../../components/Slider";
 import Card from "../../components/ContentCourse/card";
-import { getCourseByTeacherId } from "../../apis/Courses.api";
+import { CoursesGVid } from "../../apis/Courses.api";
 import { useLocation } from "react-router-dom";
 import { useMutation, useQueryClient } from "react-query";
 import { isAxiosUnprocessableEntityError } from "../../utils/utils";
@@ -21,7 +21,7 @@ function DetailTeacher() {
   };
 
   const getCourses = useMutation({
-    mutationFn: (id) => getCourseByTeacherId(id),
+    mutationFn: (id) => CoursesGVid(id),
   });
 
   useEffect(() => {

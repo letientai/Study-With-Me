@@ -93,7 +93,8 @@ export const schema = yup.object({
     .min(5,'Độ dài từ 5 - 160 ký tự')
     .max(160,'Độ dài từ 5 - 160 ký tự'),
   soDienThoai: yup.string()
-    .required('Số điện thoại bắt buộc'),
+    .matches(/^(03|05|07|08|09)+([0-9]{8})$/, 'Sai định dạng')
+    .required('Bắt buộc'),
   password : yup.string()
     .required('Phải nhập password')
     .min(5,'Độ dài từ 5 - 160 ký tự')
@@ -108,3 +109,22 @@ export const schema = yup.object({
 
 export const loginSchema = schema.omit(['nameAll','soDienThoai','confirm_password'])
 
+// when add course
+
+export const schemaCourseGV = yup.object({
+  tenKhoaHoc: yup.string()
+    .required('Phải có tên khoá học')
+    .min(5,'Độ dài từ 5 - 160 ký tự')
+    .max(160,'Độ dài từ 5 - 160 ký tự'),
+  moTa : yup.string()
+    .required('Phải có mô tả bài học')
+    .min(5,'Độ dài từ 5 - 500 ký tự')
+    .max(500,'Độ dài từ 5 - 500 ký tự'),
+  linkVideo: yup.string(),
+  giaCa : yup.number()
+  .required('Phải nhập giá tiền')
+  .positive('Giá tiền không hợp lệ'),
+  category_id : yup.number()
+    .required('Phải chọn danh mục'),
+  trangThai : yup.number()
+})

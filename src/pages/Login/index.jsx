@@ -12,6 +12,7 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { setLocalStorage } from "../../utils/auth";
 
+
 function Login() {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
@@ -34,11 +35,7 @@ function Login() {
         queryClient.setQueryData("loader", false);
         toast.success("Đăng nhập thành công");
         setLocalStorage("user", data?.data?.user);
-        if (data.data.user.phanQuyen === 2) {
-          navigate("/actor-courses");
-        } else {
-          navigate("/Study-With-Me");
-        }
+          navigate("/Study-With-Me")
       },
       onError: (error) => {
         queryClient.setQueryData("loader", false);
@@ -50,43 +47,26 @@ function Login() {
     });
   });
 
-  return (
-    <div className="wrapper">
-      <form className="form-wrap" noValidate onSubmit={onSubmit}>
+
+    return (<div className="wrapper">
+        <form className="form-wrap" noValidate onSubmit={onSubmit} >
         <h2 className="title-signup">Đăng nhập vào tài khoản của bạn</h2>
-        <div className="sub-title-signup">
-          Học tập và giao lưu với hàng triệu học viên trên
-          <span className="">mọi miền đất nước.</span>
-        </div>
-        <div className="wrap-btn">
-          <Button dataBtn={dataLogin[0]} />
-          <Button dataBtn={dataLogin[1]} />
-        </div>
-        <div className="wrap-btn">
-          <Button dataBtn={dataLogin[2]} />
-          <Button dataBtn={dataLogin[3]} />
-        </div>
-        <p className="line">
-          <span className="line-text">Hoặc</span>
-        </p>
-        <input placeholder="Email" type="email" {...register("email")} />
-        <div className="error-mess">{errors.email?.message}</div>
-        <input
-          placeholder="Mật Khẩu"
-          autoComplete="on"
-          type="password"
-          {...register("password")}
-        />
-        <div className="error-mess">{errors.password?.message}</div>
-        <button type="submit" className="btn-login">
-          Đăng Nhập
-        </button>
-        <a href="/forgot" className="link-forgot">
-          Quên mật khẩu ?
-        </a>
-      </form>
-    </div>
-  );
+        <div className="sub-title-signup">Học tập và giao lưu với hàng triệu học viên trên
+            <span className="">mọi miền đất nước.</span>
+            </div>
+            <div className="wrap-btn"><Button dataBtn={dataLogin[0]}/><Button dataBtn={dataLogin[1]}/></div>
+            <div className="wrap-btn"><Button dataBtn={dataLogin[2]}/><Button dataBtn={dataLogin[3]}/></div>
+            <p className="line">
+                <span className="line-text">Hoặc</span>
+            </p>
+            <input placeholder="Email" type="email"{...register('email')} />
+            <div className="error-mess">{errors.email?.message}</div>
+            <input placeholder="Mật Khẩu" autoComplete="on" type="password" {...register('password')}  />
+            <div className="error-mess">{errors.password?.message}</div>
+            <button type="submit" disabled={loginAccountMutation.isLoading} className="btn-login">Đăng Nhập</button>
+            <a href="/forgot"className="link-forgot">Quên mật khẩu ?</a>
+        </form>
+    </div>);
 }
 
 export default Login;
