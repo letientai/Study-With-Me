@@ -20,7 +20,7 @@ const publicRoutes = [
     { path: "/doi-mat-khau", component: ChangPassword },
     { path: "/dang-nhap", component: Login },
     { path: "/dang-ky", component: Register },
-    { path: "/course", component: Courses },
+    { path: "/search/:type", component: Courses },
     { path: "/actor-courses", component: ActorCourses },
     { path: "/actor-courses/:id", component: ActorCoursesAdd},
 ];

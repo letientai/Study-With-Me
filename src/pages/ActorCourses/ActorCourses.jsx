@@ -35,7 +35,7 @@ function ActorCourses() {
     })
     return <div className="container py-4">
                 <h3 className="text-start fs-4 align-items-center">
-                <a href="/"> <FontAwesomeIcon icon={faHouse} className="icon"/></a>
+                <a href="/Study-With-Me"> <FontAwesomeIcon icon={faHouse} className="icon"/></a>
                 Trang Chủ &gt; Khoá Học 
                 </h3>
             <div className="row mt-4">

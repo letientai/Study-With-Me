@@ -8,7 +8,7 @@
   height: 60px;
   position: fixed;
   width: 100%;
-  z-index: 5;
+  z-index: 1000;
   top: 0px;
 }
 
@@ -299,4 +299,22 @@
   height: 36px;
   margin-right: 20px;
   cursor: pointer;
+}
+
+.search-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 100%;
+  border: none;
+  outline: none;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+  font-size: 1rem;
+  color: var(--while);
+  background-color: transparent;
+  cursor: pointer;
+  position: absolute;
+  right: 0;
 }
