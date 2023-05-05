@@ -1,44 +1,52 @@
-
 import Button from "../../components/Button/Login";
 import { dataLogin } from "../../variable";
 import "./Login.scss";
 
-
 import { useForm } from "react-hook-form";
-import { yupResolver } from '@hookform/resolvers/yup';
+import { yupResolver } from "@hookform/resolvers/yup";
 import { loginSchema } from "../../utils/rules";
-import { useMutation } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 import { loginAccount } from "../../apis/Auth.api";
 import { isAxiosUnprocessableEntityError } from "../../utils/utils";
 import { toast } from "react-toastify";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { setLocalStorage } from "../../utils/auth";
 
-import { setProfileToLS } from "../../utils/auth";
 
 function Login() {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
-    const { register,handleSubmit, formState: { errors } } = useForm({
-        resolver: yupResolver(loginSchema)
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(loginSchema),
+  });
+  const loginAccountMutation = useMutation({
+    mutationFn: (body) => loginAccount(body),
+  });
+
+  const onSubmit = handleSubmit((data) => {
+    queryClient.setQueryData("loader", true);
+    loginAccountMutation.mutate(data, {
+      onSuccess: (data) => {
+        queryClient.setQueryData("loader", false);
+        toast.success("Đăng nhập thành công");
+        setLocalStorage("user", data?.data?.user);
+          navigate("/Study-With-Me")
+      },
+      onError: (error) => {
+        queryClient.setQueryData("loader", false);
+        if (isAxiosUnprocessableEntityError(error)) {
+          const dataError = error.response.data.error;
+          toast.error(dataError);
+        }
+      },
     });
-    const loginAccountMutation = useMutation({
-        mutationFn: (body) => loginAccount(body)
-    })
+  });
 
-    const onSubmit = handleSubmit((data) => {
-        loginAccountMutation.mutate(data, {
-            onSuccess: data => {
-                setProfileToLS(data.data.user)
-                navigate('/')
-            },
-            onError: (error) => {
-                if(isAxiosUnprocessableEntityError(error)){
-                    const dataError = error.response.data.error
-                    toast.error(dataError)
-                }        
-            }
-        })
-    })
 
     return (<div className="wrapper">
         <form className="form-wrap" noValidate onSubmit={onSubmit} >

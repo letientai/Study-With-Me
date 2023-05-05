@@ -2,7 +2,7 @@ import "./CardCourse.scss"
 function CardCourse( { data}) {
     return <div className="wraperCard">
         <a href="khoa-hoc-truc-tuyen/:id" className="img-card">
-            <img src="https://hocmai.vn/course/images/phan-dai-so-tuyen-tinh-thay-le-ba-tran-phuong-1616742770.png" />
+            <img alt="" src="https://hocmai.vn/course/images/phan-dai-so-tuyen-tinh-thay-le-ba-tran-phuong-1616742770.png" />
         </a>
         <div className="content-card"> 
             <h3>{data}</h3>

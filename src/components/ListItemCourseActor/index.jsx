@@ -8,12 +8,12 @@ function ListItemCourseActor({data}) {
     const status = handleStatus(data.trangThai)
     const deleteCourseMutation = useMutation({
         mutationFn : (id) => deleteCourse(id),
-        onSuccess:(tenKhoaHoc) => {
-            toast.success(`Xoá Thành Công Khoá Học ${tenKhoaHoc}`)
+        onSuccess:(id) => {
+            toast.success(`Xoá Thành Công Khoá Học`)
         }
     })
-    const handleDelete = (id, tenKhoaHoc) => {
-        deleteCourseMutation.mutate(id,tenKhoaHoc)
+    const handleDelete = (id) => {
+        deleteCourseMutation.mutate(id)
     }
     return <tr>
                 <th scope="row" className="ps-4">
@@ -30,7 +30,7 @@ function ListItemCourseActor({data}) {
                     <a href={`actor-courses/${data.id}`} className="px-2 text-primary"><FontAwesomeIcon icon={faPencil} fontSize={18}/></a>
                     </li>
                     <li className="list-inline-item">
-                    <button onClick={() => handleDelete(data.id,data.tenKhoaHoc)} className="px-2 text-danger bg-transparent"><FontAwesomeIcon icon={faTrash} fontSize={18}/></button>
+                    <button onClick={() => handleDelete(data.id)} className="px-2 text-danger bg-transparent"><FontAwesomeIcon icon={faTrash} fontSize={18}/></button>
                     </li>
                 </ul>
                 </td>

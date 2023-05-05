@@ -26,7 +26,7 @@ function ActorCoursesAdd() {
             linkVideo: "",
             giaCa: 0,
             category_id: 1,
-            trangThai: 1,
+            trangThai: 0,
         },
         resolver: yupResolver(schemaCourseGV)
     });
@@ -42,12 +42,12 @@ function ActorCoursesAdd() {
         queryFn: () => getCourse(id),
         enabled: id !== undefined,
         onSuccess: (data) => {
-            setValue('tenKhoaHoc',data.data.data.tenKhoaHoc)
-            setValue('moTa',data.data.data.moTa)
-            setValue('linkVideo',data.data.data.linkVideo)
-            setValue('giaCa',data.data.data.giaCa)
-            setValue('category_id',data.data.data.category_id)
-            setValue('trangThai',data.data.data.trangThai)
+            setValue('tenKhoaHoc',data.data.data?.tenKhoaHoc)
+            setValue('moTa',data.data.data?.moTa)
+            setValue('linkVideo',data.data.data?.linkVideo)
+            setValue('giaCa',data.data.data?.giaCa)
+            setValue('category_id',data.data.data?.category_id)
+            setValue('trangThai',data.data.data?.trangThai)
         }
     })
 
@@ -182,7 +182,7 @@ function ActorCoursesAdd() {
                                     </div>
                                 </div>}
                             </div>     
-                            <button className="btn btn-primary" >{isAddMode ? 'Thêm ' : 'Sửa'}Khoá Học</button>
+                            <button className="btn btn-primary" >{isAddMode ? 'Thêm ' : 'Sửa'} Khoá Học</button>
                         </div>
                         </div>
                     </div>

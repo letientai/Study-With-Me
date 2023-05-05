@@ -12,15 +12,19 @@ function ActorCourses() {
     const profile = getProfileFromLS()
     const dataName = [
         {
-            name :'Thêm bài giảng',
+            name :'Thêm Khoá Học',
             href: 'actor-courses/add'
         },
         {
-            name :'Bài giảng của tôi',
+            name :'Thêm Chương Học',
             href: 'actor-courses/'
         },
         {
-            name :'Tất cả các Khoá học',
+            name :'Thêm Bài Học',
+            href: 'actor-courses/'
+        },
+        {
+            name :'Khoá Học Của Tôi',
             href: 'actor-courses/'
         },
     ]

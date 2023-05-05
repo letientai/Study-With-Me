@@ -20,5 +20,6 @@ export const updateCourse = (id, body) => http.put(`update/${id}/course`,{
 })
 
 
-export const deleteCourse = (id) => http.delete(`api/delete/${id}/course`)
+export const deleteCourse = (id) => http.get(`delete/${id}/course`)
+
 

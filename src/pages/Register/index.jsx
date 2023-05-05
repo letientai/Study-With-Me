@@ -1,6 +1,5 @@
-
 import Button from "../../components/Button/Login";
-import { yupResolver } from '@hookform/resolvers/yup';
+import { yupResolver } from "@hookform/resolvers/yup";
 import { schema } from "../../utils/rules";
 import { dataLogin } from "../../variable";
 import "./Register.scss";
@@ -14,38 +13,43 @@ import { isAxiosUnprocessableEntityError } from "../../utils/utils";
 import { toast } from "react-toastify";
 
 function Register() {
+  
+  const {
+    register,
+    handleSubmit,
+    setError,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
 
-    const { register, handleSubmit,setError, formState: { errors } } = useForm({
-        resolver: yupResolver(schema)
+  const registerAccountMutation = useMutation({
+    mutationFn: (body) => registerAccount(body),
+  });
+
+  const onSubmit = handleSubmit((data) => {
+    const body = omit(data, ["confirm_password"]);
+    registerAccountMutation.mutate(body, {
+      onSuccess: (data) => {
+        console.log(data);
+        toast.info(data.data.thongBao);
+      },
+      onError: (error) => {
+        if (isAxiosUnprocessableEntityError(error)) {
+          const formError = error.response.data.error;
+          if (formError.email) {
+            Object.keys(formError).forEach((key) => {
+              setError(key, {
+                message: formError[key][0],
+                type: "server",
+              });
+            });
+          }
+        }
+      },
     });
+  });
 
-    const registerAccountMutation = useMutation({
-        mutationFn: (body) => registerAccount(body)
-    })
-
-    const onSubmit = handleSubmit((data) => {
-        const body = omit(data,['confirm_password'])
-        registerAccountMutation.mutate(body, {
-            onSuccess: data => {
-                toast.success(data.thongBao ?? "Đăng kí thành công !")
-                console.log(data)
-            },
-            onError: (error) => {
-                if(isAxiosUnprocessableEntityError(error)){
-                    const formError = error.response.data.error
-                    if(formError){
-                       Object.keys(formError).forEach(key => {
-                        setError(key,{
-                            message: formError[key][0],
-                            type: 'server'
-                        })
-                       })
-                    }
-                    
-                }        
-            }
-        })
-    })
 
     return (<div className="wrapper">
         <form className="form-wrap" noValidate onSubmit={onSubmit}>
