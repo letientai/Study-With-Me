@@ -13,6 +13,7 @@ import { isAxiosUnprocessableEntityError } from "../../utils/utils";
 import { toast } from "react-toastify";
 
 function Register() {
+  
   const {
     register,
     handleSubmit,
@@ -31,6 +32,7 @@ function Register() {
     registerAccountMutation.mutate(body, {
       onSuccess: (data) => {
         console.log(data);
+        toast.info(data.data.thongBao);
       },
       onError: (error) => {
         if (isAxiosUnprocessableEntityError(error)) {

@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import banner from "../../assets/Images/banner.png";
 import { CardTc } from "../../components/Card/CardTc";
 import { Select } from "../../components/Select";
 import "./Teacher.scss";
+import { getListOfTeachers } from "../../apis/Teacher.api";
+import { useQuery, useQueryClient } from "react-query";
 export default function Teacher() {
+  const queryClient = useQueryClient();
+
   const dataSearch = {
     default: "Chọn môn",
     data: [
@@ -33,6 +37,19 @@ export default function Teacher() {
       },
     ],
   };
+  const { data, isLoading } = useQuery({
+    queryKey: ["listOfTeacher"],
+    queryFn: () => getListOfTeachers(),
+    staleTime: 60 * 1000,
+  });
+  // console.log(isLoading);
+
+  useEffect(() => {
+    queryClient.setQueryData("loader", isLoading);
+  }, [isLoading]);
+
+  // queryClient.setQueryData("loader", isLoading);
+  // const { data, isLoading } = useMemo(() => result);
 
   return (
     <div>
@@ -47,12 +64,12 @@ export default function Teacher() {
       <div className="container mt-5">
         <div className="gv-top d-block d-md-flex justify-content-between mb-3">
           <div className="gv-select col-12 col-md-4 row">
-            <div className="col ps-0">
+            {/* <div className="col ps-0">
               <Select dataSearch={dataSearch} />
             </div>
             <div className="col ps-0">
               <Select dataSearch={dataSearch} />
-            </div>
+            </div> */}
           </div>
           <div className="gv-search col-12 col-md-6 position-relative d-flex mt-md-0 mt-2 justify-content-md-end">
             {/* <Select /> */}
@@ -63,29 +80,20 @@ export default function Teacher() {
               className="gv-search-input"
               placeholder="Tìm kiếm ..."
             />
-            <input
-              type="submit"
-              name="submit"
-              className="gv-search-btn"
-              id="btnSearchGv"
-              value="Tìm kiếm"
-            />
+            <div type="submit" name="submit" className="gv-search-btn">
+              Tìm kiếm
+            </div>
           </div>
         </div>
-        <div className="gv-list flex-wrap d-flex row">
-          <CardTc/>
-          <CardTc/>
-          <CardTc/>
-          <CardTc/>
-          <CardTc/>
-          <CardTc/>
-          <CardTc/>
-          <CardTc/>
-          <CardTc/>
-          <CardTc/>
-          <CardTc/>
-          <CardTc/>
-        </div>
+        {!isLoading ? (
+          <div className="gv-list flex-wrap d-flex row">
+            {data?.data.map((item, index) => (
+              <CardTc key={index} item={item} />
+            ))}
+          </div>
+        ) : (
+          "không có gì" //chổ này cho loading
+        )}
       </div>
     </div>
   );
