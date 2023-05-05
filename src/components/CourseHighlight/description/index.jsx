@@ -1,7 +1,7 @@
 import CourseDetail from "./courseDetail";
 import { SidebarCourse } from "./sidebarCourse";
 
-function ContentDescription() {
+function ContentDescription({data}) {
   return (
     <div>
       <hr />

@@ -12,7 +12,10 @@ function TopHeader() {
   useEffect(() => {
     //handle search suggestion
   }, [debounce]);
-
+  const logout = () => {
+    localStorage.clear();
+    navigate("/Study-With-Me");
+  };
   return (
     <div className="top-header">
       <div className="container h-100 ">
@@ -66,7 +69,10 @@ function TopHeader() {
                 </div>
               ) : (
                 <div className="d-flex justify-content-end align-items-center position-relative">
-                  <div onClick={() => navigate("/actor-courses")} className="align-items-center my-courses mx-4">
+                  <div
+                    onClick={() => navigate("/actor-courses")}
+                    className="align-items-center my-courses mx-4"
+                  >
                     Khóa học của tôi
                   </div>
                   <div className="menuInfo">
@@ -100,7 +106,10 @@ function TopHeader() {
                           <div className="icon"></div>
                           <div className="text">Đổi mật khẩu</div>
                         </li>
-                        <li className="d-flex align-items-center">
+                        <li
+                          className="d-flex align-items-center"
+                          onClick={logout}
+                        >
                           <div className="icon"></div>
                           <div className="text">Đăng xuất</div>
                         </li>

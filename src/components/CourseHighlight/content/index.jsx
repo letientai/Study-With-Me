@@ -1,19 +1,20 @@
 import SidebarInf from "./sidebarInf";
 
-function Content() {
+function Content({data}) {
+  console.log(data);
   return (
     <div>
       <div className="content-wr w-100">
         <div className="content col-12 col-md-8">
-          <div className="content-title">Học tốt hóa học 11</div>
+          <div className="content-title">{data?.tenKhoaHoc}</div>
           <div className="content-description">
-            Kiến thức Hóa học 11 quá khó khiến em không biết bắt đầu từ đâu? Hay
+            Kiến thức {data?.tenKhoaHoc} quá khó khiến em không biết bắt đầu từ đâu? Hay
             đơn giản em đang muốn tìm kiếm
             <span className="td-cl">
-              <b> khóa học Hóa lớp 11 online </b>
+              <b> {data?.tenKhoaHoc} </b>
             </span>
             chất lượng với hệ thống BTTL phong phú? Vậy thì hãy bắt đầu ngay với
-            chương trình Học tốt Hóa học 11 của thầy Vũ Khắc Ngọc teen nhé!
+            chương trình {data?.tenKhoaHoc} nhé!
           </div>
           <div className="content-teacher">
             Giáo viên:{" "}
@@ -29,7 +30,7 @@ function Content() {
           <video
             controls
             autoPlay
-            src="https://youtu.be/A2NwdcVfxHg?t=12"
+            src={data?.linkVideo}
             className="w-100"
           />
           <p className="mt-2">
@@ -45,7 +46,7 @@ function Content() {
             </span>
           </p>
         </div>
-        <SidebarInf />
+        <SidebarInf data={data}/>
       </div>
     </div>
   );
