@@ -56,7 +56,7 @@
         border: dashed 3px rgb(180, 180, 180);
         display: inline-block;
         width: 100%;
-        height: 320px;
+        height: 340px;
         display: flex;
         margin-bottom: 10px;
         flex-wrap: wrap;
@@ -99,6 +99,15 @@
       }
     }
     .content {
+      .upload-image{
+        width: 100%;
+        height: 280px;
+        border: dashed 3px rgb(180, 180, 180);
+        background-color: rgb(252, 252, 252);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
       .form-group {
         position: relative;
         .title {

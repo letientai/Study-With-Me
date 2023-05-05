@@ -70,25 +70,33 @@ function TopHeader() {
                     Khóa học của tôi
                   </div>
                   <div className="menuInfo">
-                    <div className="avartar">
-                      <img src={user?.avatar} alt="" className="w-100" />
-                    </div>
+                    <div
+                      className="avartar"
+                      style={{ backgroundImage: `url(${user?.avatar})` }}
+                    ></div>
                     <div className="sub-list">
                       <ul>
                         <li className="account d-flex align-items-center">
-                          <div className="avartar">
-                            <img src={user?.avatar} alt="" className="w-100" />
-                          </div>
+                          <div
+                            className="avartar"
+                            style={{ backgroundImage: `url(${user?.avatar})` }}
+                          ></div>
                           <div className="info mx-2">
                             <p className="name m-0">{user?.hoTen}</p>
                             <p className="email m-0">{user?.email}</p>
                           </div>
                         </li>
-                        <li className="d-flex align-items-center" onClick={() => navigate("/trang-ca-nhan")}>
+                        <li
+                          className="d-flex align-items-center"
+                          onClick={() => navigate("/trang-ca-nhan")}
+                        >
                           <div className="icon"></div>
                           <div className="text">Thông tin cá nhân</div>
                         </li>
-                        <li className="d-flex align-items-center" onClick={() => navigate("/doi-mat-khau")}>
+                        <li
+                          className="d-flex align-items-center"
+                          onClick={() => navigate("/doi-mat-khau")}
+                        >
                           <div className="icon"></div>
                           <div className="text">Đổi mật khẩu</div>
                         </li>

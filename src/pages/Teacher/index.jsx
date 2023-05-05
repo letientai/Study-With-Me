@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import banner from "../../assets/Images/banner.png";
 import { CardTc } from "../../components/Card/CardTc";
 import { Select } from "../../components/Select";
@@ -42,8 +42,13 @@ export default function Teacher() {
     queryFn: () => getListOfTeachers(),
     staleTime: 60 * 1000,
   });
+  // console.log(isLoading);
 
-  queryClient.setQueryData("loader", isLoading);
+  useEffect(() => {
+    queryClient.setQueryData("loader", isLoading);
+  }, [isLoading]);
+
+  // queryClient.setQueryData("loader", isLoading);
   // const { data, isLoading } = useMemo(() => result);
 
   return (
@@ -59,12 +64,12 @@ export default function Teacher() {
       <div className="container mt-5">
         <div className="gv-top d-block d-md-flex justify-content-between mb-3">
           <div className="gv-select col-12 col-md-4 row">
-            <div className="col ps-0">
+            {/* <div className="col ps-0">
               <Select dataSearch={dataSearch} />
             </div>
             <div className="col ps-0">
               <Select dataSearch={dataSearch} />
-            </div>
+            </div> */}
           </div>
           <div className="gv-search col-12 col-md-6 position-relative d-flex mt-md-0 mt-2 justify-content-md-end">
             {/* <Select /> */}

@@ -11,8 +11,18 @@ function App() {
 
   useMemo(() => {
     queryClient.setQueryData('loader', () => false);
-  }, [])
-  const loader = useQuery("loader");
+  }, [queryClient])
+  const loader = useQuery({
+    queryKey: ["loader"],
+    queryFn: () => queryClient.getQueryData('loader'),
+  })
+
+
+  // const cloudinaryConfig = {
+  //   cloud_name: cloudinaryCloudName,
+  //   api_key: cloudinaryApiKey,
+  //   api_secret: cloudinaryApiSecret
+  // };
 
   return (
     <Router>

@@ -8,7 +8,8 @@ export const ImageUpload = (prop) => {
 
   const onChange = (imageList, addUpdateIndex) => {
     setImages(imageList);
-    prop.changeAvatar(imageList[0])
+    console.log(imageList);
+    prop.changeAvatar(imageList[0]?.file)
   };
   return (
     <div className="imageUpload">

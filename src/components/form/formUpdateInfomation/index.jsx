@@ -7,6 +7,8 @@ import { FormInfoSchema } from "./validate";
 import { useMutation, useQueryClient } from "react-query";
 import { updateInfomationUser } from "../../../apis/User.api";
 import { toast } from "react-toastify";
+import { setLocalStorage } from "../../../utils/auth";
+import axios from "axios";
 
 export const FormUpdateInfomation = (prop) => {
   const [avatar, setAvatar] = useState("");
@@ -29,32 +31,56 @@ export const FormUpdateInfomation = (prop) => {
   };
 
   const updateUser = useMutation({
-    mutationFn: (body) => updateInfomationUser(body),
+    mutationFn: async (body) => await updateInfomationUser(body),
   });
 
   const onAdd = async (values) => {
     queryClient.setQueryData("loader", true);
-
     if (avatar) {
-      values.avatar = avatar;
+      var bodyFormData = new FormData();
+      console.log(avatar);
+      bodyFormData.append("file", avatar);
+      bodyFormData.append("upload_preset", "j83n0nkq");
+      bodyFormData.append("public_id", avatar.name);
+      bodyFormData.append("api_key", "793869286496228");
+      bodyFormData.append("folder", "avatar_User");
+      axios
+        .post(
+          `https://api.cloudinary.com/v1_1/dxphlzgvx/image/upload`,
+          bodyFormData
+        )
+        .then(async (res) => {
+          values.avatar = res?.data?.secure_url;
+          await updateInfomation();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      await updateInfomation(values);
     }
+  };
+
+  const updateInfomation = async (values) => {
     updateUser.mutate(values, {
       onSuccess: (data) => {
-        console.log(data);
         queryClient.setQueryData("loader", false);
         toast.success(data?.data?.message);
-        hideModal()
+        setLocalStorage("user", data.data.data);
+        hideModal();
       },
       onError: (error) => {
+        console.log(values);
         queryClient.setQueryData("loader", false);
         toast.error(error?.response?.data?.error);
       },
     });
   };
 
-  const changeAvatar = (Image) => {
-    setAvatar(Image.data_url);
+  const changeAvatar = (image) => {
+    setAvatar(image);
   };
+
   return (
     <div className="wrapper-modal" onClick={hideModal}>
       <div className="form-update" onClick={(e) => stopEventParent(e)}>
@@ -75,7 +101,7 @@ export const FormUpdateInfomation = (prop) => {
                   {({ errors, touched }) => (
                     <Form>
                       <Row>
-                        <Col md="7">
+                        <Col md="8">
                           <Row>
                             <Col md="6">
                               <div className="form-group d-block">
@@ -181,10 +207,10 @@ export const FormUpdateInfomation = (prop) => {
                           </Button>
                           <div className="clearfix"></div>
                         </Col>
-                        <Col md="5">
+                        <Col md="4">
                           <Row className="mt-2">
                             <Col md="12">
-                              <label>Ảnh đại diện</label>
+                              <label>Cập nhật ảnh đại diện</label>
                               <ImageUpload changeAvatar={changeAvatar} />
                             </Col>
                           </Row>

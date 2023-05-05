@@ -1,8 +1,10 @@
 import React from "react";
 import "./CardTc.scss";
+import { useNavigate } from "react-router-dom";
 export const CardTc = ({ item }) => {
+  const navigate = useNavigate()
   return (
-    <div className="gv-item col-lg-3 col-md-4 col-6 mb-md-4 mb-3">
+    <div className="gv-item col-lg-3 col-md-4 col-6 mb-md-4 mb-3" onClick={() => navigate(`/giao-vien/${item.id}`)}>
       <div className="gv-item-wr w-100">
         <div className="gv-image w-100" style={{backgroundImage: `url(${item?.avatar})`}}>
         </div>
