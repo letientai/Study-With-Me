@@ -22,4 +22,8 @@ export const updateCourse = (id, body) => http.put(`update/${id}/course`,{
 
 export const deleteCourse = (id) => http.get(`delete/${id}/course`)
 
-
+export const searchCourse = (inputSearch) => http.get(`search/course`,{
+    params : {
+        search:inputSearch
+    }
+}) 

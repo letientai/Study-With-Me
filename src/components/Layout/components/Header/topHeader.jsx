@@ -1,21 +1,23 @@
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ic_phone from "../../../../assets/Icon/telephone.png";
 import useDebounce from "../../../../Hooks/useDebounce";
 import { Sidebar } from "./sidebar";
-import {  useMutation, useQueryClient } from "react-query";
-import { logout } from "../../../../apis/Auth.api";
-import { toast } from "react-toastify";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { useMutation } from "react-query";
 import { clearLS, clearUser } from "../../../../utils/auth";
+import { toast } from "react-toastify";
+import { logout } from "../../../../apis/Auth.api";
 function TopHeader() {
   const [valueSearch, setValueSearch] = useState("");
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem("user"));
   const debounce = useDebounce(valueSearch, 500);
-
-  useEffect(() => {
-    //handle search suggestion
-  }, [debounce]);
+ 
+  // useEffect(() => {
+  //   searchCourse(debounce)
+  // }, [debounce]);
   const logoutMutation = useMutation({
     mutationFn : logout,
     onSuccess: () => {
@@ -50,6 +52,9 @@ function TopHeader() {
                 value={valueSearch}
                 onChange={(e) => setValueSearch(e.target.value)}
               />
+              <a href={`/search/${debounce}`}  className="search-btn" >
+                    <FontAwesomeIcon icon={faMagnifyingGlass} />
+                </a>
             </div>
           </div>
           <div className="sidebar d-block d-md-none col-2">
@@ -116,7 +121,11 @@ function TopHeader() {
                         </li>
                         <li className="d-flex align-items-center">
                           <div className="icon"></div>
+<<<<<<< HEAD
+                          <div onClick={handleLogout} className="text">Đăng xuất</div>
+=======
                           <div onClick={handleLogout}  className="text">Đăng xuất</div>
+>>>>>>> 05e494367d33e56504c13f22c1895e534f5e38b5
                         </li>
                       </ul>
                     </div>
