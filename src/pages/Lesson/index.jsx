@@ -11,6 +11,7 @@ export const Lesson = () => {
   const id = location.pathname.split("bai-hoc/")[1];
 
   const [data, setData] = useState({});
+  const [urlVideo, setUrlVideo] = useState("");
 
   useEffect(() => {
     // 👇️ scroll to top on page load
@@ -35,6 +36,9 @@ export const Lesson = () => {
       },
     });
   }, []);
+  const sentVideo = (url) => {
+    setUrlVideo(url);
+  };
   return (
     <div className=" container">
       <div className="title pt-2">
@@ -58,8 +62,10 @@ export const Lesson = () => {
       </div>
       <div className="content d-flex mt-4 justify-content-between">
         <div className="col-7">
-          <video controls className="w-100" src={data?.linkVideo}></video>
-          <div className="course-description-title mb-3 mt-3">Mô tả khóa học</div>
+          <video controls className="w-100" src={urlVideo}></video>
+          <div className="course-description-title mb-3 mt-3">
+            Mô tả khóa học
+          </div>
           <div className="course-description-detail">
             Hướng dẫn học sinh cách tư duy về Hóa học chứ không đơn thuần là
             việc nhớ các kiến thức thuần túy. Các kiến thức trong bài giảng được
@@ -68,11 +74,10 @@ export const Lesson = () => {
             ion, các nguyên tố thuộc nhóm IVA, VA và hợp chất của chúng. Đặc
             biệt, học sinh sẽ bước đầu được tiếp cận với “thành phố đông dân”
             nhất của Hóa học thông qua các bài giảng về Hóa học hữu cơ 11.
-           
           </div>
         </div>
         <div className="col-4">
-          <CourseDetail />
+          <CourseDetail data={data} sentVideo={sentVideo} />
         </div>
       </div>
     </div>

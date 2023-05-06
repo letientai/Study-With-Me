@@ -3,7 +3,6 @@ import "./CourseHighlight.scss";
 import Content from "./content";
 import ContentDescription from "./description";
 function CourseHighlight({data}) {
-  console.log(data);
   return (
     <div>
       <Header data={data}/>

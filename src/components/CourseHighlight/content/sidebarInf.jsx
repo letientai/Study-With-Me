@@ -1,5 +1,10 @@
+import { useNavigate } from "react-router-dom";
 
 function SidebarInf({data}) {
+  const navigate = useNavigate()
+  const moveToLesson = () =>{
+    navigate(`/bai-hoc/${data?.id}`)
+  }
   return (
     <div className="sidebar-second d-flex col-12 col-md-4 m-md-1 m-0 mt-md-0">
       <div className="block-course-info ">
@@ -8,7 +13,7 @@ function SidebarInf({data}) {
           <span>{data?.giaCa?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")} đđ</span>
         </div>
         <div className="course-register-wr mt-2 text-center">
-          <div className="reg-decrease d-block">Học thử miễn phí</div>
+          <div className="reg-decrease d-block" onClick={moveToLesson}>Học thử miễn phí</div>
           <div className="reg-decrease course-register-now d-block ">
             Đăng ký ngay
           </div>

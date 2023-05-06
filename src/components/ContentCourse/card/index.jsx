@@ -36,11 +36,10 @@ function Card({ item }) {
         <div className="box-img course-image-wr">
           <div className="icon-hot">Hot</div>
           <div className="course-img">
-            <img
-              src="https://hocmai.vn/course/images/hoc-tot-toan-12-thay-luu-huy-thuong-1614046727.jpg"
-              alt=""
-              className="lazy sss"
-            />
+            <div
+              className="image"
+              style={{ backgroundImage: `url(${item?.linkVideo})` }}
+            ></div>
           </div>
         </div>
         <div className="course-info">

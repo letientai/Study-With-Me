@@ -38,7 +38,7 @@ function DetailCourse() {
   return (
     <div className="wrapper-detail">
       <div className="container w-100">
-        <CourseHighlight data={data}/>
+        <CourseHighlight data={data} />
       </div>
     </div>
   );

@@ -32,7 +32,7 @@ function ContentDescription({data}) {
                 đoạn học tiếp theo.
               </p>
             </div>
-            <CourseDetail/>
+            <CourseDetail data={data}/>
           </div>
           <SidebarCourse/>
         </div>

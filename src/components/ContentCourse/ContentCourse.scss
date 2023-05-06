@@ -86,22 +86,24 @@
         border-top-left-radius: 5px;
         border-bottom-right-radius: 5px;
         z-index: 1;
-        .course-img {
-          display: block;
+      }
+      .course-img {
+        display: block;
+        width: 100%;
+        overflow: hidden;
+        max-height: 155px;
+        height: 155px;
+        // width: 255px;
+        .image {
+          border-top-right-radius: 5px;
+          border-bottom-right-radius: 0px;
+          border-bottom-left-radius: 0px;
+          border-top-left-radius: 5px;
+          height: 150px !important;
           width: 100%;
-          overflow: hidden;
-          max-height: 155px;
-          height: 155px;
-          // width: 255px;
-          img {
-            border-top-right-radius: 5px;
-            border-bottom-right-radius: 0px;
-            border-bottom-left-radius: 0px;
-            border-top-left-radius: 5px;
-            width: 100% !important;
-            -webkit-transition: 0.5s ease;
-            transition: 0.5s ease;
-          }
+          background-repeat: no-repeat;
+          background-size: cover;
+          background-position: center;
         }
       }
     }
