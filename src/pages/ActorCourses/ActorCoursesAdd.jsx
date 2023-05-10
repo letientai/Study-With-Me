@@ -1,201 +1,234 @@
+import {  useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
-import './ActorCourses.scss'
-import {  faFileArrowDown, faHouse } from "@fortawesome/free-solid-svg-icons";
+import { Loader } from "../../components/until/loader"
+import "./ActorCourses.scss";
+import { faHouse } from "@fortawesome/free-solid-svg-icons";
 import { useMatch, useNavigate, useParams } from "react-router-dom";
-import { useState } from "react";
+import { ImageUpload } from "../../components/form/formUpdateInfomation//imageUpload/imageUpload";
+import { FastField, Form, Formik } from "formik";
+import { schemaCourseGV } from "../../utils/rules";
+import InputField from "../../components/form/formAddEdit/InputField";
+import SelectField from "../../components/form/formAddEdit/SelectField";
+import { DATA_CATEGORY_COURSE, STATUS_CATEGORY_COURSE } from "../../variable";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 import axios from "axios";
 import { addCourse, getCourse, updateCourse } from "../../apis/Courses.api";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { schemaCourseGV } from "../../utils/rules";
-import { useMutation, useQuery } from "react-query";
 import { toast } from "react-toastify";
-import { isAxiosUnprocessableEntityError } from "../../utils/utils";
+
 function ActorCoursesAdd() {
-    const addMatch = useMatch('/actor-courses/add')
-    const isAddMode = Boolean(addMatch)
-    const navigate = useNavigate();
-    const { id } = useParams()
-    
-    // xử lý form
-    const { register,setValue,reset,watch,handleSubmit, formState: { errors } } = useForm({
-        defaultValues: {
-            tenKhoaHoc: "",
-            moTa: "",
-            linkVideo: "",
-            giaCa: 0,
-            category_id: 1,
-            trangThai: 1,
-        },
-        resolver: yupResolver(schemaCourseGV)
-    });
+  const queryClient = useQueryClient();
+  const [image, setImage] = useState("");
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const addMatch = useMatch("/actor-courses/add");
+  const isAddMode = Boolean(addMatch);
+  const [dataEdit, setDataEdit] = useState({});
+  const [loading, setLoading] = useState(true);
 
-    const selectedRadioValue = watch("trangThai"); // lấy giá trị của nút radio được chọn
-    const selectedOption = watch("category_id"); // lấy giá trị của nút selectedOption được chọn
-    const linkVideo = watch("linkVideo"); // lấy giá trị linkVideo
-    
+  const initialValues = {
+    tenKhoaHoc: dataEdit?.tenKhoaHoc || "",
+    moTa:dataEdit?.moTa || "",
+    giaCa:dataEdit?.giaCa || +"",
+    category_id:dataEdit?.category_id || null,
+    trangThai:dataEdit?.trangThai || 1,
+  };
 
-    // gọi data để edit
-    if(!isAddMode){
+  if(!isAddMode){
     // eslint-disable-next-line react-hooks/rules-of-hooks
     useQuery({
-        queryKey: ['course',id],
-        queryFn: () => getCourse(id),
-        enabled: id !== undefined,
-        onSuccess: (data) => {
-            setValue('tenKhoaHoc',data.data.data?.tenKhoaHoc)
-            setValue('moTa',data.data.data?.moTa)
-            setValue('linkVideo',data.data.data?.linkVideo)
-            setValue('giaCa',data.data.data?.giaCa)
-            setValue('category_id',data.data.data?.category_id)
-            setValue('trangThai',data.data.data?.trangThai)
-        }
-    })
+      queryKey: ["course", id],
+      queryFn: () => getCourse(id),
+      enabled: id !== undefined,
+      onSuccess: (data) => {
+        setDataEdit(data?.data?.data);
+        console.log("done");
+        setLoading(false);
+        initialValues.tenKhoaHoc = data?.data?.data?.tenKhoaHoc;
+      },
+    });
+  }
+  const addCourses = useMutation({
+    mutationFn: async (body) => await addCourse(body),
+  });
+
+  const updateCourses = useMutation({
+    mutationFn: async (body) => await updateCourse(id, body),
+  });
+
+  const handleSubmit = async (values) => {
+    queryClient.setQueryData("loader", true);
+    var bodyFormData = new FormData();
+    if (image && isAddMode) {
+      console.log(image);
+      bodyFormData.append("file", image);
+      bodyFormData.append("upload_preset", "j83n0nkq");
+      bodyFormData.append("public_id", image.name);
+      bodyFormData.append("api_key", "793869286496228");
+      bodyFormData.append("folder", "avatar_User");
+      axios
+        .post(
+          `https://api.cloudinary.com/v1_1/dxphlzgvx/image/upload`,
+          bodyFormData
+        )
+        .then(async (res) => {
+          values.linkVideo = res?.data?.secure_url;
+          await addCoursesMutation(values);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      console.log(image);
+      bodyFormData.append("file", image);
+      bodyFormData.append("upload_preset", "j83n0nkq");
+      bodyFormData.append("public_id", image.name);
+      bodyFormData.append("api_key", "793869286496228");
+      bodyFormData.append("folder", "avatar_User");
+      axios
+        .post(
+          `https://api.cloudinary.com/v1_1/dxphlzgvx/image/upload`,
+          bodyFormData
+        )
+        .then(async (res) => {
+          values.linkVideo = res?.data?.secure_url;
+          await updateCoursesMutation(values);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
+  };
+  const addCoursesMutation = async (values) => {
+    addCourses.mutate(values, {
+      onSuccess: (data) => {
+        queryClient.setQueryData("loader", false);
+        toast.success(data.data.message ?? "Đăng kí thành công !");
+        navigate("/actor-courses");
+      },
+      onError: (error) => {
+        console.log(error);
+        queryClient.setQueryData("loader", false);
+        toast.error(error?.response);
+      },
+    });
+  };
 
-   // setFile video
-    const [file, setFile] = useState('');
-    const handleFileChange = (e) => {
-      if (e.target.files) {
-        setFile(e.target.files[0]);
-      }
-    };
-   //handle video 
-    const handleVideo = (e) => {
-        // lấy file video
-        // random 1 số ngẫu nhiên làm id
-        const randomNumber = Math.round(Math.random() * 1000);
-        // xử lý file video trả về
-        if(file && randomNumber){
-            var dataVideo = new FormData();
-                dataVideo.append("file", file);
-                dataVideo.append("upload_preset", "j83n0nkq");
-                dataVideo.append("public_id", randomNumber);
-                dataVideo.append("api_key", "793869286496228");
-                dataVideo.append("folder", "courses");
-            axios.post(
-                `https://api.cloudinary.com/v1_1/dxphlzgvx/image/upload`,
-                dataVideo
-            ).then((data) => {
-                setValue("linkVideo",data.data.url)
-            })
-        }
-    }
-    //api add Courses
-    const addCoursesMutation = useMutation({
-        mutationFn: (body) => addCourse(body)
-    })
+  const updateCoursesMutation = async (values) => {
+    updateCourses.mutate(values, {
+      onSuccess: (data) => {
+        queryClient.setQueryData("loader", false);
+        toast.success(data.data.message ?? "Update thành công !");
+        navigate("/actor-courses");
+      },
+      onError: (error) => {
+        console.log(values);
+        queryClient.setQueryData("loader", false);
+        toast.error(error?.response?.data?.error);
+      },
+    });
+  };
 
-    const updateCourseMutation = useMutation({
-        mutationFn: (body) => updateCourse(id,body)
-    })
-
-    const onSubmit = handleSubmit((data) => {
-        if(isAddMode){
-            addCoursesMutation.mutate(data, {
-                onSuccess: data => {
-                    toast.success(data.data.message ?? "Đăng kí thành công !")
-                    reset();
-                    navigate('/actor-courses')
-                },
-                onError: (error) => {
-                    if(isAxiosUnprocessableEntityError(error)){
-                        console.log(error)
-                    }        
-                }
-            })
-        }else {
-            updateCourseMutation.mutate(data,{
-                onSuccess: (data) => {
-                    toast.success(data.data.message ?? "Update thành công !")
-                    navigate('/actor-courses')
-                }
-            })
-        }
-    })
-    return <div className="container py-4">
-              <div className="container-xl px-4 mt-4">
-              <form noValidate onSubmit={onSubmit} >
-                <nav className="nav nav-borders">
-                <h3 className="text-start fs-4 align-items-center">
-                        <a href="/Study-With-Me"> <FontAwesomeIcon icon={faHouse} className="icon"/></a>
-                        Trang Chủ &gt; {isAddMode ? 'Thêm ' : 'Sửa'} Khoá Học
-                        </h3>
-                </nav>
-                <hr className="mt-0 mb-4" />
-                <div className="row">
-                    <div className="col-xl-4">
+  const changImage = (image) => {
+    setImage(image);
+  };
+  return (
+    <>
+      {(!loading || isAddMode) ? 
+        <Formik
+          initialValues={initialValues}
+          validationSchema={schemaCourseGV}
+          onSubmit={handleSubmit}
+        >
+          {(formikProps) => {
+            const { values, errors, touched, isSubmitting } = formikProps;
+            console.log({ values, errors, touched });
+            return (
+              <div className="container py-4">
+                <div className="container-xl px-4 mt-4">
+                  <Form>
+                    <nav className="nav nav-borders">
+                      <h3 className="text-start fs-4 align-items-center">
+                        <a href="/Study-With-Me">
+                          {" "}
+                          <FontAwesomeIcon icon={faHouse} className="icon" />
+                        </a>
+                        Trang Chủ &gt; {isAddMode ? "Thêm " : "Sửa"} Khoá Học
+                      </h3>
+                    </nav>
+                    <hr className="mt-0 mb-4" />
+                    <div className="row">
+                      <div className="col-xl-4">
                         <div className="wrapper-mt">
-                            <div className="card mb-4 mb-xl-0">
-                            <div className="card-header">Video Khoá Học</div>
+                          <div className="card mb-4 mb-xl-0">
+                            <div className="card-header">Ảnh Khoá Học</div>
                             <div className="card-body text-center">
-                            <div className="img-card d-flex mx-auto">
-                                <img src={linkVideo ? linkVideo : "https://png.pngtree.com/png-vector/20210827/ourlarge/pngtree-error-404-page-not-found-png-image_3832696.jpg"} alt="Chưa có Ảnh" ></img>
-                            </div> 
-                                <div className="small font-italic text-muted mb-2">image no larger than 5 MB</div>
-                                <div className="small font-italic text-muted">Upload Tại Đây</div>
-                                <div className="file-upload">
-                                    <input type="file" onChange={handleFileChange} />
-                                    <FontAwesomeIcon icon={faFileArrowDown} fontSize={30}/>
-                                </div>
-                                <button onClick={handleVideo} type="button" className="btn btn-primary mt-3">Thêm Ảnh</button>
+                              <label>Cập nhật ảnh</label>
+                              <ImageUpload changeAvatar={changImage} />
                             </div>
-                            </div>
+                          </div>
                         </div>
-                    </div>
-                    <div className="col-xl-8">
-                        <div className="card mb-4">
-                        <div className="card-header">Chi Tiết Khoá Học</div>
-                        <div className="card-body">
-                            <div>
-                                <label className="small mb-1" htmlFor="inputUsername">Mô tả</label>
-                                <input className="form-control"  type="text" placeholder="Thêm Mô Tả" {...register('moTa')}  />
-                                <div className="errorMs">{errors.moTa?.message}</div>
-                            </div>
-                            <div className="row gx-1">
-                                <div className="col-md-6">
-                                <label className="small mb-1">Tên Khoá Học</label>
-                                <input className="form-control" type="text" placeholder="Tên Khoá Học"  {...register('tenKhoaHoc')}  />
-                                <div className="errorMs">{errors.tenKhoaHoc?.message}</div>
-                                </div>
-                                <div className="col-md-6 d-flex align-items-end justify-content-center ">
-                                    <select value={selectedOption || 0} {...register("category_id")}>
-                                        <option value={0}>--Chọn một khoá học--</option>
-                                        <option value={1}>Khoá 1</option>
-                                        <option value={2}>Khoá 2</option>
-                                        <option value={3}>Khoá 3</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div className="row gx-1">
-                                <div className="col-md-6">
-                                <label className="small mb-1" >Giá Tiền</label>
-                                <input className="form-control" type="number" placeholder="Giá Tiền" {...register('giaCa')} />
-                                <div className="errorMs">{errors.giaCa?.message}</div>
-                                </div>
-                                {isAddMode 
-                                ? <></> 
-                                : <div className="col-md-6 d-flex align-items-end justify-content-around">
-                                    <div className="form-check ">
-                                        <input className="form-check-input" type="radio"  checked={selectedRadioValue == 1} value={1} {...register("trangThai")}/>
-                                        <label className="form-check-label"> Hoạt Động </label>
-                                    </div>
-                                    <div className="form-check">
-                                        <input className="form-check-input " type="radio" checked={selectedRadioValue == 0} value={0} {...register("trangThai")}/>
-                                        <label className="form-check-label" > Không Hoạt Động </label>
-                                    </div>
-                                </div>}
-                            </div>     
-                            <button className="btn btn-primary" >{isAddMode ? 'Thêm ' : 'Sửa'} Khoá Học</button>
-                        </div>
-                        </div>
-                    </div>
-                </div>
-                </form>
-            </div>
+                      </div>
+                      <div className="col-xl-8">
+                        <div className="card">
+                          <div className="card-header">Chi Tiết Khoá Học</div>
+                          <div className="card-body">
+                            <FastField
+                              name="tenKhoaHoc"
+                              component={InputField}
+                              label="Tên khoá học"
+                              type="text"
+                              placeholder="Nhập tên khoá học..."
+                            />
+                            <FastField
+                              name="moTa"
+                              component={InputField}
+                              label="Mô tả"
+                              placeholder="Nhập mô tả..."
+                            />
+                            <FastField
+                              name="giaCa"
+                              component={InputField}
+                              type="number"
+                              label="Giá"
+                              placeholder="Nhập Giá..."
+                            />
 
-        </div>
+                            <FastField
+                              name="category_id"
+                              component={SelectField}
+                              label="Category"
+                              placeholder="Bạn muốn chọn khoá?"
+                              options={DATA_CATEGORY_COURSE}
+                            />
+                            {isAddMode ? (
+                              ""
+                            ) : (
+                              <FastField
+                                name="trangThai"
+                                component={SelectField}
+                                label="Trạng Thái"
+                                placeholder="Trạng Thái?"
+                                options={STATUS_CATEGORY_COURSE}
+                              />
+                            )}
+                          </div>
+                          <div className="card-body">
+                            <button className="btn btn-primary" type="submit">
+                              {isAddMode ? "Thêm " : "Sửa"} Khoá Học
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </Form>
+                </div>
+              </div>
+            );
+          }}
+        </Formik>
+      : <Loader />}
+    </>
+  );
 }
 
 export default ActorCoursesAdd;

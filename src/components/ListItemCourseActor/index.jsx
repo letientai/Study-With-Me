@@ -1,24 +1,23 @@
 import {  faPencil, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { handleStatus } from "../../utils/CustomRes"
-import { useMutation } from "react-query";
+import {  useMutation, useQueryClient } from "react-query";
 import { deleteCourse } from "../../apis/Courses.api";
 import { toast } from "react-toastify";
 function ListItemCourseActor({data}) {
+    const queryClient = useQueryClient()
     const status = handleStatus(data.trangThai)
     const deleteCourseMutation = useMutation({
         mutationFn : (id) => deleteCourse(id),
         onSuccess:(id) => {
             toast.success(`Xoá Thành Công Khoá Học`)
+            queryClient.invalidateQueries({queryKey:['courses'] })
         }
     })
     const handleDelete = (id) => {
         deleteCourseMutation.mutate(id)
     }
     return <tr>
-                <th scope="row" className="ps-4">
-                <div className="form-check font-size-16"><input type="checkbox" className="form-check-input" id="contacusercheck1" /><label className="form-check-label" htmlFor="contacusercheck1" /></div>
-                </th>
                 <td><a href="abcabc" className="text-body">{data.tenKhoaHoc}</a></td>
                 <td><span className="badge badge-soft-success mb-0">{data.moTa}</span></td>
                 <td>{data.category_id}</td>
