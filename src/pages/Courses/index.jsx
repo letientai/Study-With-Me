@@ -22,8 +22,6 @@ function Courses() {
       setDataSearch(data?.data?.courses)
     }
   })
- 
-  console.log(dataSearch)
     return <div className="container py-4">
     <div className="row">
       <div className="col-3 ">
@@ -40,7 +38,7 @@ function Courses() {
             <div className="row">
               {dataSearch.map((course) => (
                 <div key={course.id} className="col-4">
-                    <CardCourse data={course} />
+                    <CardCourse data={course}/>
                 </div>
                 ))}
             </div>

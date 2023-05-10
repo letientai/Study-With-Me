@@ -2,7 +2,7 @@ import http from "../utils/https";
 
 export const CoursesGVid = (id) => http.get(`get/${id}/getCoursesByTeacherId`)
 export const getCourse = (id) => http.get(`detail/${id}/course`)
-export const addCourse = (body) =>http.post('post/course', {
+export const addCourse = (body) => http.post('post/course', {
     tenKhoaHoc:body.tenKhoaHoc,
     moTa:body.moTa,
     linkVideo:body.linkVideo,

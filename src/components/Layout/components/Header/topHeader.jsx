@@ -121,11 +121,7 @@ function TopHeader() {
                         </li>
                         <li className="d-flex align-items-center">
                           <div className="icon"></div>
-<<<<<<< HEAD
                           <div onClick={handleLogout} className="text">Đăng xuất</div>
-=======
-                          <div onClick={handleLogout}  className="text">Đăng xuất</div>
->>>>>>> 05e494367d33e56504c13f22c1895e534f5e38b5
                         </li>
                       </ul>
                     </div>
