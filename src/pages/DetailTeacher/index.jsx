@@ -29,7 +29,6 @@ function DetailTeacher() {
     getCourses.mutate(id, {
       onSuccess: (data) => {
         queryClient.setQueryData("loader", false);
-        console.log(data);
         setInfoTeacher(data?.data?.user);
         setCourse(data?.data?.data);
       },

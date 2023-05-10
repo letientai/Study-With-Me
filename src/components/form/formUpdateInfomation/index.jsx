@@ -51,7 +51,7 @@ export const FormUpdateInfomation = (prop) => {
         )
         .then(async (res) => {
           values.avatar = res?.data?.secure_url;
-          await updateInfomation();
+          await updateInfomation(values);
         })
         .catch((err) => {
           console.log(err);
@@ -64,15 +64,17 @@ export const FormUpdateInfomation = (prop) => {
   const updateInfomation = async (values) => {
     updateUser.mutate(values, {
       onSuccess: (data) => {
+        console.log(data);
         queryClient.setQueryData("loader", false);
         toast.success(data?.data?.message);
         setLocalStorage("user", data.data.data);
         hideModal();
       },
       onError: (error) => {
-        console.log(values);
+        console.log(error);
         queryClient.setQueryData("loader", false);
         toast.error(error?.response?.data?.error);
+        hideModal();
       },
     });
   };

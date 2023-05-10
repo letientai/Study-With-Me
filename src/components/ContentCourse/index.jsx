@@ -2,16 +2,16 @@ import React from "react";
 import SliderCustom from "../Slider";
 import Card from "./card";
 import "./ContentCourse.scss";
-export const ContentCourse = () => {
+export const ContentCourse = ({ data }) => {
+  console.log(data);
   const customSetting = {
     slidesToShow: 5,
-    autoplay: false
-  }
+    autoplay: false,
+  };
   const customSetting1 = {
     slidesToShow: 3,
-    autoplay: true
-
-  }
+    autoplay: true,
+  };
   return (
     <div className="wrap-content my-3">
       {/* Map here */}
@@ -31,45 +31,22 @@ export const ContentCourse = () => {
               </div>
             </div>
             <div className="box-new  px-0 d-flex row">
-            <SliderCustom customSetting={customSetting1}>
-              <div className="col px-0">
-                <Card />
-              </div>
-              <div className="col px-0">
-                <Card />
-              </div>
-              <div className="col px-0">
-                <Card />
-              </div>
-              <div className="col px-0">
-                <Card />
-              </div>
-            </SliderCustom>
+              <SliderCustom customSetting={customSetting1}>
+                {data?.data?.courses?.map((item, index) => (
+                  <div className="col px-0" key={index}>
+                    <Card item={item} />
+                  </div>
+                ))}
+              </SliderCustom>
             </div>
           </div>
           <div className="row no-mg flex-nowrap course-slider ">
             <SliderCustom customSetting={customSetting}>
-              <div className="col px-0">
-                <Card />
-              </div>
-              <div className="col px-0">
-                <Card />
-              </div>
-              <div className="col px-0">
-                <Card />
-              </div>
-              <div className="col px-0">
-                <Card />
-              </div>
-              <div className="col px-0">
-                <Card />
-              </div>
-              <div className="col px-0">
-                <Card />
-              </div>
-              <div className="col px-0">
-                <Card />
-              </div>
+              {data?.data?.courses?.map((item, index) => (
+                <div className="col px-0" key={index}>
+                  <Card item={item} />
+                </div>
+              ))}
             </SliderCustom>
           </div>
         </div>

@@ -2,12 +2,12 @@ import Header from "./Header";
 import "./CourseHighlight.scss";
 import Content from "./content";
 import ContentDescription from "./description";
-function CourseHighlight() {
+function CourseHighlight({data}) {
   return (
     <div>
-      <Header />
-      <Content />
-      <ContentDescription/>
+      <Header data={data}/>
+      <Content data={data}/>
+      <ContentDescription data={data}/>
     </div>
   );
 }

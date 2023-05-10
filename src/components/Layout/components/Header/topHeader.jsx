@@ -1,4 +1,4 @@
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ic_phone from "../../../../assets/Icon/telephone.png";
 import useDebounce from "../../../../Hooks/useDebounce";
@@ -14,21 +14,21 @@ function TopHeader() {
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem("user"));
   const debounce = useDebounce(valueSearch, 500);
- 
+
   // useEffect(() => {
   //   searchCourse(debounce)
   // }, [debounce]);
   const logoutMutation = useMutation({
-    mutationFn : logout,
+    mutationFn: logout,
     onSuccess: () => {
       toast.success("Đăng xuất thành công");
-      clearLS()
-      clearUser()
-    }
-  })
+      clearLS();
+      clearUser();
+    },
+  });
   const handleLogout = () => {
-    logoutMutation.mutate()
-  } 
+    logoutMutation.mutate();
+  };
   return (
     <div className="top-header">
       <div className="container h-100 ">
@@ -52,9 +52,9 @@ function TopHeader() {
                 value={valueSearch}
                 onChange={(e) => setValueSearch(e.target.value)}
               />
-              <a href={`/search/${debounce}`}  className="search-btn" >
-                    <FontAwesomeIcon icon={faMagnifyingGlass} />
-                </a>
+              <a href={`/search/${debounce}`} className="search-btn">
+                <FontAwesomeIcon icon={faMagnifyingGlass} />
+              </a>
             </div>
           </div>
           <div className="sidebar d-block d-md-none col-2">
@@ -85,7 +85,10 @@ function TopHeader() {
                 </div>
               ) : (
                 <div className="d-flex justify-content-end align-items-center position-relative">
-                  <div onClick={() => navigate("/actor-courses")} className="align-items-center my-courses mx-4">
+                  <div
+                    onClick={() => navigate("/actor-courses")}
+                    className="align-items-center my-courses mx-4"
+                  >
                     Khóa học của tôi
                   </div>
                   <div className="menuInfo">
@@ -119,9 +122,12 @@ function TopHeader() {
                           <div className="icon"></div>
                           <div className="text">Đổi mật khẩu</div>
                         </li>
-                        <li className="d-flex align-items-center">
+                        <li
+                          className="d-flex align-items-center"
+                          onClick={handleLogout}
+                        >
                           <div className="icon"></div>
-                          <div onClick={handleLogout} className="text">Đăng xuất</div>
+                          <div className="text">Đăng xuất</div>
                         </li>
                       </ul>
                     </div>
