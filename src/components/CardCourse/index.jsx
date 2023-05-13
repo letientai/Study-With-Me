@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./CardCourse.scss"
 function CardCourse( { data}) {
     return <div className="wraperCard">
@@ -8,8 +9,8 @@ function CardCourse( { data}) {
             <h3>{data.tenKhoaHoc}</h3>
             <span>Học phí trọn gói: {data.giaCa.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")} đồng </span>
             <span>Thời gian học: 365 ngày  </span>
-            <span>Nâng cấp tư duy</span>
-            <a className="btn-detail" href="khoa-hoc-truc-tuyen/:id">Chi tiết</a>
+            <span>Giảng Viên: {data.instructor.hoTen}</span>
+            <Link className="btn-detail" to={`khoa-hoc-truc-tuyen/${data.id}`}>Chi tiết</Link>
         </div>
     </div>
 }

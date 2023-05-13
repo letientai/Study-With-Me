@@ -15,7 +15,7 @@ export const Checkout = () => {
   const queryClient = useQueryClient();
   const [data, setData] = useState({});
   const [checkFormPayment, setCheckFormPayment] = useState(false);
-  const access_token = JSON.parse(localStorage.getItem("access_token"));
+  const access_token = localStorage.getItem("access_token");
 
   const id = location.pathname.split("/thanh-toan/")[1];
   const getDetailCourse = useMutation({

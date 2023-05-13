@@ -37,12 +37,12 @@ export const PaymentForm = (prop) => {
     payment.mutate(field, {
       onSuccess: (data) => {
         queryClient.setQueryData("loader", false);
-        toast.success("Đặt khóa học thành công!");
+        toast.success("Đăng ký khóa học thành công!");
         navigate("/Study-With-Me")
       },
       onError: (error) => {
         queryClient.setQueryData("loader", false);
-        toast.info("Đặt khóa học thất bại! Vui lòng thử lại sau");
+        toast.info("Đăng ký khóa học thất bại! Vui lòng thử lại sau");
         console.log(error);
       },
     });

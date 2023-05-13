@@ -3,14 +3,14 @@ import { toast } from "react-toastify";
 
 function SidebarInf({ data }) {
   const navigate = useNavigate();
-  const access_token = JSON.parse(localStorage.getItem("access_token"));
+  const accessToken = localStorage.getItem("access_token");
   const moveToLesson = () => {
     navigate(
       `/khoa-hoc/${data?.id}/bai-hoc/${data?.chapters[0]?.lessons[0]?.id}`
     );
   };
   const moveToCheckout = () => {
-    if (access_token) {
+    if (accessToken) {
       navigate(`/thanh-toan/${data?.id}`);
     }else{
       toast.info("Đăng nhập để thực hiện chức năng này!")

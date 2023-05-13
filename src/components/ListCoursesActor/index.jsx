@@ -14,9 +14,7 @@ function ListCoursesActor({result}) {
             <table className="table project-list-table table-nowrap align-middle table-borderless">
               <thead>
                 <tr>
-                  <th scope="col" className="ps-4" style={{width: '50px'}}>
-                    <div className="form-check font-size-16"><input type="checkbox" className="form-check-input" id="contacusercheck" /><label className="form-check-label" htmlFor="contacusercheck" /></div>
-                  </th>
+                  
                   <th scope="col">Tên Khoá Học</th>
                   <th scope="col">Mô Tả</th>
                   <th scope="col">Khoá</th>
@@ -37,7 +35,7 @@ function ListCoursesActor({result}) {
     </div>
     <div className="row g-0 align-items-center pb-4">
       <div className="col-sm-6">
-        <div><p className="mb-sm-0">Từ 1 đến 6 tất cả 57</p></div>
+        <div><p className="mb-sm-0"></p></div>
       </div>
       <div className="col-sm-6">
         <div className="float-sm-end">

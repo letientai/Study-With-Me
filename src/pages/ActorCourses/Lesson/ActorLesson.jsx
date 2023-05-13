@@ -6,13 +6,13 @@ import {
   CoursesGVid,
   getChapterByIdCourse,
   addLesson,
-} from "../../apis/Courses.api";
+} from "../../../apis/Courses.api";
 import { useMutation, useQueryClient } from "react-query";
-import { isAxiosUnprocessableEntityError } from "../../utils/utils";
+import { isAxiosUnprocessableEntityError } from "../../../utils/utils";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-function ChapterAdd() {
+function ActorLesson() {
   const user = JSON.parse(localStorage.getItem("user"));
   const queryClient = useQueryClient();
   const [courses, setCourses] = useState([]);
@@ -260,4 +260,4 @@ function ChapterAdd() {
     </div>
   );
 }
-export default ChapterAdd;
+export default ActorLesson;
