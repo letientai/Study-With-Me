@@ -4,6 +4,8 @@ import { handleStatus } from "../../utils/CustomRes"
 import {  useMutation, useQueryClient } from "react-query";
 import { deleteCourse } from "../../apis/Courses.api";
 import { toast } from "react-toastify";
+import './ListItemCourseActor.scss'
+import { Link } from "react-router-dom";
 function ListItemCourseActor({data}) {
     const queryClient = useQueryClient()
     const status = handleStatus(data.trangThai)
@@ -18,11 +20,11 @@ function ListItemCourseActor({data}) {
         deleteCourseMutation.mutate(id)
     }
     return <tr>
-                <td><a href="abcabc" className="text-body">{data.tenKhoaHoc}</a></td>
-                <td><span className="badge badge-soft-success mb-0">{data.moTa}</span></td>
+                <td><Link to={`chapter/${data.id}`} className="text-body custom-show">{data.tenKhoaHoc}</Link></td>
+                <td><span className="badge custom-show badge-soft-success mb-0">{data.moTa}</span></td>
                 <td>{data.category_id}</td>
                 <td>{data.giaCa.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")} đ</td>
-                <td><span className="badge badge-soft-success mb-0"></span>{status}</td>
+                <td><span className="badge badge-soft-success mb-0">{status}</span></td>
                 <td>
                 <ul className="list-inline mb-0">
                     <li className="list-inline-item">

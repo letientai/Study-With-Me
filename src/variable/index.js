@@ -1,5 +1,7 @@
 import { faApple, faFacebook, faGoogle, faYahoo } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+
 export const dataLogin = [
     {
         role : "facebook",
@@ -23,7 +25,6 @@ export const dataLogin = [
     }
 ]
 
-
 export const DATA_CATEGORY_COURSE = [
     { value: 1, label: 'Lớp 6' },
     { value: 2, label: 'Lớp 7' },
@@ -35,6 +36,5 @@ export const DATA_CATEGORY_COURSE = [
 export const STATUS_CATEGORY_COURSE = [
     { value: 1, label: 'Hoạt Động' },
     { value: 0, label: 'Không Hoạt Động' },
-   
 ];
   

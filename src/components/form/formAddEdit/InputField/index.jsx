@@ -21,7 +21,6 @@ InputField.defaultProps = {
 }
 
 function InputField(props) {
-  console.log(props);
   const {
     field, form,
     type, label, placeholder, disabled,

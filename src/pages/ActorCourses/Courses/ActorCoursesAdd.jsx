@@ -1,19 +1,20 @@
 import {  useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Loader } from "../../components/until/loader"
+import { Loader } from "../../../components/until/loader"
 import "./ActorCourses.scss";
 import { faHouse } from "@fortawesome/free-solid-svg-icons";
 import { useMatch, useNavigate, useParams } from "react-router-dom";
-import { ImageUpload } from "../../components/form/formUpdateInfomation//imageUpload/imageUpload";
+import { ImageUpload } from "../../../components/form/formUpdateInfomation/imageUpload/imageUpload";
 import { FastField, Form, Formik } from "formik";
-import { schemaCourseGV } from "../../utils/rules";
-import InputField from "../../components/form/formAddEdit/InputField";
-import SelectField from "../../components/form/formAddEdit/SelectField";
-import { DATA_CATEGORY_COURSE, STATUS_CATEGORY_COURSE } from "../../variable";
+import { schemaCourseGV } from "../../../utils/rules";
+import InputField from "../../../components/form/formAddEdit/InputField";
+import SelectField from "../../../components/form/formAddEdit/SelectField";
+import {  STATUS_CATEGORY_COURSE } from "../../../variable";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import axios from "axios";
-import { addCourse, getCourse, updateCourse } from "../../apis/Courses.api";
+import { addCourse, getCourse, updateCourse } from "../../../apis/Courses.api";
 import { toast } from "react-toastify";
+import { getAllcategory } from "../../../apis/Categorys.api";
 
 function ActorCoursesAdd() {
   const queryClient = useQueryClient();
@@ -24,7 +25,9 @@ function ActorCoursesAdd() {
   const isAddMode = Boolean(addMatch);
   const [dataEdit, setDataEdit] = useState({});
   const [loading, setLoading] = useState(true);
-
+  
+  
+  
   const initialValues = {
     tenKhoaHoc: dataEdit?.tenKhoaHoc || "",
     moTa:dataEdit?.moTa || "",
@@ -32,7 +35,21 @@ function ActorCoursesAdd() {
     category_id:dataEdit?.category_id || null,
     trangThai:dataEdit?.trangThai || 1,
   };
-
+  // xét danh mục
+  const [category, setCategory] = useState([]);
+  console.log(category)
+  useQuery({
+    queryKey: ["category"],
+    queryFn: () => getAllcategory(),
+    onSuccess: (data) => {
+      const filteredData = data?.data?.data.map((categoryItem) => ({
+        value: categoryItem.id,
+        label: categoryItem.tenDanhMuc,
+      }));
+      setCategory(filteredData);
+      setLoading(false);
+    },
+  });
   if(!isAddMode){
     // eslint-disable-next-line react-hooks/rules-of-hooks
     useQuery({
@@ -41,9 +58,7 @@ function ActorCoursesAdd() {
       enabled: id !== undefined,
       onSuccess: (data) => {
         setDataEdit(data?.data?.data);
-        console.log("done");
         setLoading(false);
-        initialValues.tenKhoaHoc = data?.data?.data?.tenKhoaHoc;
       },
     });
   }
@@ -75,7 +90,9 @@ function ActorCoursesAdd() {
           await addCoursesMutation(values);
         })
         .catch((err) => {
-          console.log(err);
+          console.log(err?.response?.data);
+          toast.error("Lưu ý phải có ảnh !");
+          queryClient.setQueryData("loader", false);
         });
     } else {
       console.log(image);
@@ -94,7 +111,8 @@ function ActorCoursesAdd() {
           await updateCoursesMutation(values);
         })
         .catch((err) => {
-          console.log(err);
+          toast.error("Lưu ý phải có ảnh !");
+          queryClient.setQueryData("loader", false);
         });
     }
   };
@@ -141,7 +159,7 @@ function ActorCoursesAdd() {
         >
           {(formikProps) => {
             const { values, errors, touched, isSubmitting } = formikProps;
-            console.log({ values, errors, touched });
+            console.log(values)
             return (
               <div className="container py-4">
                 <div className="container-xl px-4 mt-4">
@@ -183,6 +201,7 @@ function ActorCoursesAdd() {
                               name="moTa"
                               component={InputField}
                               label="Mô tả"
+                              type="textarea"
                               placeholder="Nhập mô tả..."
                             />
                             <FastField
@@ -192,14 +211,14 @@ function ActorCoursesAdd() {
                               label="Giá"
                               placeholder="Nhập Giá..."
                             />
-
-                            <FastField
+                            {!loading && <FastField
                               name="category_id"
                               component={SelectField}
-                              label="Category"
-                              placeholder="Bạn muốn chọn khoá?"
-                              options={DATA_CATEGORY_COURSE}
-                            />
+                              label="Danh Mục"
+                              placeholder="Bạn muốn chọn Danh Mục?"
+                              options={category}
+                            />}
+                           
                             {isAddMode ? (
                               ""
                             ) : (

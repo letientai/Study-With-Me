@@ -2,11 +2,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import "./ActorCourses.scss";
 import { faHouse } from "@fortawesome/free-solid-svg-icons";
-import ListCoursesActor from "../../components/ListCoursesActor";
+import ListCoursesActor from "../../../components/ListCoursesActor";
 import { useQuery } from "react-query";
-import { CoursesGVid } from "../../apis/Courses.api";
+import { CoursesGVid } from "../../../apis/Courses.api";
 
-import { getProfileFromLS } from "../../utils/auth";
+import { getProfileFromLS } from "../../../utils/auth";
 
 function ActorCourses() {
   const profile = getProfileFromLS();
@@ -17,11 +17,11 @@ function ActorCourses() {
     },
     {
       name: "Thêm Chương Học",
-      href: "actor-courses/",
+      href: "actor-chapter",
     },
     {
       name: "Thêm Bài Học",
-      href: "/add-chapter",
+      href: "/add-lesson",
     },
     {
       name: "Khoá Học Của Tôi",

@@ -115,11 +115,11 @@ export const schemaCourseGV = yup.object({
   tenKhoaHoc: yup.string()
     .required('Phải có tên khoá học')
     .min(5,'Độ dài từ 5 - 160 ký tự')
-    .max(160,'Độ dài từ 5 - 160 ký tự'),
+    .max(1000,'Độ dài từ 5 - 1000 ký tự'),
   moTa : yup.string()
     .required('Phải có mô tả bài học')
     .min(5,'Độ dài từ 5 - 500 ký tự')
-    .max(500,'Độ dài từ 5 - 500 ký tự'),
+    .max(1000,'Độ dài từ 5 - 1000 ký tự'),
   linkVideo: yup.string(),
   giaCa : yup.number()
   .required('Phải nhập giá tiền')
