@@ -5,7 +5,7 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Teacher from "../pages/Teacher";
 import Courses from "../pages/Courses";
-import {ActorCourses, ChapterAdd} from '../pages/ActorCourses' 
+import {ActorCourses, ActorLesson,ActorChapter} from '../pages/ActorCourses' 
 import DetailTeacher from "../pages/DetailTeacher";
 import ActorStudents from "../pages/ActorStudents";
 import { ChangPassword } from "../pages/ChangPassword";
@@ -23,10 +23,11 @@ const publicRoutes = [
     { path: "/dang-ky", component: Register },
     { path: "/course", component: Courses },
     { path: "/bai-hoc/:id", component: Lesson },
-    { path: "/add-chapter", component: ChapterAdd },
+    { path: "/add-lesson", component: ActorLesson },
     { path: "/search/:type", component: Courses },
     { path: "/actor-courses", component: ActorCourses },
     { path: "/actor-courses/:id", component: ActorCoursesAdd},
+    { path: "/actor-chapter", component:ActorChapter },
 ];
 
 

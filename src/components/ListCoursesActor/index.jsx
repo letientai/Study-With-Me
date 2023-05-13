@@ -35,7 +35,7 @@ function ListCoursesActor({result}) {
     </div>
     <div className="row g-0 align-items-center pb-4">
       <div className="col-sm-6">
-        <div><p className="mb-sm-0">Từ 1 đến 6 tất cả 57</p></div>
+        <div><p className="mb-sm-0"></p></div>
       </div>
       <div className="col-sm-6">
         <div className="float-sm-end">

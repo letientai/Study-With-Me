@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import { faFileArrowDown, faHouse } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button, Form, Row, Col } from "react-bootstrap";
-import { CoursesGVid, getChapterByIdCourse, addLesson } from "../../apis/Courses.api";
+import { CoursesGVid, getChapterByIdCourse, addLesson } from "../../../apis/Courses.api";
 import { useMutation, useQueryClient } from "react-query";
-import { isAxiosUnprocessableEntityError } from "../../utils/utils";
+import { isAxiosUnprocessableEntityError } from "../../../utils/utils";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-function ChapterAdd() {
+function ActorLesson() {
   const user = JSON.parse(localStorage.getItem("user"));
   const queryClient = useQueryClient();
   const [courses, setCourses] = useState([]);
@@ -253,4 +253,4 @@ function ChapterAdd() {
     </div>
   );
 }
-export default ChapterAdd;
+export default ActorLesson;
