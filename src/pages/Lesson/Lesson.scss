@@ -1,0 +1,49 @@
+.avatar {
+  width: 40px;
+  height: 40px;
+  background-image: url("https://haycafe.vn/wp-content/uploads/2021/11/Anh-avatar-dep-chat-lam-hinh-dai-dien.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 50%;
+}
+.field-comment {
+  width: 100%;
+  align-items: center;
+  justify-content: space-around;
+  .avatar {
+    width: 50px;
+    height: 50px;
+  }
+  .input-comment {
+    width: calc(100% - 70px);
+    input {
+      width: 100%;
+      padding: 5px 20px;
+      border: 1px solid #cfcfcf;
+      border-radius: 20px;
+    }
+  }
+}
+.btn-cancel {
+  color: red;
+  font-weight: bold;
+  width: 24px;
+  text-align: center;
+  margin-left: 20px;
+  border-radius: 100%;
+  cursor: pointer;
+}
+.content-comment {
+  margin-left: 10px;
+  .name-user {
+    font-weight: bold;
+  }
+  .btn-reply {
+    cursor: pointer;
+    font-weight: 500;
+    &:hover {
+      color: rgb(11, 43, 224);
+    }
+  }
+}

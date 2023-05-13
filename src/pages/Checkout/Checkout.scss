@@ -1,0 +1,206 @@
+.Checkout {
+    background-color: #fafafa;
+    width: 100%;
+    position: relative;
+    
+    &_header {
+      width: 100%;
+      &_content {
+        max-width: 1350px;
+        display: flex;
+        width: 83%;
+        margin: auto;
+        p {
+          margin: 22px 0;
+          font-family: Arial, Helvetica, sans-serif;
+          color: #888888;
+        }
+        img {
+          margin: 22px;
+        }
+      }
+    }
+    &_content {
+      background-color: #ffffff;
+      width: 100%;
+      .main {
+        max-width: 1350px;
+        width: 83%;
+        margin: auto;
+        padding: 30px 0;
+        .title {
+          img {
+            width: 20px;
+          }
+          span {
+            font-size: 20px;
+            color: #3a3a3a;
+            line-height: 0.8;
+            font-weight: 600;
+            margin: 7px;
+          }
+        }
+        .order-info {
+          margin-top: 20px;
+          &-header {
+            background-color: #f4f4f4;
+            padding: 20px 0;
+            border-radius: 5px;
+            span {
+              padding: 20px;
+              font-family: "Roboto", sans-serif;
+              font-weight: 900;
+            }
+          }
+          
+          .system-vouchers {
+            background-color: #f4f4f4;
+            padding: 20px 0;
+            border-radius: 5px;
+            margin-top: 10px;
+            display: flex;
+            justify-content: space-between;
+            .title {
+              display: flex;
+              img {
+                width: 20px;
+                padding-left: 20px;
+              }
+              p {
+                margin: 0;
+                padding: 5px;
+                font-family: "Roboto", sans-serif;
+                font-weight: 900;
+              }
+            }
+            .action-vouchers {
+              color: #fd37ae;
+              margin-right: 20px;
+              font-weight: 500;
+              cursor: pointer;
+            }
+          }
+          .order-payment-header {
+            display: flex;
+            background-color: #f4f4f4;
+            padding: 20px 0;
+            img {
+              width: 20px;
+              padding-left: 20px;
+            }
+            p {
+              margin: 0;
+              padding: 5px;
+              font-family: "Roboto", sans-serif;
+              font-weight: 500;
+            }
+          }
+          .order-payment-title {
+            justify-content: flex-end;
+            display: flex;
+            background-color: #f4f4f4;
+            width: 100%;
+            .general-info {
+              padding: 20px 30px;
+              width: 400px;
+              .general-info-item {
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                span {
+                  font-size: 18px;
+                  font-family: "Roboto", sans-serif;
+                  font-weight: 570;
+                  margin: 5px;
+                }
+              }
+            }
+          }
+          .order-create-section {
+            display: flex;
+            background-color: #f4f4f4;
+            padding: 20px 0;
+            justify-content: flex-end;
+            .create-order {
+              background-color: #191919;
+              color: white;
+              box-shadow: 2px 2px 5px rgb(96 96 96 / 25%);
+              display: inline-block;
+              cursor: pointer;
+              margin: 0 30px;
+              p {
+                margin: 0;
+                color: #fff;
+                font-weight: 700;
+                padding: 11px 51px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  
+
+  .Checkout-card-item {
+    margin-top: 5px;
+    width: 100%;
+    background-color: #f4f4f4;
+    display: flex;
+    border-radius: 5px;
+    .image {
+      padding: 20px;
+      width: 170px;
+      img {
+        width: 100%;
+        height: 100px;
+        border-radius: 5px;
+      }
+    }
+    .name {
+      padding: 20px 0;
+      font-family: "Roboto", sans-serif;
+      width: 40%;
+      p {
+        margin: 0;
+        font-weight: bold;
+      }
+      b {
+        line-height: 2.5;
+        font-size: 15px;
+        font-weight: 400;
+      }
+    }
+    .amount {
+      padding: 20px;
+      text-align: center;
+      width: 20%;
+      max-width: 150px;
+      font-family: "Roboto", sans-serif;
+      b {
+        font-size: 22px;
+      }
+      p {
+        font-weight: 500;
+        margin: 0;
+        margin-bottom: 20px;
+      }
+    }
+    .priceTotal {
+      padding: 20px;
+      text-align: right;
+      width: 25%;
+      font-family: "Roboto", sans-serif;
+      b {
+        font-size: 22px;
+        font-weight: 700;
+        color: #fd37ae;
+      }
+      p {
+        font-weight: 500;
+        margin: 0;
+        margin-bottom: 20px;
+      }
+    }
+  }
+  

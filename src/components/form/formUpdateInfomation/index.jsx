@@ -54,7 +54,10 @@ export const FormUpdateInfomation = (prop) => {
           await updateInfomation(values);
         })
         .catch((err) => {
+          toast.success("Cập nhật thông tin thất bại!");
           console.log(err);
+          queryClient.setQueryData("loader", false);
+          hideModal();
         });
     } else {
       await updateInfomation(values);
