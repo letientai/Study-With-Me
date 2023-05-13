@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/Study-With-Me/static/css/main.bb52f653.css",
-    "main.js": "/Study-With-Me/static/js/main.5b4c1513.js",
+    "main.css": "/Study-With-Me/static/css/main.8cc7cda1.css",
+    "main.js": "/Study-With-Me/static/js/main.4a62efce.js",
     "static/js/787.28ceb4c2.chunk.js": "/Study-With-Me/static/js/787.28ceb4c2.chunk.js",
     "static/media/banner.png": "/Study-With-Me/static/media/banner.1e73dca4c10866cc0328.png",
     "static/media/banner5.jpg": "/Study-With-Me/static/media/banner5.f3a59cbf294a1e37cf2e.jpg",
@@ -11,17 +11,21 @@
     "static/media/banner2.png": "/Study-With-Me/static/media/banner2.0052de039995f98b216e.png",
     "static/media/chungnhan-04.png": "/Study-With-Me/static/media/chungnhan-04.720f48397ce5b2240387.png",
     "static/media/sbg.png": "/Study-With-Me/static/media/sbg.b28c4917e9330db525dc.png",
+    "static/media/icon-checkout-system-vouucher.svg": "/Study-With-Me/static/media/icon-checkout-system-vouucher.08ecc56d320a85f6514c648b3e7abebc.svg",
+    "static/media/icon-checkout-payment.svg": "/Study-With-Me/static/media/icon-checkout-payment.5bf23231fc73258c0be4a4a26c8dda35.svg",
     "static/media/slick.svg": "/Study-With-Me/static/media/slick.2630a3e3eab21c607e21.svg",
     "static/media/slick.eot": "/Study-With-Me/static/media/slick.a4e97f5a2a64f0ab1323.eot",
+    "static/media/icon-checkout.svg": "/Study-With-Me/static/media/icon-checkout.702df174d554539a877b4eac01f9108e.svg",
     "static/media/slick.ttf": "/Study-With-Me/static/media/slick.c94f7671dcc99dce43e2.ttf",
     "static/media/slick.woff": "/Study-With-Me/static/media/slick.295183786cd8a1389865.woff",
     "index.html": "/Study-With-Me/index.html",
-    "main.bb52f653.css.map": "/Study-With-Me/static/css/main.bb52f653.css.map",
-    "main.5b4c1513.js.map": "/Study-With-Me/static/js/main.5b4c1513.js.map",
+    "static/media/chevron-right.svg": "/Study-With-Me/static/media/chevron-right.feae571ec5d8b5ac4b206b8b645c947f.svg",
+    "main.8cc7cda1.css.map": "/Study-With-Me/static/css/main.8cc7cda1.css.map",
+    "main.4a62efce.js.map": "/Study-With-Me/static/js/main.4a62efce.js.map",
     "787.28ceb4c2.chunk.js.map": "/Study-With-Me/static/js/787.28ceb4c2.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.bb52f653.css",
-    "static/js/main.5b4c1513.js"
+    "static/css/main.8cc7cda1.css",
+    "static/js/main.4a62efce.js"
   ]
 }
