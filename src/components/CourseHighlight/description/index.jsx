@@ -1,7 +1,15 @@
+import { useLocation, useNavigate } from "react-router-dom";
 import CourseDetail from "./courseDetail";
 import { SidebarCourse } from "./sidebarCourse";
 
 function ContentDescription({data}) {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const idCourse = location.pathname
+    .split("khoa-hoc-truc-tuyen/")[1]
+  const sentIdLesson = (itemChild) =>{
+    navigate(`/khoa-hoc/${idCourse}/bai-hoc/${itemChild.id}`);
+  }
   return (
     <div>
       <hr />
@@ -32,7 +40,7 @@ function ContentDescription({data}) {
                 đoạn học tiếp theo.
               </p>
             </div>
-            <CourseDetail data={data}/>
+            <CourseDetail data={data} sentIdLesson={sentIdLesson}/>
           </div>
           <SidebarCourse/>
         </div>

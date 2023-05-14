@@ -11,10 +11,13 @@ import { useMutation, useQueryClient } from "react-query";
 import { isAxiosUnprocessableEntityError } from "../../../utils/utils";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 function ActorLesson() {
   const user = JSON.parse(localStorage.getItem("user"));
   const queryClient = useQueryClient();
+  const navigate = useNavigate()
+
   const [courses, setCourses] = useState([]);
   const [chapter, setChapter] = useState([]);
   const [srcVideo, setSrcVideo] = useState({});
@@ -82,7 +85,7 @@ function ActorLesson() {
     objectVal.tenBaiTap = idChapter;
     objectVal.chapter_id = idChapter;
     if (check) {
-      if (Object.keys(srcVideo).length !== 0 ) {
+      if (srcVideo?.name ) {
         queryClient.setQueryData("loader", true);
         var bodyFormData = new FormData();
         bodyFormData.append("file", srcVideo);
@@ -119,6 +122,7 @@ function ActorLesson() {
         console.log(data);
         queryClient.setQueryData("loader", false);
         toast.success(data.data.message);
+        navigate("/Study-With-Me")
       },
       onError: (error) => {
         queryClient.setQueryData("loader", false);
