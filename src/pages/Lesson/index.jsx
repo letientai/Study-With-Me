@@ -128,6 +128,7 @@ export const Lesson = () => {
     //     queryClient.setQueryData("loader", false);
     //   },
     // });
+    console.log(idCourse,parentIdComment,textComment);
     http
       .post(
         `https://deploy-production-fe48.up.railway.app/api/lesson/${idCourse}/comments/${parentIdComment}/replies`,
