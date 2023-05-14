@@ -24,6 +24,7 @@ function TopHeader() {
       toast.success("Đăng xuất thành công");
       clearLS();
       clearUser();
+      navigate("/Study-With-Me")
     },
   });
   const handleLogout = () => {

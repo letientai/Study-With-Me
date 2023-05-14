@@ -153,7 +153,6 @@ export const Lesson = () => {
       if (!parentIdComment) {
         addCommentToLesson();
       } else {
-        console.log("ĐÚng");
         replyCommentToLesson();
       }
     }
