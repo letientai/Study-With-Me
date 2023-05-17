@@ -1,0 +1,60 @@
+.chapter-wrap {
+    display: flex;
+    align-items: center;
+    background-color: #f1f1f1;
+    justify-content: space-between;
+    padding: 6px;
+    .nameChapter {
+        font-size: 18px;
+        margin: 0;
+        span {
+            color: #ffab60;
+        }
+    }
+    
+}
+.lesson-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #f9f9f9;
+    padding: 6px;
+    padding-left: 20px;
+    .nameChapter {
+        font-size: 16px;
+        margin: 0;
+        span {
+            color: #ffab60;
+        }
+    }
+}
+.nameCourse {
+    font-size: 20px;
+    span {
+        color: #ffab60;
+    }
+}
+
+.custom-show {
+    display: block;
+    min-width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.custom-show-name {
+    display: block;
+    min-width: 640px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.custom-show-status {
+    display: block;
+    min-width: 140px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

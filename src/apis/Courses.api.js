@@ -18,8 +18,15 @@ export const updateCourse = (id, body) => http.put(`update/${id}/course`, {
     category_id: body.category_id,
     trangThai: body.trangThai
 })
+
+export const getDetailCourses = (id) => http.get(`detail/${id}/course`)
 export const getAllcourses = () => http.get(`search/course`)
 export const getChapterByIdCourse = (id) => http.get(`get/${id}/chapter`)
+export const updateChapter = (id, body) => http.put(`update/${id}/chapter`, {
+    tenChuongHoc: body.tenChuongHoc,
+    course_id: body.course_id,
+    trangThai: body.trangThai
+})
 export const addLesson = (body) => http.post(`post/lesson`, body)
 
 export const getCommentsByLesson = (id) => http.get(`lessons/${id}/comments`)
@@ -29,15 +36,22 @@ export const replyComment = (idLesson, parentIdComment, textComment) => {
         noiDung: textComment
     })
 }
-
+export const getChapterDetail = (id) => http.get(`get/${id}/chapter/detail`)
 export const paymentCourse = (id, field) => http.post(`pay/${id}/bills`, field)
 export const getMyCourses = () => http.get(`get/myCourse`)
 
 
 export const deleteCourse = (id) => http.get(`delete/${id}/course`)
+export const deleteChapter = (id) => http.get(`delete/${id}/chapter`)
 
 export const searchCourse = (inputSearch) => http.get(`search/course`, {
     params: {
         search: inputSearch
     }
 }) 
+
+export const addChapter = (body) => http.post('post/chapter', {
+    tenChuongHoc: body.tenChuongHoc,
+    course_id: body.course_id,
+    trangThai: body.trangThai,
+})

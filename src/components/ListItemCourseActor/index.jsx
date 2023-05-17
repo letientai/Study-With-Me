@@ -20,15 +20,14 @@ function ListItemCourseActor({data}) {
         deleteCourseMutation.mutate(id)
     }
     return <tr>
-                <td><Link to={`chapter/${data.id}`} className="text-body custom-show">{data.tenKhoaHoc}</Link></td>
+                <td><Link to={`/listCourse/${data.id}`} className="text-body custom-show">{data.tenKhoaHoc}</Link></td>
                 <td><span className="badge custom-show badge-soft-success mb-0">{data.moTa}</span></td>
-                <td>{data.category_id}</td>
                 <td>{data.giaCa.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")} đ</td>
                 <td><span className="badge badge-soft-success mb-0">{status}</span></td>
                 <td>
                 <ul className="list-inline mb-0">
                     <li className="list-inline-item">
-                    <a href={`actor-courses/${data.id}`} className="px-2 text-primary"><FontAwesomeIcon icon={faPencil} fontSize={18}/></a>
+                    <a href={`/actor-courses/${data.id}`} className="px-2 text-primary"><FontAwesomeIcon icon={faPencil} fontSize={18}/></a>
                     </li>
                     <li className="list-inline-item">
                     <button onClick={() => handleDelete(data.id)} className="px-2 text-danger bg-transparent"><FontAwesomeIcon icon={faTrash} fontSize={18}/></button>

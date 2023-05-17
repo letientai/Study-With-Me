@@ -128,3 +128,14 @@ export const schemaCourseGV = yup.object({
     .required('Phải chọn danh mục'),
   trangThai : yup.number()
 })
+
+export const schemaChapterGV = yup.object({
+  tenChuongHoc: yup.string()
+    .required('Phải có tên Chương học')
+    .min(5,'Độ dài từ 5 - 160 ký tự')
+    .max(1000,'Độ dài từ 5 - 1000 ký tự'),
+  course_id : yup.number()
+    .required('Phải chọn danh mục'),
+  trangThai : yup.number()
+})
+

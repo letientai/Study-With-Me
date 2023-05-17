@@ -5,7 +5,7 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Teacher from "../pages/Teacher";
 import Courses from "../pages/Courses";
-import {ActorCourses, ActorLesson,ActorChapter} from '../pages/ActorCourses' 
+import {ActorCourses, ActorLesson,ActorChapter,ListChapterAndLesson} from '../pages/ActorCourses' 
 import DetailTeacher from "../pages/DetailTeacher";
 import ActorStudents from "../pages/ActorStudents";
 import { ChangPassword } from "../pages/ChangPassword";
@@ -32,7 +32,8 @@ const publicRoutes = [
     { path: "/search/:type", component: Courses },
     { path: "/actor-courses", component: ActorCourses },
     { path: "/actor-courses/:id", component: ActorCoursesAdd},
-    { path: "/actor-chapter", component:ActorChapter },
+    { path: "/actor-chapter/:id", component:ActorChapter },
+    { path: "/listCourse/:id", component:ListChapterAndLesson },
 ];
 
 
