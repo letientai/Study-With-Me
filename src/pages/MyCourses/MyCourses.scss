@@ -1,0 +1,11 @@
+.title-MyCourses {
+  font-size: 18px;
+  color: rgb(101, 171, 228);
+}
+.list-myCourses {
+  display: flex;
+  flex-wrap: wrap;
+  .cl-red {
+    color: red;
+  }
+}

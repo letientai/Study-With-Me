@@ -1,12 +1,14 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
-const CourseDetail = ({ data, sentVideo }) => {
-  console.log(data);
-  const navigate = useNavigate()
-  const handleVideo = (url) =>{
-    sentVideo(url)
-  }
+const CourseDetail = ({ data, sentIdLesson }) => {
+  const handleVideo = (itemChild) => {
+    if (itemChild.trangThai === 0) {
+      toast.info("Mua khóa học để xem được các bài giảng");
+    } else {
+      sentIdLesson(itemChild);
+    }
+  };
   return (
     <div className="course-outline">
       <div className="course-detail-stitle ">
@@ -19,7 +21,11 @@ const CourseDetail = ({ data, sentVideo }) => {
           </div>
           <ul className="learn-outline-section">
             {item?.lessons?.map((itemChild, index) => (
-              <li className="learn-outline-item py-1" key={itemChild?.id} onClick={() => handleVideo(itemChild?.linkVideo)}>
+              <li
+                className="learn-outline-item py-1"
+                key={itemChild?.id}
+                onClick={() => handleVideo(itemChild)}
+              >
                 <h4 className="scorm-right-name visible">
                   <span className="scorm-right-link">
                     {itemChild?.tenBaiHoc}{" "}

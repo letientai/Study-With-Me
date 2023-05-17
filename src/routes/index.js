@@ -11,6 +11,8 @@ import ActorStudents from "../pages/ActorStudents";
 import { ChangPassword } from "../pages/ChangPassword";
 import { ActorCoursesAdd} from "../pages/ActorCourses";
 import { Lesson } from "../pages/Lesson";
+import { Checkout } from "../pages/Checkout";
+import { MyCourses } from "../pages/MyCourses";
 
 const publicRoutes = [
     { path: "/Study-With-Me", component: Home },
@@ -22,8 +24,10 @@ const publicRoutes = [
     { path: "/dang-nhap", component: Login },
     { path: "/dang-ky", component: Register },
     { path: "/course", component: Courses },
-    { path: "/bai-hoc/:id", component: Lesson },
+    { path: "/khoa-hoc/:idCourse/bai-hoc/:idLesson", component: Lesson },
+    { path: "/khoa-hoc-cua-toi", component: MyCourses },
     { path: "/add-lesson", component: ActorLesson },
+    { path: "/thanh-toan/:idCourse", component: Checkout },
     { path: "/search/:type", component: Courses },
     { path: "/actor-courses", component: ActorCourses },
     { path: "/actor-courses/:id", component: ActorCoursesAdd},

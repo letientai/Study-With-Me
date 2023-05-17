@@ -2,15 +2,22 @@ import React, { useEffect, useState } from "react";
 import { faFileArrowDown, faHouse } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button, Form, Row, Col } from "react-bootstrap";
-import { CoursesGVid, getChapterByIdCourse, addLesson } from "../../../apis/Courses.api";
+import {
+  CoursesGVid,
+  getChapterByIdCourse,
+  addLesson,
+} from "../../../apis/Courses.api";
 import { useMutation, useQueryClient } from "react-query";
 import { isAxiosUnprocessableEntityError } from "../../../utils/utils";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 function ActorLesson() {
   const user = JSON.parse(localStorage.getItem("user"));
   const queryClient = useQueryClient();
+  const navigate = useNavigate()
+
   const [courses, setCourses] = useState([]);
   const [chapter, setChapter] = useState([]);
   const [srcVideo, setSrcVideo] = useState({});
@@ -25,8 +32,8 @@ function ActorLesson() {
     mutationFn: (id) => getChapterByIdCourse(id),
   });
   const createLesson = useMutation({
-    mutationFn: (body) => addLesson(body)
-  })
+    mutationFn: (body) => addLesson(body),
+  });
   useEffect(() => {
     queryClient.setQueryData("loader", true);
     getCourse.mutate(user?.id, {
@@ -71,15 +78,15 @@ function ActorLesson() {
   };
   const handleSubmit = () => {
     const check = idChapter && nameLessson && statusLesson;
-    var objectVal = {}
-    objectVal.tenBaiHoc = nameLessson
-    objectVal.trangThai = statusLesson
-    objectVal.moTaBaiTap = idChapter
-    objectVal.tenBaiTap = idChapter
-    objectVal.chapter_id = idChapter
-    queryClient.setQueryData("loader", true);
+    var objectVal = {};
+    objectVal.tenBaiHoc = nameLessson;
+    objectVal.trangThai = statusLesson;
+    objectVal.moTaBaiTap = idChapter;
+    objectVal.tenBaiTap = idChapter;
+    objectVal.chapter_id = idChapter;
     if (check) {
-      if (srcVideo) {
+      if (srcVideo?.name ) {
+        queryClient.setQueryData("loader", true);
         var bodyFormData = new FormData();
         bodyFormData.append("file", srcVideo);
         bodyFormData.append("upload_preset", "j83n0nkq");
@@ -93,14 +100,17 @@ function ActorLesson() {
           )
           .then(async (res) => {
             objectVal.linkVideo = res?.data?.secure_url;
-            postLesson(objectVal)
+            postLesson(objectVal);
           })
           .catch((err) => {
             console.log(err);
             queryClient.setQueryData("loader", false);
-
           });
+      } else {
+        toast.warn("Vui lòng upload video!");
       }
+    } else {
+      toast.warn("Vui lòng nhập đủ thông tin!");
     }
   };
 
@@ -111,7 +121,8 @@ function ActorLesson() {
       onSuccess: (data) => {
         console.log(data);
         queryClient.setQueryData("loader", false);
-        toast.success(data.data.message)
+        toast.success(data.data.message);
+        navigate("/Study-With-Me")
       },
       onError: (error) => {
         queryClient.setQueryData("loader", false);
@@ -120,7 +131,7 @@ function ActorLesson() {
         }
       },
     });
-  }
+  };
   return (
     <div className="bg-white">
       <div className="container">

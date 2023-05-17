@@ -95,7 +95,6 @@ function Chapter() {
           onError: (error) => {
             queryClient.setQueryData("loader", false);
             if (isAxiosUnprocessableEntityError(error)) {
-
               console.log(error)
             }
           },
@@ -113,8 +112,6 @@ function Chapter() {
             onSubmit={handleSubmit}
           >
             {(formikProps) => {
-              const { values, errors, touched, isSubmitting } = formikProps;
-              console.log(values)
               return (
                 <div className="container py-4">
                   <div className="container-xl px-4 mt-4">
