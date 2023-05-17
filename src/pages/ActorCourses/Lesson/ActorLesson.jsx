@@ -19,9 +19,7 @@ function ActorLesson() {
   const navigate = useNavigate();
   const location = useLocation();
   const checkUpdate = location.pathname !== "/add-lesson";
-  // var idCourse = null;
-  // var idChapter = null
-  // var idLesson = null;
+
   const [courses, setCourses] = useState([]);
   const [chapter, setChapter] = useState([]);
   const [srcVideo, setSrcVideo] = useState({});
@@ -44,7 +42,7 @@ function ActorLesson() {
     var getChapterWhenUpdate = null;
     queryClient.setQueryData("loader", true);
     if (checkUpdate) {
-      getChapterWhenUpdate = getChapterByIdCourse(7);
+      getChapterWhenUpdate = getChapterByIdCourse(location.pathname.split("/")[2]);
     }
     Promise.all([CoursesGVid(user?.id), getChapterWhenUpdate])
       .then((responses) => {
@@ -61,16 +59,16 @@ function ActorLesson() {
           setNameLessson(
             litsLesson.filter(
               (x) => x.id === parseInt(location.pathname.split("/")[4])
-            )[0].tenBaiHoc
+            )[0]?.tenBaiHoc
           );
           setUrlVideo(
             litsLesson.filter(
               (x) => x.id === parseInt(location.pathname.split("/")[4])
-            )[0].linkVideo
+            )[0]?.linkVideo
           );
           setStatusLesson( litsLesson.filter(
             (x) => x.id === parseInt(location.pathname.split("/")[4])
-          )[0].trangThai)
+          )[0]?.trangThai)
         }
         console.log("done", responses);
         queryClient.setQueryData("loader", false);
@@ -82,27 +80,6 @@ function ActorLesson() {
       });
   }, []);
 
-  // const fetchDataUpdate = () => {
-  //   if (checkUpdate) {
-  //     idCourse = location.pathname.split("/")[2];
-  //     setIdchapter(location.pathname.split("/")[3]);
-  //     idLesson = location.pathname.split("/")[4];
-  //     queryClient.setQueryData("loader", true);
-
-  //     getChapter.mutate(idCourse, {
-  //       onSuccess: (data) => {
-  //         console.log(data);
-  //       },
-  //       onError: (error) => {
-  //         if (isAxiosUnprocessableEntityError(error)) {
-  //           console.log(error);
-  //         }
-  //       },
-  //     });
-  //   } else {
-  //     return true;
-  //   }
-  // };
 
   const handle = (e) => {
     setIdCourse(e.target.value);
@@ -213,6 +190,7 @@ function ActorLesson() {
                           placeholder="Giới tính"
                           onChange={handle}
                           value={idCourse}
+                          disabled={checkUpdate}
                         >
                           <option value={0}>Chọn khóa học</option>
                           {courses?.map((item, index) => (
