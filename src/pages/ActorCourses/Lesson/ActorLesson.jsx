@@ -11,18 +11,24 @@ import { useMutation, useQueryClient } from "react-query";
 import { isAxiosUnprocessableEntityError } from "../../../utils/utils";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 function ActorLesson() {
   const user = JSON.parse(localStorage.getItem("user"));
   const queryClient = useQueryClient();
-  const navigate = useNavigate()
-
+  const navigate = useNavigate();
+  const location = useLocation();
+  const checkUpdate = location.pathname !== "/add-lesson";
+  // var idCourse = null;
+  // var idChapter = null
+  // var idLesson = null;
   const [courses, setCourses] = useState([]);
   const [chapter, setChapter] = useState([]);
   const [srcVideo, setSrcVideo] = useState({});
   const [urlVideo, setUrlVideo] = useState("");
   const [idChapter, setIdchapter] = useState(0);
+  const [idCourse, setIdCourse] = useState(0);
+  const [idLesson, setIdLesson] = useState(0);
   const [nameLessson, setNameLessson] = useState("");
   const [statusLesson, setStatusLesson] = useState(1);
   const getCourse = useMutation({
@@ -35,23 +41,71 @@ function ActorLesson() {
     mutationFn: (body) => addLesson(body),
   });
   useEffect(() => {
+    var getChapterWhenUpdate = null;
     queryClient.setQueryData("loader", true);
-    getCourse.mutate(user?.id, {
-      onSuccess: (data) => {
-        queryClient.setQueryData("loader", false);
-        console.log(data);
-        setCourses(data?.data?.data);
-      },
-      onError: (error) => {
-        queryClient.setQueryData("loader", false);
-        if (isAxiosUnprocessableEntityError(error)) {
-          console.log(error);
+    if (checkUpdate) {
+      getChapterWhenUpdate = getChapterByIdCourse(7);
+    }
+    Promise.all([CoursesGVid(user?.id), getChapterWhenUpdate])
+      .then((responses) => {
+        // Xử lý kết quả từ responses[0] và responses[1] ở đây
+        setCourses(responses[0]?.data?.data);
+        if (checkUpdate) {
+          var litsLesson = [];
+          setChapter(responses[1]?.data?.data);
+          setIdCourse(location.pathname.split("/")[2]);
+          setIdchapter(location.pathname.split("/")[3]);
+          responses[1]?.data?.data?.filter((x) => {
+            litsLesson.push(...x.lessons);
+          });
+          setNameLessson(
+            litsLesson.filter(
+              (x) => x.id === parseInt(location.pathname.split("/")[4])
+            )[0].tenBaiHoc
+          );
+          setUrlVideo(
+            litsLesson.filter(
+              (x) => x.id === parseInt(location.pathname.split("/")[4])
+            )[0].linkVideo
+          );
+          setStatusLesson( litsLesson.filter(
+            (x) => x.id === parseInt(location.pathname.split("/")[4])
+          )[0].trangThai)
         }
-      },
-    });
+        console.log("done", responses);
+        queryClient.setQueryData("loader", false);
+      })
+      .catch((error) => {
+        console.log(error);
+        queryClient.setQueryData("loader", false);
+        // Xử lý lỗi ở đây
+      });
   }, []);
+
+  // const fetchDataUpdate = () => {
+  //   if (checkUpdate) {
+  //     idCourse = location.pathname.split("/")[2];
+  //     setIdchapter(location.pathname.split("/")[3]);
+  //     idLesson = location.pathname.split("/")[4];
+  //     queryClient.setQueryData("loader", true);
+
+  //     getChapter.mutate(idCourse, {
+  //       onSuccess: (data) => {
+  //         console.log(data);
+  //       },
+  //       onError: (error) => {
+  //         if (isAxiosUnprocessableEntityError(error)) {
+  //           console.log(error);
+  //         }
+  //       },
+  //     });
+  //   } else {
+  //     return true;
+  //   }
+  // };
+
   const handle = (e) => {
-    console.log(e.target.value);
+    setIdCourse(e.target.value);
     queryClient.setQueryData("loader", true);
     getChapter.mutate(e.target.value, {
       onSuccess: (data) => {
@@ -85,7 +139,7 @@ function ActorLesson() {
     objectVal.tenBaiTap = idChapter;
     objectVal.chapter_id = idChapter;
     if (check) {
-      if (srcVideo?.name ) {
+      if (srcVideo?.name) {
         queryClient.setQueryData("loader", true);
         var bodyFormData = new FormData();
         bodyFormData.append("file", srcVideo);
@@ -122,7 +176,7 @@ function ActorLesson() {
         console.log(data);
         queryClient.setQueryData("loader", false);
         toast.success(data.data.message);
-        navigate("/Study-With-Me")
+        navigate("/Study-With-Me");
       },
       onError: (error) => {
         queryClient.setQueryData("loader", false);
@@ -158,6 +212,7 @@ function ActorLesson() {
                           className="field-input"
                           placeholder="Giới tính"
                           onChange={handle}
+                          value={idCourse}
                         >
                           <option value={0}>Chọn khóa học</option>
                           {courses?.map((item, index) => (
@@ -179,6 +234,7 @@ function ActorLesson() {
                         <select
                           className="field-input"
                           onChange={handleChapter}
+                          value={idChapter}
                         >
                           {chapter?.length === 0 ? (
                             <option>Chưa có chương học</option>
@@ -208,6 +264,7 @@ function ActorLesson() {
                             type="email"
                             placeholder="Tên khóa học"
                             onChange={(e) => setNameLessson(e.target.value)}
+                            value={nameLessson}
                           />
                         </Form.Group>
                       </div>
@@ -218,6 +275,7 @@ function ActorLesson() {
                         <select
                           className="field-input"
                           onChange={(e) => setStatusLesson(e.target.value)}
+                          value={statusLesson}
                         >
                           <option value={1}>Miễn phí</option>
                           <option value={0}>Tính phí</option>

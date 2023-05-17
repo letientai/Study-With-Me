@@ -27,6 +27,7 @@ const publicRoutes = [
     { path: "/khoa-hoc/:idCourse/bai-hoc/:idLesson", component: Lesson },
     { path: "/khoa-hoc-cua-toi", component: MyCourses },
     { path: "/add-lesson", component: ActorLesson },
+    { path: "/edit-lesson/:idCourse/:idChapter/:idLesson", component: ActorLesson },
     { path: "/thanh-toan/:idCourse", component: Checkout },
     { path: "/search/:type", component: Courses },
     { path: "/actor-courses", component: ActorCourses },
