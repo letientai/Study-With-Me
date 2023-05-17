@@ -28,7 +28,6 @@ function SelectField(props) {
   const showError = errors[name] && touched[name];
 
   const selectedOption = options.find(option => option.value === value);
-
   const handleSelectedOptionChange = (selectedOption) => {
     const selectedValue = selectedOption ? selectedOption.value : selectedOption;
 

@@ -17,7 +17,6 @@ function ListCoursesActor({result}) {
                   
                   <th scope="col">Tên Khoá Học</th>
                   <th scope="col">Mô Tả</th>
-                  <th scope="col">Khoá</th>
                   <th scope="col">Giá</th>
                   <th scope="col">Trạng Thái</th>
                   <th scope="col" style={{width: '200px'}}>Action</th>

@@ -14,6 +14,7 @@ const data = ["Đại học - Cao đẳng","Bổ trợ & bồi dưỡng HSG","Lu
 function Courses() {
   const {type} = useParams()
   const [dataSearch,setDataSearch] = useState([])
+  console.log(dataSearch.length)
   useQuery({
     queryKey: ['courseSearch',type],
     queryFn: () => searchCourse(type),
@@ -31,7 +32,8 @@ function Courses() {
       </div>
       <div className="col-9">
         <div className="wrapCourses">
-        <h3 className="text-start align-items-center">
+        {dataSearch.length > 0 ? <>
+          <h3 className="text-start align-items-center">
              <a href="/Study-With-Me"> <FontAwesomeIcon icon={faHouse} className="icon"/></a>
              TOÁN CAO CẤP
             </h3>
@@ -42,6 +44,8 @@ function Courses() {
                 </div>
                 ))}
             </div>
+        </> : <h3 className="text-center text-warning">Chưa có khoá học nào tồn tại</h3>}
+       
         </div>
       </div>
     </div>
