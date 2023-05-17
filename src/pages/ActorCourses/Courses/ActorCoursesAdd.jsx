@@ -36,8 +36,7 @@ function ActorCoursesAdd() {
     trangThai:dataEdit?.trangThai || 1,
   };
   // xét danh mục
-  const [category, setCategory] = useState([]);
-  console.log(category)
+  const [category, setCategory] = useState();
   useQuery({
     queryKey: ["category"],
     queryFn: () => getAllcategory(),
@@ -47,7 +46,6 @@ function ActorCoursesAdd() {
         label: categoryItem.tenDanhMuc,
       }));
       setCategory(filteredData);
-      setLoading(false);
     },
   });
   if(!isAddMode){
@@ -211,14 +209,14 @@ function ActorCoursesAdd() {
                               label="Giá"
                               placeholder="Nhập Giá..."
                             />
-                            {!loading && <FastField
+                            {category && <FastField
                               name="category_id"
                               component={SelectField}
                               label="Danh Mục"
                               placeholder="Bạn muốn chọn Danh Mục?"
                               options={category}
                             />}
-                           
+
                             {isAddMode ? (
                               ""
                             ) : (

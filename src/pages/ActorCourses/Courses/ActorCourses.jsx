@@ -1,32 +1,30 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHouse } from "@fortawesome/free-solid-svg-icons";
 
 import "./ActorCourses.scss";
-import { faHouse } from "@fortawesome/free-solid-svg-icons";
 import ListCoursesActor from "../../../components/ListCoursesActor";
 import { useQuery } from "react-query";
 import { CoursesGVid } from "../../../apis/Courses.api";
 
 import { getProfileFromLS } from "../../../utils/auth";
+import { Link } from "react-router-dom";
 
 function ActorCourses() {
   const profile = getProfileFromLS();
   const dataName = [
     {
       name: "Thêm Khoá Học",
-      href: "actor-courses/add",
+      to: "/actor-courses/add",
     },
     {
       name: "Thêm Chương Học",
-      href: "actor-chapter",
+      to: "/actor-chapter/add",
     },
     {
       name: "Thêm Bài Học",
-      href: "/add-lesson",
+      to: "/add-lesson",
     },
-    {
-      name: "Khoá Học Của Tôi",
-      href: "actor-courses/",
-    },
+   
   ];
 
   const result = useQuery({
@@ -36,10 +34,10 @@ function ActorCourses() {
   return (
     <div className="container py-4">
       <h3 className="text-start fs-4 align-items-center">
-        <a href="/">
+        <Link to="/">
           {" "}
           <FontAwesomeIcon icon={faHouse} className="icon" />
-        </a>
+        </Link>
         Trang Chủ &gt; Khoá Học
       </h3>
       <div className="row mt-4">
@@ -55,9 +53,9 @@ function ActorCourses() {
               <span>{profile.hoTen}</span>
             </div>
             {dataName.map((data, index) => (
-              <a key={index} href={data.href} className="mc-links">
+              <Link key={index} to={data.to} className="mc-links">
                 {data.name}
-              </a>
+              </Link>
             ))}
           </div>
         </div>
