@@ -1,10 +1,10 @@
 import "./Button.scss";
 
 function Button( {dataBtn} ) {
-    return ( <a href="https://backenddoan-production.up.railway.app/api/auth/google" className={dataBtn.role}>
+    return ( <div className={dataBtn.role}>
         {dataBtn.icon}
         {dataBtn.title}
-     </a> 
+     </div> 
     );
 }
 
