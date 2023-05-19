@@ -1,0 +1,30 @@
+.container-form-forgot {
+    width: 80%;
+    margin: auto;
+    border: 1px solid #999999;
+    border-radius: 3px;
+    .name {
+        width: 100%;
+        background-color: #0066cc;
+        margin: 0;
+        padding: 10px 0;
+        color: white;
+        font-family: "arial";
+        font-size: 18px;
+        text-align: center;
+    }
+    .form-input {
+        margin: 10px;
+        width: 30%;
+        padding: 6px 12px;
+        font-size: 14px;
+        color: #555;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+    .error-mess {
+        margin-top: -10px;
+        color: #a94442;
+    }
+}
