@@ -30,6 +30,14 @@ function TopHeader() {
   const handleLogout = () => {
     logoutMutation.mutate();
   };
+
+  const moveToMyCourse = () =>{
+    if(user.phanQuyen === 0){
+      navigate("/khoa-hoc-cua-toi")
+    }else{
+      navigate("/actor-courses")
+    }
+  }
   return (
     <div className="top-header">
       <div className="container h-100 ">
@@ -87,7 +95,7 @@ function TopHeader() {
               ) : (
                 <div className="d-flex justify-content-end align-items-center position-relative">
                   <div
-                    onClick={() => navigate("/actor-courses")}
+                    onClick={moveToMyCourse}
                     className="align-items-center my-courses mx-4"
                   >
                     Khóa học của tôi

@@ -39,6 +39,7 @@ export const replyComment = (idLesson, parentIdComment, textComment) => {
 export const getChapterDetail = (id) => http.get(`get/${id}/chapter/detail`)
 export const paymentCourse = (id, field) => http.post(`pay/${id}/bills`, field)
 export const getMyCourses = () => http.get(`get/myCourse`)
+export const activationCode = (id, body) => http.post(`post/course/${id}/activationCode`,body)
 
 
 export const deleteCourse = (id) => http.get(`delete/${id}/course`)
