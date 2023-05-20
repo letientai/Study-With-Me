@@ -50,10 +50,10 @@ export const PaymentForm = (prop) => {
   return (
     <div className="payment-container">
       <div className="payment">
-        <div className="right col-5">
+        <div className="right col-5 d-none d-lg-flex">
           <div className="image"></div>
         </div>
-        <div className="left col-7">
+        <div className="left col-12 col-lg-7">
           <div className="form">
             <div className="header">
               <h2 className="header_text">Xác nhận đơn hàng</h2>

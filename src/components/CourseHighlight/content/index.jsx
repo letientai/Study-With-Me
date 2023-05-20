@@ -30,8 +30,8 @@ function Content({ data }) {
             src={data?.linkVideo}
             className="w-100"
           /> */}
-          <div className="image">
-            <img className="w-100" src={data?.linkVideo} alt="" />
+          <div className="image-course-detail" style={{backgroundImage: `url(${data?.linkVideo})`}}>
+            {/* <img className="w-100" src={data?.linkVideo} alt="" /> */}
           </div>
           <p className="mt-2">
             <span style={{ color: "#ff6c00", fontWeight: "bold" }}>Lưu ý:</span>{" "}
