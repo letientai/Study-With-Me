@@ -108,6 +108,7 @@ export const schema = yup.object({
 
 
 export const loginSchema = schema.omit(['nameAll','soDienThoai','confirm_password'])
+export const forgot = schema.omit(['nameAll','soDienThoai','confirm_password','password'])
 
 // when add course
 

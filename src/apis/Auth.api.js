@@ -22,3 +22,5 @@ export const logout = () => {
 
 export const changePassworrd = (body) =>
   http.post('change/password', body)
+
+export const forgotPassword = (email) => http.post('reset/password',email)

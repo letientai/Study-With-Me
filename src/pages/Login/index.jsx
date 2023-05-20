@@ -9,7 +9,7 @@ import { useMutation, useQueryClient } from "react-query";
 import { loginAccount } from "../../apis/Auth.api";
 import { isAxiosUnprocessableEntityError } from "../../utils/utils";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { setLocalStorage } from "../../utils/auth";
 
 
@@ -64,7 +64,7 @@ function Login() {
             <input placeholder="Mật Khẩu" autoComplete="on" type="password" {...register('password')}  />
             <div className="error-mess">{errors.password?.message}</div>
             <button type="submit" disabled={loginAccountMutation.isLoading} className="btn-login">Đăng Nhập</button>
-            <a href="/forgot"className="link-forgot">Quên mật khẩu ?</a>
+            <Link to="/forgot"className="link-forgot">Quên mật khẩu ?</Link>
         </form>
     </div>);
 }
