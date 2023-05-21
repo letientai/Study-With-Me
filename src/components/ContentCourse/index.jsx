@@ -3,7 +3,6 @@ import SliderCustom from "../Slider";
 import Card from "./card";
 import "./ContentCourse.scss";
 export const ContentCourse = ({ data }) => {
-  console.log(data);
   const customSetting = {
     slidesToShow: 5,
     autoplay: false,

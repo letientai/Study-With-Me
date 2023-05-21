@@ -1,14 +1,47 @@
 import React from "react";
+import { useState } from "react";
+import { useEffect } from "react";
+import { useQueryClient } from "react-query";
 import { toast } from "react-toastify";
 
 const CourseDetail = ({ data, sentIdLesson }) => {
+  const queryClient = useQueryClient();
+  const access_token = localStorage.getItem("access_token");
+  var listMyCourse = queryClient.getQueryData("myCourses") || [];
+  // console.log(listMyCourse);
+  const [checkMyCourse, setCheckMyCourse] = useState(false);
   const handleVideo = (itemChild) => {
-    if (itemChild.trangThai === 0) {
-      toast.info("Mua khóa học để xem được các bài giảng");
-    } else {
+    if (itemChild.trangThai === 1) {
       sentIdLesson(itemChild);
+    } else if (checkMyCourse) {
+      sentIdLesson(itemChild);
+    } else {
+      toast.info("Mua khóa học để xem được các bài giảng");
     }
   };
+  if (access_token) {
+    // listMyCourse = ;
+  }
+  // listMyCourse = useQuery({
+  //   queryKey: ["loader"],
+  //   queryFn: () => queryClient.getQueryData("myCourses"),
+  // });
+  useEffect(() => {
+    if (access_token) {
+      console.log(listMyCourse);
+      if (listMyCourse.length !== 0) {
+        if (listMyCourse.some((course) => course.idKhoaHoc === data.id && course.trangThai === 0)) {
+          setCheckMyCourse(true);
+        } else {
+          setCheckMyCourse(false);
+        }
+      }
+    } else {
+      setCheckMyCourse(false);
+      queryClient.setQueryData("myCourses", () => []);
+    }
+  }, [listMyCourse, access_token, data]);
+
   return (
     <div className="course-outline">
       <div className="course-detail-stitle ">

@@ -42,7 +42,9 @@ function ActorLesson() {
     var getChapterWhenUpdate = null;
     queryClient.setQueryData("loader", true);
     if (checkUpdate) {
-      getChapterWhenUpdate = getChapterByIdCourse(location.pathname.split("/")[2]);
+      getChapterWhenUpdate = getChapterByIdCourse(
+        location.pathname.split("/")[2]
+      );
     }
     Promise.all([CoursesGVid(user?.id), getChapterWhenUpdate])
       .then((responses) => {
@@ -66,9 +68,11 @@ function ActorLesson() {
               (x) => x.id === parseInt(location.pathname.split("/")[4])
             )[0]?.linkVideo
           );
-          setStatusLesson( litsLesson.filter(
-            (x) => x.id === parseInt(location.pathname.split("/")[4])
-          )[0]?.trangThai)
+          setStatusLesson(
+            litsLesson.filter(
+              (x) => x.id === parseInt(location.pathname.split("/")[4])
+            )[0]?.trangThai
+          );
         }
         console.log("done", responses);
         queryClient.setQueryData("loader", false);
@@ -79,7 +83,6 @@ function ActorLesson() {
         // Xử lý lỗi ở đây
       });
   }, []);
-
 
   const handle = (e) => {
     setIdCourse(e.target.value);
@@ -117,6 +120,7 @@ function ActorLesson() {
     objectVal.chapter_id = idChapter;
     if (check) {
       if (srcVideo?.name) {
+        console.log("Add lesson");
         queryClient.setQueryData("loader", true);
         var bodyFormData = new FormData();
         bodyFormData.append("file", srcVideo);
@@ -130,6 +134,7 @@ function ActorLesson() {
             bodyFormData
           )
           .then(async (res) => {
+            console.log(res);
             objectVal.linkVideo = res?.data?.secure_url;
             postLesson(objectVal);
           })
@@ -157,9 +162,7 @@ function ActorLesson() {
       },
       onError: (error) => {
         queryClient.setQueryData("loader", false);
-        if (isAxiosUnprocessableEntityError(error)) {
-          console.log(error);
-        }
+        console.log(error);
       },
     });
   };

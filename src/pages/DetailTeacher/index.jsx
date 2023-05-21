@@ -17,7 +17,7 @@ function DetailTeacher() {
   const customSetting = {
     slidesToShow: 1,
     autoplay: true,
-    speed: 3000,
+    speed: 300,
   };
 
   const getCourses = useMutation({

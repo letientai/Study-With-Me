@@ -117,27 +117,14 @@ export const Lesson = () => {
 
   const replyCommentToLesson = () => {
     queryClient.setQueryData("loader", true);
-    // replyCommentUser.mutate(parentIdComment, {
-    //   onSuccess: (data) => {
-    //     console.log("ahihi",data);
-    //     queryClient.setQueryData("loader", true);
-    //     setTextComment("");
-    //   },
-    //   onError: (error) => {
-    //     console.log(error);
-    //     queryClient.setQueryData("loader", false);
-    //   },
-    // });
-    console.log(idCourse,parentIdComment,textComment);
     http
       .post(
-        `https://deploy-production-fe48.up.railway.app/api/lesson/${idCourse}/comments/${parentIdComment}/replies`,
+        `https://deploy-production-3edb.up.railway.app/api/lesson/${idCourse}/comments/${parentIdComment}/replies`,
         {
           noiDung: textComment,
         }
       )
       .then(async (res) => {
-        console.log("ahihi", res);
         setTextComment("");
         setParentIdComment(null)
         queryClient.setQueryData("loader", false);

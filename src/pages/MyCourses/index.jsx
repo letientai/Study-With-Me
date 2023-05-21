@@ -9,8 +9,10 @@ import Card from "react-bootstrap/Card";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 export const MyCourses = () => {
   const queryClient = useQueryClient();
+  const navigate = useNavigate()
   const [myCoursesList, setMyCoursesList] = useState([]);
   const [dataUpdate, setDataUpdate] = useState("");
   const [show, setShow] = useState(false);
@@ -48,6 +50,9 @@ export const MyCourses = () => {
     if (item?.trangThai === 1) {
       setDataUpdate(item);
       handleShow();
+    }else{
+      console.log(item);
+      // navigate("/khoa-hoc-truc-tuyen/")
     }
   };
 
