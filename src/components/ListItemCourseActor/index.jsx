@@ -1,24 +1,10 @@
-import {  faPencil, faTrash } from "@fortawesome/free-solid-svg-icons";
+import {   faPencil, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { handleStatus } from "../../utils/CustomRes"
-import {  useMutation, useQueryClient } from "react-query";
-import { deleteCourse } from "../../apis/Courses.api";
-import { toast } from "react-toastify";
 import './ListItemCourseActor.scss'
 import { Link } from "react-router-dom";
-function ListItemCourseActor({data}) {
-    const queryClient = useQueryClient()
+function ListItemCourseActor({data, show}) {
     const status = handleStatus(data.trangThai)
-    const deleteCourseMutation = useMutation({
-        mutationFn : (id) => deleteCourse(id),
-        onSuccess:(id) => {
-            toast.success(`Xoá Thành Công Khoá Học`)
-            queryClient.invalidateQueries({queryKey:['courses'] })
-        }
-    })
-    const handleDelete = (id) => {
-        deleteCourseMutation.mutate(id)
-    }
     return <tr>
                 <td><Link to={`/listCourse/${data.id}`} className="text-body custom-show">{data.tenKhoaHoc}</Link></td>
                 <td><span className="badge custom-show badge-soft-success mb-0">{data.moTa}</span></td>
@@ -30,10 +16,11 @@ function ListItemCourseActor({data}) {
                     <a href={`/actor-courses/${data.id}`} className="px-2 text-primary"><FontAwesomeIcon icon={faPencil} fontSize={18}/></a>
                     </li>
                     <li className="list-inline-item">
-                    <button onClick={() => handleDelete(data.id)} className="px-2 text-danger bg-transparent"><FontAwesomeIcon icon={faTrash} fontSize={18}/></button>
+                    <button onClick={() => show(data.id)} className="px-2 text-danger bg-transparent"><FontAwesomeIcon icon={faTrash} fontSize={18}/></button>
                     </li>
                 </ul>
                 </td>
+                
             </tr>    
 }
 

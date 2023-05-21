@@ -8,6 +8,11 @@ import { useState } from "react";
 import { getChapterByIdCourse, getDetailCourses } from "../../../apis/Courses.api";
 import { Link, useParams } from "react-router-dom";
 import { Loader } from "../../../components/until/loader"
+
+import {  useMutation, useQueryClient } from "react-query";
+import { deleteChapter, deleteLesson } from "../../../apis/Courses.api";
+import { toast } from "react-toastify";
+import Confirm from "../../../components/Confirm";
 function ListChapterAndLesson() {
   const profile = getProfileFromLS();
   const dataName = [
@@ -29,6 +34,7 @@ function ListChapterAndLesson() {
   const [nameCourse, setNameCourse] = useState('');
   const [loading, setLoading] = useState(true);
   const { id } = useParams();
+  console.log(id)
   useQuery({
     queryKey: ["Chapter",id],
   queryFn: () => getChapterByIdCourse(id),
@@ -48,7 +54,48 @@ function ListChapterAndLesson() {
       setLoading(false);
     },
   });
+  // handle confirm delete
+  const [idDelete,setIdDelete] = useState(null)
+  const [idDeleteLs,setIdDeleteLs] = useState(null)
+  let visible = idDelete || idDeleteLs !== null
+  const queryClient = useQueryClient()
+  // delete chapter
+  const deleteChapterMutation = useMutation({
+     mutationFn : (id) => deleteChapter(id),
+     onSuccess:(id) => {
+       toast.success(`Xoá Thành Công Chương Học`)
+       queryClient.invalidateQueries({queryKey:['Chapter'] })
+  }})
 
+  // delete chapter
+  const deleteLessonMutation = useMutation({
+    mutationFn : (id) => deleteLesson(id),
+    onSuccess:(id) => {
+      toast.success(`Xoá Thành Công Bài Học`)
+      queryClient.invalidateQueries({queryKey:['Chapter'] })
+ }})
+  const handleOK = () => {
+    if(idDelete !== null) {
+      deleteChapterMutation.mutate(idDelete)
+    }
+    else if(idDeleteLs !== null) {
+      deleteLessonMutation.mutate(idDeleteLs)
+    }
+    setIdDelete(null)
+    setIdDeleteLs(null)
+  }
+  const hanldeShowConf = (id) => {
+    setIdDelete(id)
+    
+  } 
+  const hanldeShowConfLess = (id) => {
+    setIdDeleteLs(id)
+  } 
+  const handleCancel = () => {
+    setIdDelete(null)
+    setIdDeleteLs(null)
+  }
+  
 
   return <>
     {(!loading) ? <div className="container py-4">
@@ -80,11 +127,13 @@ function ListChapterAndLesson() {
       </div>
       <div className="col-9 ">
         <h3 className="nameCourse">Khoá Học : <span>{nameCourse}</span></h3>
-      {chapters.map((chapter) =>(
-        <ItemsChapter key={chapter.id}  data={chapter} />
-      ))}
+        {chapters.length > 0 ? <>{chapters.map((chapter) =>(
+        <ItemsChapter idCourse={id} show={hanldeShowConf} showLess={hanldeShowConfLess} key={chapter.id}  data={chapter} />
+      ))}</> : <h3 className="text-center text-warning">Chưa có Chương học nào tồn tại</h3>}
+      
       </div>
     </div>
+    <Confirm visible={visible} ok={handleOK} cancel={handleCancel} />
   </div>: <Loader />}
   </> 
 }

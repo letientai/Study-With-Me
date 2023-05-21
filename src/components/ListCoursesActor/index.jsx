@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
 
-function ListCoursesActor({result}) {
+function ListCoursesActor({result,show}) {
     return  <div className="container">
     <div className="row">
       <div className="col-lg-12">
@@ -24,7 +24,7 @@ function ListCoursesActor({result}) {
               </thead>
               <tbody>
               {result.data?.data?.data.map((item, index) => (
-                <ListItemCourseActor key={index} data={item}  />
+                <ListItemCourseActor key={index} data={item}  show={show} />
               ))}
               </tbody>
             </table>
