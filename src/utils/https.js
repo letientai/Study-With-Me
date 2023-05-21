@@ -7,7 +7,7 @@ class Http {
   constructor() {
 
     this.instance = axios.create({
-      baseURL: 'https://doan-production-0b9f.up.railway.app/api/',
+      baseURL: 'https://cmd-production-f0d6.up.railway.app/api/',
       timeout: 10000,
       headers: {
         'Content-Type': 'application/json'

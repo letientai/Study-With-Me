@@ -8,10 +8,40 @@ import { CoursesGVid } from "../../../apis/Courses.api";
 
 import { getProfileFromLS } from "../../../utils/auth";
 import { Link } from "react-router-dom";
+import Confirm from "../../../components/Confirm";
+import { useState } from "react";
 
+
+import {  useMutation, useQueryClient } from "react-query";
+import { deleteCourse } from "../../../apis/Courses.api";
+import { toast } from "react-toastify";
 function ActorCourses() {
+  const [idDelete,setIdDelete] = useState(null)
+  const visible = idDelete !== null
   const profile = getProfileFromLS();
   const user = JSON.parse(localStorage.getItem("user"));
+
+  // xử lý delete 
+  const queryClient = useQueryClient()
+  const deleteCourseMutation = useMutation({
+      mutationFn : (id) => deleteCourse(id),
+      onSuccess:(id) => {
+          toast.success(`Xoá Thành Công Khoá Học`)
+          queryClient.invalidateQueries({queryKey:['courses'] })
+      }
+  })
+  const handleOK = () => {
+    if(idDelete !== null) {
+      deleteCourseMutation.mutate(idDelete)
+    }
+    setIdDelete(null)
+  }
+  const hanldeShowConf = (id) => {
+    setIdDelete(id)
+  } 
+  const handleCancel = () => {
+      setIdDelete(null)
+  }
   const dataName = [
     {
       name: "Thêm Khoá Học",
@@ -63,9 +93,10 @@ function ActorCourses() {
               </div>
             </div>
             <div className="col-9 ">
-              <ListCoursesActor result={result} />
+              <ListCoursesActor  show={hanldeShowConf} result={result} />
             </div>
           </div>
+          <Confirm visible={visible} ok={handleOK} cancel={handleCancel} />
         </div>
       ) : (
         <div className="container error-permisstion d-flex align-items-center justify-content-center py-4">

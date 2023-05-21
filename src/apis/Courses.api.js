@@ -44,6 +44,7 @@ export const activationCode = (id, body) => http.post(`post/course/${id}/activat
 
 export const deleteCourse = (id) => http.get(`delete/${id}/course`)
 export const deleteChapter = (id) => http.get(`delete/${id}/chapter`)
+export const deleteLesson = (id) => http.get(`delete/${id}/lesson`)
 
 export const searchCourse = (inputSearch) => http.get(`search/course`, {
     params: {
