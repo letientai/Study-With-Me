@@ -119,7 +119,7 @@ export const Lesson = () => {
     queryClient.setQueryData("loader", true);
     http
       .post(
-        `https://deploy-production-3edb.up.railway.app/api/lesson/${idCourse}/comments/${parentIdComment}/replies`,
+        `https://cmd-production-f0d6.up.railway.app/api/lesson/${idCourse}/comments/${parentIdComment}/replies`,
         {
           noiDung: textComment,
         }

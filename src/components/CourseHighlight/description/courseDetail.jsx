@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useQueryClient } from "react-query";
@@ -29,7 +29,7 @@ const CourseDetail = ({ data, sentIdLesson }) => {
   useEffect(() => {
     if (access_token) {
       console.log(listMyCourse);
-      if (listMyCourse.length !== 0) {
+      if (listMyCourse.length !== 0) { 
         if (listMyCourse.some((course) => course.idKhoaHoc === data.id && course.trangThai === 0)) {
           setCheckMyCourse(true);
         } else {
