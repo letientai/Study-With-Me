@@ -36,7 +36,7 @@
 }
 
 .custom-show {
-    display: block;
+    display: flex;
     min-width: 200px;
     white-space: nowrap;
     overflow: hidden;
@@ -45,7 +45,7 @@
 
 .custom-show-name {
     display: block;
-    min-width: 640px;
+    min-width: 636px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;

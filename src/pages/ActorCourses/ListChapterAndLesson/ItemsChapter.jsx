@@ -10,9 +10,9 @@ function ItemsChapter({idCourse,data , show , showLess}) {
     return <>
       <div className="chapter-wrap">
         <h4 className="nameChapter custom-show-name">{data.tenChuongHoc}</h4>
-        <span className="custom-show-status badge-soft-success badge">{status}</span>
-        <ul className="list-inline mb-0">
-                <li className="list-inline-item">
+        <span className={`badge custom-show-status ${data.trangThai === 1 ? "badge-soft-success" : "badge-soft-danger"} mb-0`}>{status}</span>
+        <ul className="list-inline mb-0 d-flex">
+                <li className="list-inline-item ">
                 <Link to={`/actor-chapter/${data.id}`} className="px-2 text-primary"><FontAwesomeIcon icon={faPencil} fontSize={18}/></Link>
                 </li>
                 <li className="list-inline-item">

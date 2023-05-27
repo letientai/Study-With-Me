@@ -140,3 +140,16 @@ export const schemaChapterGV = yup.object({
   trangThai : yup.number()
 })
 
+
+
+export const schemaCategory = yup.object({
+  tenDanhMuc: yup.string()
+    .required('Phải có tên Danh Mục')
+    .min(5,'Độ dài từ 5 - 160 ký tự')
+    .max(1000,'Độ dài từ 5 - 1000 ký tự'),
+  moTa : yup.string()
+    .required('Phải có mô tả Danh mục')
+    .min(5,'Độ dài từ 5 - 500 ký tự')
+    .max(1000,'Độ dài từ 5 - 1000 ký tự'),
+})
+

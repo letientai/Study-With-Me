@@ -100,10 +100,10 @@ function ListChapterAndLesson() {
   return <>
     {(!loading) ? <div className="container py-4">
     <h3 className="text-start fs-4 align-items-center">
-      <a href="/">
+      <Link to="/Study-With-Me">
         {" "}
         <FontAwesomeIcon icon={faHouse} className="icon" />
-      </a>
+      </Link>
       Trang Chủ &gt; Chương học và bài học
     </h3>
     <div className="row mt-4">

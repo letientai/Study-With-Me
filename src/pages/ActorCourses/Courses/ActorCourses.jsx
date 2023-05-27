@@ -67,11 +67,12 @@ function ActorCourses() {
       {user?.phanQuyen ? (
         <div className="container py-4">
           <h3 className="text-start fs-4 align-items-center">
-            <a href="/">
+            <Link to="/Study-With-Me">
               {" "}
               <FontAwesomeIcon icon={faHouse} className="icon" />
-            </a>
+            </Link>
             Trang Chủ &gt; Khoá Học
+            <button>ABC</button>
           </h3>
           <div className="row mt-4">
             <div className="col-3">

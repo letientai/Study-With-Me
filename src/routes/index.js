@@ -5,7 +5,7 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Teacher from "../pages/Teacher";
 import Courses from "../pages/Courses";
-import {ActorCourses, ActorLesson,ActorChapter,ListChapterAndLesson} from '../pages/ActorCourses' 
+import {ActorCourses, ActorLesson,ActorChapter,ListChapterAndLesson,Category} from '../pages/ActorCourses' 
 import DetailTeacher from "../pages/DetailTeacher";
 import ActorStudents from "../pages/ActorStudents";
 import Forgot from "../pages/Forgot";
@@ -37,6 +37,7 @@ const publicRoutes = [
     { path: "/actor-courses/:id", component: ActorCoursesAdd},
     { path: "/actor-chapter/:id", component:ActorChapter },
     { path: "/listCourse/:id", component:ListChapterAndLesson },
+    { path: "/add-category", component: Category},
 ];
 
 
