@@ -29,7 +29,7 @@ function Chapter() {
     trangThai:dataEdit?.trangThai || 1,
   };
   // xét danh mục
-  const [category, setCategory] = useState([]);
+  const [category, setCategory] = useState();
   if(isAddMode) {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     useQuery({
@@ -112,6 +112,8 @@ function Chapter() {
             onSubmit={handleSubmit}
           >
             {(formikProps) => {
+              const {values}  = formikProps
+              console.log(values)
               return (
                 <div className="container py-4">
                   <div className="container-xl px-4 mt-4">
@@ -122,7 +124,8 @@ function Chapter() {
                             {" "}
                             <FontAwesomeIcon icon={faHouse} className="icon" />
                           </a>
-                          Trang Chủ &gt; Thêm Chương Học
+                          Trang Chủ &gt;  {!isAddMode ? "Sửa ": "Thêm " }
+                               Chương Học
                         </h3>
                       </nav>
                       <hr className="mt-0 mb-4" />
@@ -143,14 +146,13 @@ function Chapter() {
                               placeholder="Nhập tên chương học..."
                               />
                               
-                              {!isAddMode || <FastField
+                              {!isAddMode || loading || <FastField
                                 name="course_id"
                                 component={SelectField}
                                 label="Khoá Học"
                                 placeholder="Bạn muốn chọn Khoá Học?"
                                 options={category}
                               />}
-                             {!isAddMode ||
                               <FastField
                                 name="trangThai"
                                 component={SelectField}
@@ -158,7 +160,6 @@ function Chapter() {
                                 placeholder="Trạng Thái?"
                                 options={STATUS_CATEGORY_COURSE}
                               />
-                            }
                               
                               
                             </div>

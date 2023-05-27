@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Loader } from "../../../components/until/loader"
 import "./ActorCourses.scss";
 import { faHouse } from "@fortawesome/free-solid-svg-icons";
-import { useMatch, useNavigate, useParams } from "react-router-dom";
+import { Link, useMatch, useNavigate, useParams } from "react-router-dom";
 import { ImageUpload } from "../../../components/form/formUpdateInfomation/imageUpload/imageUpload";
 import { FastField, Form, Formik } from "formik";
 import { schemaCourseGV } from "../../../utils/rules";
@@ -122,7 +122,6 @@ function ActorCoursesAdd() {
         navigate("/actor-courses");
       },
       onError: (error) => {
-        console.log(error);
         queryClient.setQueryData("loader", false);
         toast.error(error?.response);
       },
@@ -160,14 +159,15 @@ function ActorCoursesAdd() {
               <div className="container py-4">
                 <div className="container-xl px-4 mt-4">
                   <Form>
-                    <nav className="nav nav-borders">
-                      <h3 className="text-start fs-4 align-items-center">
-                        <a href="/Study-With-Me">
+                    <nav className="nav nav-borders justify-content-between a">
+                      <h3 className="text-start fs-4 align-items-center ">
+                        <Link to="/Study-With-Me">
                           {" "}
                           <FontAwesomeIcon icon={faHouse} className="icon" />
-                        </a>
+                        </Link>
                         Trang Chủ &gt; {isAddMode ? "Thêm " : "Sửa"} Khoá Học
                       </h3>
+                      <Link to="/add-category"className="btn btn-primary mb-2">Thêm Danh Mục</Link>
                     </nav>
                     <hr className="mt-0 mb-4" />
                     <div className="row">
@@ -213,8 +213,9 @@ function ActorCoursesAdd() {
                               label="Danh Mục"
                               placeholder="Bạn muốn chọn Danh Mục?"
                               options={category}
-                            />}
-
+                            />  
+                            }
+                            {isAddMode && <h6 className="text-warning">Lưu ý chưa có danh mục không thể thêm khoá học</h6> }
                             {isAddMode ? (
                               ""
                             ) : (
