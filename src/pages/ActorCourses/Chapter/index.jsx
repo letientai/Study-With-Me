@@ -126,11 +126,11 @@ function Chapter() {
                         </h3>
                       </nav>
                       <hr className="mt-0 mb-4" />
-                      <div className="row">
-                        <div className="col-xl-4">
+                      <div className="row d-flex justify-content-center">
+                        {/* <div className="col-xl-4">
                           <div className="wrapper-mt">
                           </div>
-                        </div>
+                        </div> */}
                         <div className="col-xl-8">
                           <div className="card">
                             <div className="card-header">Chi Tiết Chương Học</div>
@@ -164,7 +164,7 @@ function Chapter() {
                             </div>
                             <div className="card-body">
                               <button className="btn btn-primary" type="submit">
-                              {!isAddMode ? "Sửa ": "Thêm" }
+                              {!isAddMode ? "Sửa ": "Thêm " }
                                Chương Học
                               </button>
                             </div>

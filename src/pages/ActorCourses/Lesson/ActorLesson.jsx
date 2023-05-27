@@ -170,7 +170,7 @@ function ActorLesson() {
     <div className="bg-white">
       <div className="container">
         <div className="title py-3">
-          <h3 className=" fs-4 align-items-center">
+          <h3 className=" text-start fs-4 align-items-center">
             {" "}
             <FontAwesomeIcon icon={faHouse} className="icon" />
             Trang Chủ &gt; Thêm Bài Học
