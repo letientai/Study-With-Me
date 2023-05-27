@@ -24,20 +24,20 @@ function TopHeader() {
       toast.success("Đăng xuất thành công");
       clearLS();
       clearUser();
-      navigate("/Study-With-Me")
+      navigate("/Study-With-Me");
     },
   });
   const handleLogout = () => {
     logoutMutation.mutate();
   };
 
-  const moveToMyCourse = () =>{
-    if(user.phanQuyen === 0){
-      navigate("/khoa-hoc-cua-toi")
-    }else{
-      navigate("/actor-courses")
+  const moveToMyCourse = () => {
+    if (user.phanQuyen === 0) {
+      navigate("/khoa-hoc-cua-toi");
+    } else {
+      navigate("/actor-courses");
     }
-  }
+  };
   return (
     <div className="top-header">
       <div className="container h-100 ">
@@ -124,6 +124,15 @@ function TopHeader() {
                           <div className="icon"></div>
                           <div className="text">Thông tin cá nhân</div>
                         </li>
+                        {user?.phanQuyen === 2 && (
+                          <li
+                            className="d-flex align-items-center"
+                            onClick={() => navigate("/thong-ke")}
+                          >
+                            <div className="icon"></div>
+                            <div className="text">Thống kê</div>
+                          </li>
+                        )}
                         <li
                           className="d-flex align-items-center"
                           onClick={() => navigate("/doi-mat-khau")}

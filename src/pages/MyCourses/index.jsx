@@ -52,7 +52,7 @@ export const MyCourses = () => {
       handleShow();
     }else{
       console.log(item);
-      // navigate("/khoa-hoc-truc-tuyen/")
+      navigate(`/khoa-hoc-truc-tuyen/${item?.idKhoaHoc}`)
     }
   };
 

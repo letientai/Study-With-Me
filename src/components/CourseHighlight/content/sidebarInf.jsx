@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 function SidebarInf({ data }) {
   const navigate = useNavigate();
   const accessToken = localStorage.getItem("access_token");
+  const user = JSON.parse(localStorage.getItem("user"));
   const moveToLesson = () => {
     navigate(
       `/khoa-hoc/${data?.id}/bai-hoc/${data?.chapters[0]?.lessons[0]?.id}`
@@ -11,9 +12,13 @@ function SidebarInf({ data }) {
   };
   const moveToCheckout = () => {
     if (accessToken) {
-      navigate(`/thanh-toan/${data?.id}`);
-    }else{
-      toast.info("Đăng nhập để thực hiện chức năng này!")
+      if (user?.phanQuyen === 2) {
+        toast.info("Bạn không thể thực hiện chức năng này với tài khoản trên!")
+      } else {
+        navigate(`/thanh-toan/${data?.id}`);
+      }
+    } else {
+      toast.info("Đăng nhập để thực hiện chức năng này!");
     }
   };
   return (

@@ -31,21 +31,25 @@ export const PaymentForm = (prop) => {
   };
 
   const onAddOrder = async (values) => {
-    console.log(omit(values, "email"));
-    const field = omit(values, "email");
-    queryClient.setQueryData("loader", true);
-    payment.mutate(field, {
-      onSuccess: (data) => {
-        queryClient.setQueryData("loader", false);
-        toast.success("Đăng ký khóa học thành công!");
-        navigate("/Study-With-Me")
-      },
-      onError: (error) => {
-        queryClient.setQueryData("loader", false);
-        toast.info("Đăng ký khóa học thất bại! Vui lòng thử lại sau");
-        console.log(error);
-      },
-    });
+    if (user?.phanQuyen === 0) {
+      console.log(omit(values, "email"));
+      const field = omit(values, "email");
+      queryClient.setQueryData("loader", true);
+      payment.mutate(field, {
+        onSuccess: (data) => {
+          queryClient.setQueryData("loader", false);
+          toast.success("Đăng ký khóa học thành công! Mã kích hoạt sẽ được gửi về địa chỉ của bạn");
+          navigate("/Study-With-Me");
+        },
+        onError: (error) => {
+          queryClient.setQueryData("loader", false);
+          toast.info("Đăng ký khóa học thất bại! Vui lòng thử lại sau");
+          console.log(error);
+        },
+      });
+    }else{
+      toast.info("Bạn không thể thực hiện tính năng này")
+    }
   };
   return (
     <div className="payment-container">

@@ -7,7 +7,7 @@ import { CoursesGVid } from "../../../apis/Courses.api";
 function Card({ item }) {
   const [user, setUser] = useState({});
   const queryClient = useQueryClient();
-
+  console.log(item);
   const getCourses = useMutation({
     mutationFn: (id) => CoursesGVid(id),
   });
@@ -47,7 +47,7 @@ function Card({ item }) {
             <span>{item?.tenKhoaHoc}</span>
           </div>
           <p className="course-teachers">
-            Mô tả: <span>{item?.moTa}</span>
+            Giảng viên: <span>{item?.instructor?.hoTen}</span>
           </p>
           <div className="course-scorms">
             <p className="course-fee">

@@ -28,6 +28,7 @@ export const updateChapter = (id, body) => http.put(`update/${id}/chapter`, {
     trangThai: body.trangThai
 })
 export const addLesson = (body) => http.post(`post/lesson`, body)
+export const updateLesson = (id,body) => http.put(`update/${id}/lesson`, body)
 
 export const getCommentsByLesson = (id) => http.get(`lessons/${id}/comments`)
 export const postComment = (id, field) => http.post(`comment/${id}/lesson`, field)

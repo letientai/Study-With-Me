@@ -14,6 +14,7 @@ import { ActorCoursesAdd} from "../pages/ActorCourses";
 import { Lesson } from "../pages/Lesson";
 import { Checkout } from "../pages/Checkout";
 import { MyCourses } from "../pages/MyCourses";
+import { Statistical } from "../pages/Statistical";
 const publicRoutes = [
     { path: "/Study-With-Me", component: Home },
     { path: "/khoa-hoc-truc-tuyen/:id", component: DetailCourse },
@@ -24,6 +25,7 @@ const publicRoutes = [
     { path: "/dang-nhap", component: Login },
     { path: "/dang-ky", component: Register },
     { path: "/forgot", component: Forgot },
+    { path: "/thong-ke", component: Statistical },
     { path: "/course", component: Courses },
     { path: "/khoa-hoc/:idCourse/bai-hoc/:idLesson", component: Lesson },
     { path: "/khoa-hoc-cua-toi", component: MyCourses },

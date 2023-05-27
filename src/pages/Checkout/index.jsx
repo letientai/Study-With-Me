@@ -16,6 +16,7 @@ export const Checkout = () => {
   const [data, setData] = useState({});
   const [checkFormPayment, setCheckFormPayment] = useState(false);
   const access_token = localStorage.getItem("access_token");
+  const user = JSON.parse(localStorage.getItem("user"));
 
   const id = location.pathname.split("/thanh-toan/")[1];
   const getDetailCourse = useMutation({
@@ -23,7 +24,7 @@ export const Checkout = () => {
   });
 
   useEffect(() => {
-    if (access_token) {
+    if (access_token && user?.phanQuyen === 0) {
       queryClient.setQueryData("loader", true);
       getDetailCourse.mutate(id, {
         onSuccess: (data) => {
