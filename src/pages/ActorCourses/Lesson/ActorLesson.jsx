@@ -6,6 +6,7 @@ import {
   CoursesGVid,
   getChapterByIdCourse,
   addLesson,
+  updateLesson,
 } from "../../../apis/Courses.api";
 import { useMutation, useQueryClient } from "react-query";
 import { isAxiosUnprocessableEntityError } from "../../../utils/utils";
@@ -37,6 +38,9 @@ function ActorLesson() {
   });
   const createLesson = useMutation({
     mutationFn: (body) => addLesson(body),
+  });
+  const editLesson = useMutation({
+    mutationFn: (body) => updateLesson((parseInt(location.pathname.split("/")[4])),body),
   });
   useEffect(() => {
     var getChapterWhenUpdate = null;
@@ -111,7 +115,8 @@ function ActorLesson() {
     setIdchapter(e.target.value);
   };
   const handleSubmit = () => {
-    const check = idChapter && nameLessson && statusLesson;
+    const check = idChapter && nameLessson;
+    console.log(idChapter, nameLessson);
     var objectVal = {};
     objectVal.tenBaiHoc = nameLessson;
     objectVal.trangThai = statusLesson;
@@ -119,31 +124,62 @@ function ActorLesson() {
     objectVal.tenBaiTap = idChapter;
     objectVal.chapter_id = idChapter;
     if (check) {
-      if (srcVideo?.name) {
-        console.log("Add lesson");
-        queryClient.setQueryData("loader", true);
-        var bodyFormData = new FormData();
-        bodyFormData.append("file", srcVideo);
-        bodyFormData.append("upload_preset", "j83n0nkq");
-        bodyFormData.append("public_id", srcVideo.name);
-        bodyFormData.append("api_key", "793869286496228");
-        bodyFormData.append("folder", "courses");
-        axios
-          .post(
-            `https://api.cloudinary.com/v1_1/dxphlzgvx/video/upload`,
-            bodyFormData
-          )
-          .then(async (res) => {
-            console.log(res);
-            objectVal.linkVideo = res?.data?.secure_url;
-            postLesson(objectVal);
-          })
-          .catch((err) => {
-            console.log(err);
-            queryClient.setQueryData("loader", false);
-          });
-      } else {
-        toast.warn("Vui lòng upload video!");
+      if(!checkUpdate){
+        if (srcVideo?.name) {
+          queryClient.setQueryData("loader", true);
+          var bodyFormData = new FormData();
+          bodyFormData.append("file", srcVideo);
+          bodyFormData.append("upload_preset", "j83n0nkq");
+          bodyFormData.append("public_id", srcVideo.name);
+          bodyFormData.append("api_key", "793869286496228");
+          bodyFormData.append("folder", "courses");
+          axios
+            .post(
+              `https://api.cloudinary.com/v1_1/dxphlzgvx/video/upload`,
+              bodyFormData
+            )
+            .then(async (res) => {
+              console.log(res);
+              objectVal.linkVideo = res?.data?.secure_url;
+              postLesson(objectVal);
+            })
+            .catch((err) => {
+              console.log(err);
+              queryClient.setQueryData("loader", false);
+            });
+        } else {
+          toast.warn("Vui lòng upload video!");
+        }
+      }else{
+        console.log(objectVal);
+        objectVal.linkVideo = urlVideo
+        if(srcVideo?.name){
+          queryClient.setQueryData("loader", true);
+          var bodyFormData = new FormData();
+          bodyFormData.append("file", srcVideo);
+          bodyFormData.append("upload_preset", "j83n0nkq");
+          bodyFormData.append("public_id", srcVideo.name);
+          bodyFormData.append("api_key", "793869286496228");
+          bodyFormData.append("folder", "courses");
+          axios
+            .post(
+              `https://api.cloudinary.com/v1_1/dxphlzgvx/video/upload`,
+              bodyFormData
+            )
+            .then(async (res) => {
+              console.log(res);
+              objectVal.linkVideo = res?.data?.secure_url;
+              updateLessonById(objectVal);
+            })
+            .catch((err) => {
+              console.log(err);
+              toast.error("Đã xảy ra lỗi vui lòng thử lại sau")
+              queryClient.setQueryData("loader", false);
+            });
+        }else{
+          updateLessonById(objectVal)
+        }
+
       }
     } else {
       toast.warn("Vui lòng nhập đủ thông tin!");
@@ -159,6 +195,22 @@ function ActorLesson() {
         queryClient.setQueryData("loader", false);
         toast.success(data.data.message);
         navigate("/Study-With-Me");
+      },
+      onError: (error) => {
+        queryClient.setQueryData("loader", false);
+        console.log(error);
+      },
+    });
+  };
+  const updateLessonById = (value) => {
+    console.log(value);
+    queryClient.setQueryData("loader", true);
+    editLesson.mutate(value, {
+      onSuccess: (data) => {
+        console.log(data);
+        queryClient.setQueryData("loader", false);
+        toast.success(data.data.message);
+        navigate(`/listCourse/${(parseInt(location.pathname.split("/")[2]))}`);
       },
       onError: (error) => {
         queryClient.setQueryData("loader", false);
@@ -211,7 +263,7 @@ function ActorLesson() {
                     </Col>
                     <Col md="6">
                       <div className="form-group d-block">
-                        <p className="form-group-title">Chương học</p>
+                        <p className="title">Chương học</p>
                         <select
                           className="field-input"
                           onChange={handleChapter}
@@ -252,7 +304,7 @@ function ActorLesson() {
                     </Col>
                     <Col md="6">
                       <div className="form-group d-block">
-                        <p className="form-group-title">Trạng thái</p>
+                        <p className="title">Trạng thái</p>
                         <select
                           className="field-input"
                           onChange={(e) => setStatusLesson(e.target.value)}
