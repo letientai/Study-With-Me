@@ -187,7 +187,7 @@ function ActorLesson() {
                   <Row>
                     <Col md="6">
                       <div className="form-group d-block">
-                        <p className="title">Khóa học</p>
+                        <p className="title text-align-left">Khóa học</p>
                         <select
                           className="field-input"
                           placeholder="Giới tính"
@@ -211,7 +211,7 @@ function ActorLesson() {
                     </Col>
                     <Col md="6">
                       <div className="form-group d-block">
-                        <p className="title">Chương học</p>
+                        <p className="form-group-title">Chương học</p>
                         <select
                           className="field-input"
                           onChange={handleChapter}
@@ -240,7 +240,7 @@ function ActorLesson() {
                     <Col md="6">
                       <div className="form-group d-block">
                         <Form.Group className="mb-3" controlId="formBasicEmail">
-                          <Form.Label>Tên khóa học</Form.Label>
+                          <Form.Label>Tên bài học</Form.Label>
                           <Form.Control
                             type="email"
                             placeholder="Tên khóa học"
@@ -252,7 +252,7 @@ function ActorLesson() {
                     </Col>
                     <Col md="6">
                       <div className="form-group d-block">
-                        <p className="title">Trạng thái</p>
+                        <p className="form-group-title">Trạng thái</p>
                         <select
                           className="field-input"
                           onChange={(e) => setStatusLesson(e.target.value)}
