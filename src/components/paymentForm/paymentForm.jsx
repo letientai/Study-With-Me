@@ -32,7 +32,6 @@ export const PaymentForm = (prop) => {
 
   const onAddOrder = async (values) => {
     if (user?.phanQuyen === 0) {
-      console.log(omit(values, "email"));
       const field = omit(values, "email");
       queryClient.setQueryData("loader", true);
       payment.mutate(field, {
@@ -54,10 +53,7 @@ export const PaymentForm = (prop) => {
   return (
     <div className="payment-container">
       <div className="payment">
-        <div className="right col-5 d-none d-lg-flex">
-          <div className="image"></div>
-        </div>
-        <div className="left col-12 col-lg-7">
+        <div className="left col-12 ">
           <div className="form">
             <div className="header">
               <h2 className="header_text">Xác nhận đơn hàng</h2>
@@ -145,7 +141,6 @@ export const PaymentForm = (prop) => {
               <div className="right">
                 <div className="general-info-item">
                   <span>Phí vận chuyển:</span>
-                  <span>12.000đ</span>
                   <span>0đ</span>
                 </div>
                 <div className="general-info-item">
@@ -160,14 +155,10 @@ export const PaymentForm = (prop) => {
                   <span style={{ fontWeight: "bolder" }}>Tổng thanh toán:</span>
 
                   <span style={{ fontWeight: "bolder", color: "#fd37ae" }}>
-                    {(data?.giaCa + 12000)
+                    {(data?.giaCa)
                       ?.toString()
                       .replace(/\B(?=(\d{3})+(?!\d))/g, ".")}
                     đ
-                  </span>
-
-                  <span style={{ fontWeight: "bolder", color: "#fd37ae" }}>
-                    0đ
                   </span>
                 </div>
               </div>

@@ -5,6 +5,8 @@ function SidebarInf({ data }) {
   const navigate = useNavigate();
   const accessToken = localStorage.getItem("access_token");
   const user = JSON.parse(localStorage.getItem("user"));
+  // const listMyCourses = JSON.parse(localStorage.getItem("myCourses")) || [];
+  // console.log(data);
   const moveToLesson = () => {
     navigate(
       `/khoa-hoc/${data?.id}/bai-hoc/${data?.chapters[0]?.lessons[0]?.id}`

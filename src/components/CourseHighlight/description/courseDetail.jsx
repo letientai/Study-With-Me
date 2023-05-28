@@ -28,7 +28,6 @@ const CourseDetail = ({ data, sentIdLesson }) => {
   // });
   useEffect(() => {
     if (access_token) {
-      console.log(listMyCourse);
       if (listMyCourse.length !== 0) { 
         if (listMyCourse.some((course) => course.idKhoaHoc === data.id && course.trangThai === 0)) {
           setCheckMyCourse(true);

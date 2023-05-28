@@ -7,7 +7,6 @@ import { CoursesGVid } from "../../../apis/Courses.api";
 function Card({ item }) {
   const [user, setUser] = useState({});
   const queryClient = useQueryClient();
-  console.log(item);
   const getCourses = useMutation({
     mutationFn: (id) => CoursesGVid(id),
   });

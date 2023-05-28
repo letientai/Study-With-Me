@@ -7,6 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Loader } from "./components/until/loader";
 import { useQuery, useQueryClient } from "react-query";
 import { getMyCourses } from "./apis/Courses.api";
+import { setLocalStorage } from "./utils/auth";
 function App() {
   const queryClient = useQueryClient();
   const access_token = localStorage.getItem("access_token")
@@ -27,6 +28,7 @@ function App() {
       getMyCourses()
         .then((res) => {
           queryClient.setQueryData('myCourses', () => res.data.data);
+          setLocalStorage("myCourses", res.data.data)
         }).catch((err) => {
           console.log(err);
         })

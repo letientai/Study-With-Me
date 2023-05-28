@@ -8,35 +8,7 @@ import { useQuery, useQueryClient } from "react-query";
 export default function Teacher() {
   const queryClient = useQueryClient();
 
-  const dataSearch = {
-    default: "Chọn môn",
-    data: [
-      {
-        title: "Chọn môn",
-        value: "all",
-      },
-      {
-        title: "Ngữ Văn",
-        value: "nguvan",
-      },
-      {
-        title: "Toán",
-        value: "toan",
-      },
-      {
-        title: "Vật lý",
-        value: "vatly",
-      },
-      {
-        title: "Hóa học",
-        value: "hoahoc",
-      },
-      {
-        title: "Sinh học",
-        value: "sinhhoc",
-      },
-    ],
-  };
+
   const { data, isLoading } = useQuery({
     queryKey: ["listOfTeacher"],
     queryFn: () => getListOfTeachers(),

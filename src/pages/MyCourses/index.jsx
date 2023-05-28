@@ -100,7 +100,7 @@ export const MyCourses = () => {
                     {item.tenKhoaHoc}
                   </Card.Title>
                   <Card.Text>
-                    <>Giảng viên:</>
+                    <>Ngày hết hạn: {item?.ngayHetHan}</>
                     <br />
                     Trạng thái: <b className="cl-red">{item?.trangThai === 1 ? "Chưa kích hoạt" : "Đã kích hoạt"}</b>
                   </Card.Text>

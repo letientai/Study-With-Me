@@ -30,7 +30,7 @@ export const Lesson = () => {
   const [textComment, setTextComment] = useState("");
   const [parentIdComment, setParentIdComment] = useState(null);
   const [nameReply, setNameReply] = useState("");
-
+  const myCourses = JSON.parse(localStorage.getItem("myCourses"));
   useEffect(() => {
     // 👇️ scroll to top on page load
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
@@ -58,21 +58,52 @@ export const Lesson = () => {
   }, [location]);
 
   const fetchDataCourse = () => {
-    queryClient.setQueryData("loader", true);
-    setData({});
-    getDetailCourse.mutate(idCourse, {
-      onSuccess: (data) => {
-        console.log(data);
-        setData(data?.data?.data);
-        queryClient.setQueryData("loader", false);
-      },
-      onError: (error) => {
-        if (isAxiosUnprocessableEntityError(error)) {
-          console.log(error);
+    if (
+      myCourses.some(
+        (course) => course.idKhoaHoc === parseInt(idCourse) && course.trangThai === 0
+      )
+    ) {
+      var course = myCourses.filter( (course) => course.idKhoaHoc === parseInt(idCourse) && course.trangThai === 0)[0]
+      console.log(course);
+      var dataSend = {
+        chapters: course.my_chapter,
+        giaCa: course.giaCa,
+        id: course.idKhoaHoc,
+        instructor: {
+          id: course.giaoVienID,
+          hoTen: "",
+        },
+        linkVideo: course.linkVideo,
+        moTa: course.moTa,
+        tenKhoaHoc: course.tenKhoaHoc,
+        trangThai: course.trangThai,
+        user_id: course.giaoVienID,
+      };
+      dataSend.chapters.map((item) => {
+        console.log(item);
+        item.lessons = item.my_lessons;
+        item.lessons.map((childItem) => {
+          childItem.id = childItem.idBaiHoc
+        });
+      });
+      setData(dataSend)
+    } else {
+      queryClient.setQueryData("loader", true);
+      setData({});
+      getDetailCourse.mutate(idCourse, {
+        onSuccess: (data) => {
+          console.log(data);
+          setData(data?.data?.data);
           queryClient.setQueryData("loader", false);
-        }
-      },
-    });
+        },
+        onError: (error) => {
+          if (isAxiosUnprocessableEntityError(error)) {
+            console.log(error);
+            queryClient.setQueryData("loader", false);
+          }
+        },
+      });
+    }
   };
 
   const fetchDataComments = () => {
@@ -126,9 +157,9 @@ export const Lesson = () => {
       )
       .then(async (res) => {
         setTextComment("");
-        setParentIdComment(null)
+        setParentIdComment(null);
         queryClient.setQueryData("loader", false);
-        fetchDataComments()
+        fetchDataComments();
       })
       .catch((err) => {
         console.log(err);

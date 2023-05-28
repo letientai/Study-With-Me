@@ -145,6 +145,7 @@ function ActorLesson() {
             })
             .catch((err) => {
               console.log(err);
+              toast.error("File video không đúng định dạng")
               queryClient.setQueryData("loader", false);
             });
         } else {
