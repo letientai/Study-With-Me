@@ -17,7 +17,7 @@ export const ContentCourse = ({ data }) => {
       <div className="main">
         <div className="container w-100">
           <div className="row no-mg aos-init aos-animate w-100">
-            <div className="box-title">Trung học phổ thông</div>
+            <div className="box-title">Khóa học trực tuyến</div>
           </div>
           <div className="row no-mg flex-nowrap course-slider w-100">
             <div className="box-thumb px-0 mx-0">
@@ -39,7 +39,14 @@ export const ContentCourse = ({ data }) => {
               </SliderCustom>
             </div>
           </div>
-          <div className="row no-mg flex-nowrap course-slider ">
+          <div className="row ">
+            {data?.data?.courses?.map((item, index) => (
+              <div className="col-lg-3 col-md-4 col-6 px-0 mt-3" key={index}>
+                <Card item={item} />
+              </div>
+            ))}
+          </div>
+          {/* <div className="row no-mg flex-nowrap course-slider ">
             <SliderCustom customSetting={customSetting}>
               {data?.data?.courses?.map((item, index) => (
                 <div className="col px-0" key={index}>
@@ -47,7 +54,7 @@ export const ContentCourse = ({ data }) => {
                 </div>
               ))}
             </SliderCustom>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
