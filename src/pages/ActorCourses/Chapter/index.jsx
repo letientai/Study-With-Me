@@ -58,7 +58,6 @@ function Chapter() {
       },
     });
   }
-  console.log(dataEdit)
     
     const addChapterMutatatiton = useMutation({
       mutationFn: async (body) => await addChapter(body),
@@ -81,7 +80,6 @@ function Chapter() {
           onError: (error) => {
             queryClient.setQueryData("loader", false);
             if (isAxiosUnprocessableEntityError(error)) {
-
               console.log(error)
             }
           },

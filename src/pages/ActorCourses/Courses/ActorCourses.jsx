@@ -72,7 +72,6 @@ function ActorCourses() {
               <FontAwesomeIcon icon={faHouse} className="icon" />
             </Link>
             Trang Chủ &gt; Khoá Học
-            <button>ABC</button>
           </h3>
           <div className="row mt-4">
             <div className="col-3">

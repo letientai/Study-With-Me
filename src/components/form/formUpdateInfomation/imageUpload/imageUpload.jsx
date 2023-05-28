@@ -5,7 +5,6 @@ import { faCloudArrowUp, faTrash } from "@fortawesome/free-solid-svg-icons";
 export const ImageUpload = (prop) => {
   const [images, setImages] = useState([]);
   const maxNumber = 1;
-
   const onChange = (imageList, addUpdateIndex) => {
     setImages(imageList);
     prop.changeAvatar(imageList[0]?.file)
