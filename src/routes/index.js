@@ -26,7 +26,6 @@ const publicRoutes = [
     { path: "/dang-ky", component: Register },
     { path: "/forgot", component: Forgot },
     { path: "/thong-ke", component: Statistical },
-    { path: "/danh-muc/:id", component: Courses },
     { path: "/course", component: Courses },
     { path: "/khoa-hoc/:idCourse/bai-hoc/:idLesson", component: Lesson },
     { path: "/khoa-hoc-cua-toi", component: MyCourses },
