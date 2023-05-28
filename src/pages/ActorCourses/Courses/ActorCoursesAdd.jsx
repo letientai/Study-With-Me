@@ -34,6 +34,7 @@ function ActorCoursesAdd() {
     giaCa:dataEdit?.giaCa || +"",
     category_id:dataEdit?.category_id || null,
     trangThai:dataEdit?.trangThai || 1,
+    linkVideo:dataEdit?.linkVideo || "",
   };
   // xét danh mục
   const [category, setCategory] = useState();
@@ -94,24 +95,30 @@ function ActorCoursesAdd() {
         });
     } else {
       console.log(image);
-      bodyFormData.append("file", image);
-      bodyFormData.append("upload_preset", "j83n0nkq");
-      bodyFormData.append("public_id", image.name);
-      bodyFormData.append("api_key", "793869286496228");
-      bodyFormData.append("folder", "avatar_User");
-      axios
-        .post(
-          `https://api.cloudinary.com/v1_1/dxphlzgvx/image/upload`,
-          bodyFormData
-        )
-        .then(async (res) => {
-          values.linkVideo = res?.data?.secure_url;
-          await updateCoursesMutation(values);
-        })
-        .catch((err) => {
-          toast.error("Lưu ý phải có ảnh !");
-          queryClient.setQueryData("loader", false);
-        });
+      if(initialValues.linkVideo === image){
+        await updateCoursesMutation(values);
+      }
+      else {
+        bodyFormData.append("file", image);
+        bodyFormData.append("upload_preset", "j83n0nkq");
+        bodyFormData.append("public_id", image.name);
+        bodyFormData.append("api_key", "793869286496228");
+        bodyFormData.append("folder", "avatar_User");
+        axios
+          .post(
+            `https://api.cloudinary.com/v1_1/dxphlzgvx/image/upload`,
+            bodyFormData
+          )
+          .then(async (res) => {
+            values.linkVideo = res?.data?.secure_url;
+            await updateCoursesMutation(values);
+          })
+          .catch((err) => {
+            updateCoursesMutation(values);
+            queryClient.setQueryData("loader", false);
+          });
+      }
+     
     }
   };
   const addCoursesMutation = async (values) => {
@@ -155,6 +162,8 @@ function ActorCoursesAdd() {
           onSubmit={handleSubmit}
         >
           {(formikProps) => {
+            const { values} = formikProps
+            console.log(values)
             return (
               <div className="container py-4">
                 <div className="container-xl px-4 mt-4">
