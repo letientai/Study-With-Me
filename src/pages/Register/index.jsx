@@ -11,8 +11,10 @@ import { useMutation, useQueryClient } from "react-query";
 import { registerAccount } from "../../apis/Auth.api";
 import { isAxiosUnprocessableEntityError } from "../../utils/utils";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 function Register() {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -36,6 +38,7 @@ function Register() {
         queryClient.setQueryData("loader", false);
         console.log(data);
         toast.info(data.data.thongBao);
+        navigate("/dang-nhap");
       },
       onError: (error) => {
         queryClient.setQueryData("loader", false);

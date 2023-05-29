@@ -17,7 +17,7 @@ function Content({ data }) {
             chương trình {data?.tenKhoaHoc} nhé!
           </div>
           <div className="content-teacher">
-            Giáo viên: <span className="td-cl">AHC</span>{" "}
+            Giáo viên: <span className="td-cl">{data?.instructor?.hoTen}</span>{" "}
           </div>
         </div>
       </div>

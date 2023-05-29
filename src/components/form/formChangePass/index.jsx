@@ -5,9 +5,10 @@ import { useMutation, useQueryClient } from "react-query";
 import { toast } from "react-toastify";
 import { FormChangePass } from "./validate";
 import { changePassworrd } from "../../../apis/Auth.api";
+import { useNavigate } from "react-router-dom";
 export const FormChangePassword = () => {
   const queryClient = useQueryClient();
-
+  const navigate = useNavigate()
   const initialValues = {
     old_password: "",
     new_password: "",
@@ -25,6 +26,7 @@ export const FormChangePassword = () => {
       onSuccess: (data) => {
         queryClient.setQueryData("loader", false);
         toast.success(data?.data?.message);
+        navigate("/Study-with-me")
       },
       onError: (error) => {
         console.log(error);

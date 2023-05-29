@@ -10,6 +10,7 @@ import { getProfileFromLS } from "../../../utils/auth";
 import { Link } from "react-router-dom";
 import Confirm from "../../../components/Confirm";
 import { useState } from "react";
+import emptyData from "../../../assets/Images/No data-cuate.png"
 
 
 import {  useMutation, useQueryClient } from "react-query";
@@ -99,8 +100,9 @@ function ActorCourses() {
           <Confirm visible={visible} ok={handleOK} cancel={handleCancel} />
         </div>
       ) : (
-        <div className="container error-permisstion d-flex align-items-center justify-content-center py-4">
+        <div className="container error-permisstio align-items-center justify-content-center py-4">
           <h3 className="text-center">You don't have permission to access this website</h3>{" "}
+          <img src={emptyData} className="w-100" alt="" />
         </div>
       )}
     </>
