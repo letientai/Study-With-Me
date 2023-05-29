@@ -6,7 +6,7 @@ export const ChangPassword = () => {
   return (
     <div className="wrapper-detail">
       <div className="container w-100">
-        <div className="wrapper-form">
+        <div className="wrapper-form pt-5">
           <div className="form-change-password">
             <FormChangePassword />
           </div>

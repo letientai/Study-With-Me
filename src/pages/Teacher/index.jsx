@@ -8,7 +8,6 @@ import { useQuery, useQueryClient } from "react-query";
 export default function Teacher() {
   const queryClient = useQueryClient();
 
-
   const { data, isLoading } = useQuery({
     queryKey: ["listOfTeacher"],
     queryFn: () => getListOfTeachers(),
@@ -57,14 +56,12 @@ export default function Teacher() {
             </div>
           </div>
         </div>
-        {!isLoading ? (
+        {!isLoading && (
           <div className="gv-list flex-wrap d-flex row">
             {data?.data.map((item, index) => (
               <CardTc key={index} item={item} />
             ))}
           </div>
-        ) : (
-          "không có gì" //chổ này cho loading
         )}
       </div>
     </div>

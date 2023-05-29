@@ -195,7 +195,7 @@ function ActorLesson() {
         console.log(data);
         queryClient.setQueryData("loader", false);
         toast.success(data.data.message);
-        navigate("/Study-With-Me");
+        navigate("/actor-courses");
       },
       onError: (error) => {
         queryClient.setQueryData("loader", false);

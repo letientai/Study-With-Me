@@ -51,7 +51,7 @@ export const FormChangePassword = () => {
                       <p className="title">Mật khẩu cũ</p>
                       <FastField
                         name="old_password"
-                        className="field-input"
+                        className="form-control"
                         placeholder="Mật khẩu cũ"
                         type="password"
                       ></FastField>
@@ -67,7 +67,7 @@ export const FormChangePassword = () => {
                       <p className="title">Mật khẩu mới</p>
                       <FastField
                         name="new_password"
-                        className="field-input"
+                        className="form-control"
                         placeholder="Mật khẩu mới"
                         type="password"
                       ></FastField>
@@ -83,7 +83,7 @@ export const FormChangePassword = () => {
                       <p className="title">Nhập lại mật khẩu mới</p>
                       <FastField
                         name="confirm_password"
-                        className="field-input"
+                        className="form-control"
                         placeholder="Nhập lại mật khẩu mới"
                         type="password"
                       ></FastField>

@@ -15,9 +15,6 @@ function TopHeader() {
   const user = JSON.parse(localStorage.getItem("user"));
   const debounce = useDebounce(valueSearch, 500);
 
-  // useEffect(() => {
-  //   searchCourse(debounce)
-  // }, [debounce]);
   const logoutMutation = useMutation({
     mutationFn: logout,
     onSuccess: () => {

@@ -4,6 +4,7 @@ export const setAccessTokenToLS = (access_token) => {
 
 export const clearLS = () => {
     localStorage.removeItem('access_token')
+    localStorage.removeItem('myCourses')
 }
 export const clearUser = () => {
     localStorage.removeItem('user')
